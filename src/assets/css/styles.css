@@ -456,7 +456,7 @@ section.protecting-data {
 
     width: 75%;
     border:none;
-  
+  margin: auto;
   }
   
   .btr{
@@ -684,6 +684,30 @@ form {
     display: block;
     padding-left: 12px;
 }
+.Additional-box form {
+    display: flex;
+    flex-direction: column;
+}
+.Additional-box form label {
+    text-align: left;
+    margin-bottom: 20px;
+}
+textarea {
+    border: none;
+    border-radius: 10px;
+}
+/************************* general *************************/
+.form-div label {
+    text-align: left;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.sub-btn {
+    display: flex;
+    justify-content: space-between;
+}
+
 
 @media (max-width:1440px){
     .login-img img {
