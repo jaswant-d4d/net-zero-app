@@ -4,6 +4,7 @@ import { useFormik } from "formik";
 import Swal from "sweetalert2";
 import SuccessImg from "../assets/images/Group 9106.png";
 import { useNavigate } from "react-router-dom";
+import generalImg from '../assets/images/user.svg'
 
 const validate = (values) => {
   const errors = {};
@@ -112,13 +113,66 @@ const General = () => {
 
   return (
     <>
+
+<section class="information mt-80 mb-80">
+    <div class="container">
+        <div class="row">
+            <div class="information-header">
+                <div class="col">
+                    <div class="information-icon-box">
+                        <div class="information-cricle-box">
+                            <img src={generalImg} alt="" />
+                        </div>
+                         <p>General Information</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="information-icon-box">
+                        <div class="information-cricle-box">
+                            <img src={generalImg} alt="" />
+                        </div>
+                         <p>General Information</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="information-icon-box">
+                        <div class="information-cricle-box">
+                            <img src={generalImg} alt="" />
+                        </div>
+                         <p>General Information</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="information-icon-box">
+                        <div class="information-cricle-box">
+                            <img src={generalImg} alt="" />
+                        </div>
+                         <p>General Information</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="information-icon-box">
+                        <div class="information-cricle-box">
+                            <img src={generalImg} alt="" />
+                        </div>
+                         <p>General Information</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
       <section className="general-form mt-80 mb-80">
         <div className="container ">
+            <h1>General information</h1>
           <div className="bg-lightgray-color pt-70 pb-70 ">
             <div className="row">
               <div className="col-lg-12">
-                <div className="d-flex justify-content-center align-items-center mt-5">
-                  <div className="card">
+                <div className="d-flex justify-content-center align-items-center">
+                  <div className="card card-par">
+                  <p> Fields marked with an * are required</p>
                     <div className="form ">
                       <form onSubmit={formik.handleSubmit}>
                         <div className="row">
@@ -146,8 +200,7 @@ const General = () => {
                           </div>
                           <div className="col-md-6">
                             <div className="form-div">
-                              <label htmlFor="first_name">
-                                Fields marked with an * are required
+                              <label htmlFor="first_name" className="last-name">Last name
                               </label>
                               <input
                                 type="text"
@@ -478,6 +531,10 @@ const General = () => {
                       <textarea id="view" name="view" rows="6" cols="50">
                       </textarea>
                     </form>
+                    <div class="Additional-bottom-btn">
+                        <button class="btn">Save progress</button>
+                        <button class="btn">Continue</button>
+                    </div>
                   </div>
                 </div>
               </div>
