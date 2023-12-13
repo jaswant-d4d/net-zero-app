@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import "./assets/css/styles.css"
-import General from "./components/General";
+import General from "./pages/General";
 
 function App() {
 
