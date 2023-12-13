@@ -204,13 +204,13 @@ const Login = () => {
                                                 <div className="form">
                                                     <form onSubmit={loginFormik.handleSubmit}>
                                                         <div class="form-div">
-                                                            <input type="text" name="email" className={`form-control ${loginFormik.errors.email ? "invalidInput" : ""} `} placeholder="Email Address" onChange={loginFormik.handleChange}
+                                                            <input type="text" name="email" className={`form-control ${loginFormik.errors.email && loginFormik.touched.email ? "invalidInput" : ""} `} placeholder="Email Address" onChange={loginFormik.handleChange}
                                                                 onBlur={loginFormik.handleBlur} value={loginFormik.values.email} />
-                                                            {loginFormik.errors.email ? <span className='input-error-msg'>{loginFormik.errors.email}</span> : null}
+                                                            {loginFormik.errors.email && loginFormik.touched.email ? <span className='input-error-msg'>{loginFormik.errors.email}</span> : null}
                                                         </div>
                                                         <div class="form-div">
-                                                            <input type="text" name="password" className={`form-control ${loginFormik.errors.password ? "invalidInput" : ""} `} placeholder="Password" onChange={loginFormik.handleChange} onBlur={loginFormik.handleBlur} value={loginFormik.values.password} />
-                                                            {loginFormik.errors.password ? <span className='input-error-msg'>{loginFormik.errors.password}</span> : null}
+                                                            <input type="text" name="password" className={`form-control ${loginFormik.errors.password && loginFormik.touched.password ? "invalidInput" : ""} `} placeholder="Password" onChange={loginFormik.handleChange} onBlur={loginFormik.handleBlur} value={loginFormik.values.password} />
+                                                            {loginFormik.errors.password && loginFormik.touched.password ? <span className='input-error-msg'>{loginFormik.errors.password}</span> : null}
                                                         </div>
                                                         <p>Forgot your password?</p>
                                                         <button className="submit-btn " type='submit' >Login {loading ? <div class="spinner-border text-primary" role="status">
@@ -222,25 +222,25 @@ const Login = () => {
                                                 <div className="form ">
                                                     <form onSubmit={signupFormik.handleSubmit}>
                                                         <div class="form-div">
-                                                            <input type="text" name="first_name" className={`form-control ${signupFormik.errors.first_name ? "invalidInput" : ""} `} placeholder="First Name" onChange={signupFormik.handleChange} onBlur={signupFormik.handleBlur} value={signupFormik.values.first_name} />
-                                                            {signupFormik.errors.first_name ? <span className='input-error-msg'>{signupFormik.errors.first_name}</span> : null}
+                                                            <input type="text" name="first_name" className={`form-control ${signupFormik.errors.first_name && signupFormik.touched.first_name ? "invalidInput" : ""} `} placeholder="First Name" onChange={signupFormik.handleChange} onBlur={signupFormik.handleBlur} value={signupFormik.values.first_name} />
+                                                            {signupFormik.errors.first_name && signupFormik.touched.first_name ? <span className='input-error-msg'>{signupFormik.errors.first_name}</span> : null}
 
                                                         </div>
                                                         <div class="form-div">
-                                                            <input type="text" name="last_name" className={`form-control ${signupFormik.errors.last_name ? "invalidInput" : ""} `} placeholder="Last Name" onChange={signupFormik.handleChange} onBlur={signupFormik.handleBlur} value={signupFormik.values.last_name} />
-                                                            {signupFormik.errors.last_name ? <span className='input-error-msg'>{signupFormik.errors.last_name}</span> : null}
+                                                            <input type="text" name="last_name" className={`form-control ${signupFormik.errors.last_name && signupFormik.touched.last_name ? "invalidInput" : ""} `} placeholder="Last Name" onChange={signupFormik.handleChange} onBlur={signupFormik.handleBlur} value={signupFormik.values.last_name} />
+                                                            {signupFormik.errors.last_name && signupFormik.touched.last_name ? <span className='input-error-msg'>{signupFormik.errors.last_name}</span> : null}
                                                         </div>
                                                         <div class="form-div">
-                                                            <input type="text" name="email" className={`form-control ${signupFormik.errors.email ? "invalidInput" : ""} `} placeholder="Email Address" onChange={signupFormik.handleChange} onBlur={signupFormik.handleBlur} value={signupFormik.values.email} />
-                                                            {signupFormik.errors.email ? <span className='input-error-msg'>{signupFormik.errors.email}</span> : null}
+                                                            <input type="text" name="email" className={`form-control ${signupFormik.errors.email && signupFormik.touched.email ? "invalidInput" : ""} `} placeholder="Email Address" onChange={signupFormik.handleChange} onBlur={signupFormik.handleBlur} value={signupFormik.values.email} />
+                                                            {signupFormik.errors.email && signupFormik.touched.email ? <span className='input-error-msg'>{signupFormik.errors.email}</span> : null}
                                                         </div>
                                                         <div class="form-div">
-                                                            <input type="text" name="password" className={`form-control ${signupFormik.errors.password ? "invalidInput" : ""} `} placeholder="Password" onChange={signupFormik.handleChange} onBlur={signupFormik.handleBlur} value={signupFormik.values.password} />
-                                                            {signupFormik.errors.password ? <span className='input-error-msg'>{signupFormik.errors.password}</span> : null}
+                                                            <input type="text" name="password" className={`form-control ${signupFormik.errors.password && signupFormik.touched.password ? "invalidInput" : ""} `} placeholder="Password" onChange={signupFormik.handleChange} onBlur={signupFormik.handleBlur} value={signupFormik.values.password} />
+                                                            {signupFormik.errors.password && signupFormik.touched.password ? <span className='input-error-msg'>{signupFormik.errors.password}</span> : null}
                                                         </div>
                                                         <div class="form-div">
-                                                            <input type="text" name="cpassword" className={`form-control ${signupFormik.errors.cpassword ? "invalidInput" : ""} `} placeholder="Confirm Password" onChange={signupFormik.handleChange} onBlur={signupFormik.handleBlur} value={signupFormik.values.cpassword} />
-                                                            {signupFormik.errors.cpassword ? <span className='input-error-msg'>{signupFormik.errors.cpassword}</span> : null}
+                                                            <input type="text" name="cpassword" className={`form-control ${signupFormik.errors.cpassword && signupFormik.touched.cpassword ? "invalidInput" : ""} `} placeholder="Confirm Password" onChange={signupFormik.handleChange} onBlur={signupFormik.handleBlur} value={signupFormik.values.cpassword} />
+                                                            {signupFormik.errors.cpassword && signupFormik.touched.cpassword ? <span className='input-error-msg'>{signupFormik.errors.cpassword}</span> : null}
                                                         </div>
 
                                                         <button className="submit-btn" type='submit' >Signup {loading ? <div class="spinner-border text-primary" role="status">
