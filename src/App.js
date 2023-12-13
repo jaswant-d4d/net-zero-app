@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import "./assets/css/styles.css"
+import General from "./components/General";
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/general" element={<General />} />
         </Route>
       </Routes>
 
