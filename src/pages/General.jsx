@@ -200,7 +200,7 @@ const General = () => {
                                                         name="email"
                                                         id="email"
                                                         className={`form-control ${formik.errors.email && formik.touched.email && "invalidInput"}`}
-                                                        placeholder=""
+                                                        placeholder="Email"
                                                         onChange={formik.handleChange}
                                                         onBlur={formik.handleBlur}
                                                         value={formik.values.email}
@@ -433,7 +433,7 @@ const General = () => {
                                                                 </option>
                                                             ))}
                                                     </select>
-                                                    {formik.errors.num_of_children_under_18 ? (
+                                                    {formik.errors.num_of_children_under_18 && formik.touched.num_of_children_under_18 ? (
                                                         <span className="input-error-msg">
                                                             {formik.errors.num_of_children_under_18}
                                                         </span>
