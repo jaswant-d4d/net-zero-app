@@ -6,12 +6,22 @@ import SuccessImg from "../assets/images/Group 9106.png";
 import { useNavigate } from "react-router-dom";
 import { formvalidation } from "../helpers/validations/Schema";
 import generalImg from "../assets/images/user.svg";
+import { generalFormSubmit } from "../redux-store/actions/user";
 
 const General = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.auth);
 
   const counts = ["First", "Second", "Third", "Fourth", "Fifth"];
+
+  const endYear = new Date().getFullYear();
+  const startYear = endYear - 100;
+
+  const years = [];
+  for (let year = endYear; year >= startYear; year--) {
+    years.push(year);
+  }
 
   const formik = useFormik({
     initialValues: {
@@ -19,7 +29,7 @@ const General = () => {
       last_name: "",
       email: "",
       emailConfirmation: "",
-      year_of_birth: "",
+      year_of_birth: undefined,
       country_of_residence: "",
       num_of_homes: "",
       first_home_country: "",
@@ -28,7 +38,7 @@ const General = () => {
       fourth_home_country: "",
       fifth_home_country: "",
       living_with_partner: "",
-      num_of_children_under_18: "",
+      num_of_children_under_18: undefined,
       other_dependants: "",
       other_dependants_details: "",
       forest_or_farmland_details: "",
@@ -41,49 +51,30 @@ const General = () => {
         !values.first_name ||
         !values.last_name ||
         !values.email ||
-        !values.password ||
-        !values.cpassword
+        !values.emailConfirmation ||
+        !values.year_of_birth ||
+        !values.country_of_residence ||
+        !values.num_of_homes ||
+        !values.first_home_country ||
+        !values.second_home_country ||
+        !values.third_home_country ||
+        !values.fourth_home_country ||
+        !values.fifth_home_country ||
+        !values.living_with_partner ||
+        !values.num_of_children_under_18 ||
+        !values.other_dependants ||
+        !values.other_dependants_details
       ) {
         return false;
       }
       try {
-        // const response = await dispatch(userSignup(values));
-        // if (!response?.payload?.error && response?.payload?.data) {
-        //     Swal.fire({
-        //         title: "Success!",
-        //         text: "User login successfully",
-        //         imageUrl: SuccessImg,
-        //         imageWidth: 100,
-        //         imageHeight: 100,
-        //         showCancelButton: false,
-        //         confirmButtonColor: "#3085d6",
-        //         cancelButtonColor: "#d33",
-        //     }).then((result) => {
-        //         if (result.isConfirmed) {
-        //             navigate("/")
-        //         }
-        //     });
-        // } else {
-        //     const errorMsg = response?.payload?.response?.data?.errorMsg;
-        //     if (errorMsg) {
-        //         const errorMessages = Object.values(errorMsg).flatMap(messages => messages);
-        //         if (errorMessages.length > 0) {
-        //             const errorMessage = errorMessages.join("\n");
-        //             Swal.fire({
-        //                 title: "Failed!",
-        //                 html: errorMessage,
-        //                 icon: "error",
-        //                 showCancelButton: false,
-        //                 confirmButtonColor: "#3085d6",
-        //                 cancelButtonColor: "#d33",
-        //             });
-        //         }
-        //     }
-        // }
+        let user_id = user.userInfo.user_id;
+        let newFormData = { ...values, user_id: user_id };
+        dispatch(generalFormSubmit(newFormData));
       } catch (error) {
         Swal.fire({
           title: "Failed!",
-          text: "Please check credentials",
+          text: "Something went wrong",
           icon: "error",
           showCancelButton: false,
           confirmButtonColor: "#3085d6",
@@ -95,53 +86,53 @@ const General = () => {
 
   return (
     <>
-      <section class="information mt-80 mb-80">
-        <div class="container">
-          <div class="row">
-          <div className="col-lg-12">
-            <div class="information-header">
-              <div class="col">
-                <div class="information-icon-box">
-                  <div class="information-cricle-box">
-                    <img src={generalImg} alt="" />
+      <section className="information mt-80 mb-80">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-12">
+              <div className="information-header">
+                <div className="col">
+                  <div className="information-icon-box">
+                    <div className="information-cricle-box">
+                      <img src={generalImg} alt="" />
+                    </div>
+                    <p>General Information</p>
                   </div>
-                  <p>General Information</p>
                 </div>
-              </div>
-              <div class="col">
-                <div class="information-icon-box">
-                  <div class="information-cricle-box">
-                    <img src={generalImg} alt="" />
+                <div className="col">
+                  <div className="information-icon-box">
+                    <div className="information-cricle-box">
+                      <img src={generalImg} alt="" />
+                    </div>
+                    <p>General Information</p>
                   </div>
-                  <p>General Information</p>
                 </div>
-              </div>
-              <div class="col">
-                <div class="information-icon-box">
-                  <div class="information-cricle-box">
-                    <img src={generalImg} alt="" />
+                <div className="col">
+                  <div className="information-icon-box">
+                    <div className="information-cricle-box">
+                      <img src={generalImg} alt="" />
+                    </div>
+                    <p>General Information</p>
                   </div>
-                  <p>General Information</p>
                 </div>
-              </div>
-              <div class="col">
-                <div class="information-icon-box">
-                  <div class="information-cricle-box">
-                    <img src={generalImg} alt="" />
+                <div className="col">
+                  <div className="information-icon-box">
+                    <div className="information-cricle-box">
+                      <img src={generalImg} alt="" />
+                    </div>
+                    <p>General Information</p>
                   </div>
-                  <p>General Information</p>
                 </div>
-              </div>
-              <div class="col">
-                <div class="information-icon-box">
-                  <div class="information-cricle-box">
-                    <img src={generalImg} alt="" />
+                <div className="col">
+                  <div className="information-icon-box">
+                    <div className="information-cricle-box">
+                      <img src={generalImg} alt="" />
+                    </div>
+                    <p>General Information</p>
                   </div>
-                  <p>General Information</p>
                 </div>
               </div>
             </div>
-           </div>
           </div>
         </div>
       </section>
@@ -155,17 +146,26 @@ const General = () => {
                 <div className="col-lg-12">
                   <div className="d-flex justify-content-center align-items-center">
                     <div className="card card-par">
-                      <p> Fields marked with an <span>*</span> are required</p>
+                      <p>
+                        {" "}
+                        Fields marked with an <span>*</span> are required
+                      </p>
                       <div className="form ">
                         <div className="row">
                           <div className="col-md-6">
                             <div className="form-div">
-                              <label htmlFor="first_name">Name<span>*</span></label>
+                              <label htmlFor="first_name">
+                                Name<span>*</span>
+                              </label>
                               <input
                                 type="text"
                                 name="first_name"
                                 id="first_name"
-                                className="form-control"
+                                className={`form-control ${
+                                  formik.errors.first_name &&
+                                  formik.touched.first_name &&
+                                  "invalidInput"
+                                }`}
                                 placeholder="First Name"
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
@@ -188,7 +188,11 @@ const General = () => {
                                 type="text"
                                 name="last_name"
                                 id="last_name"
-                                className="form-control"
+                                className={`form-control ${
+                                  formik.errors.last_name &&
+                                  formik.touched.last_name &&
+                                  "invalidInput"
+                                }`}
                                 placeholder="Last Name"
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
@@ -204,13 +208,19 @@ const General = () => {
                           </div>
                         </div>
                         <div className="form-div">
-                          <label htmlFor="email">Email<span>*</span></label>
+                          <label htmlFor="email">
+                            Email<span>*</span>
+                          </label>
                           <input
                             type="text"
                             name="email"
                             id="email"
-                            className="form-control"
-                            placeholder=""
+                            className={`form-control ${
+                              formik.errors.email &&
+                              formik.touched.email &&
+                              "invalidInput"
+                            }`}
+                            placeholder="Email"
                             onChange={formik.handleChange}
                             onBlur={formik.handleBlur}
                             value={formik.values.email}
@@ -229,7 +239,11 @@ const General = () => {
                             type="text"
                             name="emailConfirmation"
                             id="emailConfirmation"
-                            className="form-control"
+                            className={`form-control ${
+                              formik.errors.emailConfirmation &&
+                              formik.touched.emailConfirmation &&
+                              "invalidInput"
+                            }`}
                             placeholder="Email Confirmation"
                             onChange={formik.handleChange}
                             onBlur={formik.handleBlur}
@@ -243,17 +257,29 @@ const General = () => {
                           ) : null}
                         </div>
                         <div className="form-div">
-                          <label htmlFor="year_of_birth">Year<span>*</span></label>
-                          <input
-                            type="month"
+                          <label htmlFor="year_of_birth">
+                            Year<span>*</span>
+                          </label>
+                          <select
                             name="year_of_birth"
-                            id="year"
-                            className="form-control"
-                            placeholder="Please enter the calendar year you would like to input information for"
+                            id="year_of_birth"
+                            className={`form-control ${
+                              formik.errors.year_of_birth &&
+                              formik.touched.year_of_birth
+                                ? "invalidInput"
+                                : ""
+                            }`}
                             onChange={formik.handleChange}
                             onBlur={formik.handleBlur}
                             value={formik.values.year_of_birth}
-                          />
+                          >
+                            <option value="">Select option</option>
+                            {years.map((year, index) => (
+                              <option key={index} value={year}>
+                                {year}
+                              </option>
+                            ))}
+                          </select>
                           {formik.errors.year_of_birth &&
                           formik.touched.year_of_birth ? (
                             <span className="input-error-msg">
@@ -271,16 +297,19 @@ const General = () => {
                                 name="country_of_residence"
                                 id="country_of_residence"
                                 className={`form-control ${
-                                  formik.errors.country_of_residence
+                                  formik.errors.country_of_residence &&
+                                  formik.touched.country_of_residence
                                     ? "invalidInput"
                                     : ""
-                                } `}
+                                }`}
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
                                 value={formik.values.country_of_residence}
                               >
-                                <option value="">United Kingdom</option>
+                                <option value="">Select option</option>
                                 <option value="America">America</option>
+                                <option value="America">India</option>
+                                <option value="America">Italy</option>
                               </select>
                               {formik.errors.country_of_residence &&
                               formik.touched.country_of_residence ? (
@@ -293,16 +322,17 @@ const General = () => {
                           <div className="col-md-6">
                             <div className="form-div">
                               <label htmlFor="num_of_homes">
-                                How many homes do you own?*
+                                How many homes do you own?<span>*</span>
                               </label>
                               <select
                                 name="num_of_homes"
                                 id="num_of_homes"
                                 className={`form-control ${
-                                  formik.errors.num_of_homes
+                                  formik.errors.num_of_homes &&
+                                  formik.touched.num_of_homes
                                     ? "invalidInput"
                                     : ""
-                                } `}
+                                }`}
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
                                 value={formik.values.num_of_homes}
@@ -315,7 +345,8 @@ const General = () => {
                                       value={index + 1}
                                       key={"opt" + index}
                                     >
-                                      {index + 1}
+                                      {" "}
+                                      {index + 1}{" "}
                                     </option>
                                   ))}
                               </select>
@@ -337,7 +368,7 @@ const General = () => {
                                       index
                                     ]?.toLowerCase()}_home_country`}
                                   >
-                                    {counts[index]} home country*
+                                    {counts[index]} home country <span>*</span>
                                   </label>
                                   <input
                                     type="text"
@@ -401,26 +432,24 @@ const General = () => {
                               <label htmlFor="living_with_partner">
                                 Do you live with a partner?<span>*</span>
                               </label>
-                              <div class="sub-btn">
-                               
-                                  <input
-                                    type="radio"
-                                    id="living_with_partner"
-                                    name="living_with_partner"
-                                    value="Yes"
-                                  />
-                                  <label for="radioBanana">Yes</label>
-                              
-                                
-                                  <input
-                                    type="radio"
-                                    id="living_with_partner"
-                                    name="living_with_partner"
-                                    value="No"
-                                  />
+                              <div className="sub-btn">
+                                <input
+                                  type="radio"
+                                  id="living_with_partner"
+                                  name="living_with_partner"
+                                  value="Yes"
+                                />
+                                <label for="radioBanana">Yes</label>
+                                <input
+                                  type="radio"
+                                  id="living_with_partner"
+                                  name="living_with_partner"
+                                  value="No"
+                                />
                                 <label for="radioBanana">No</label>
                               </div>
-                              {formik.errors.living_with_partner ? (
+                              {formik.errors.living_with_partner &&
+                              formik.touched.living_with_partner ? (
                                 <span className="input-error-msg">
                                   {formik.errors.living_with_partner}
                                 </span>
@@ -430,14 +459,16 @@ const General = () => {
                         </div>
                         <div className="form-div">
                           <label htmlFor="homeCount">
-                            How many children under 18 living with you?<span>*</span>{" "}
+                            How many children under 18 living with you?
+                            <span>*</span>{" "}
                             <p>(As of 31st December of selected year)</p>
                           </label>
                           <select
                             name="num_of_children_under_18"
                             id="num_of_children_under_18"
                             className={`form-control ${
-                              formik.errors.num_of_children_under_18
+                              formik.errors.num_of_children_under_18 &&
+                              formik.touched.num_of_children_under_18
                                 ? "invalidInput"
                                 : ""
                             } `}
@@ -454,7 +485,8 @@ const General = () => {
                                 </option>
                               ))}
                           </select>
-                          {formik.errors.num_of_children_under_18 ? (
+                          {formik.errors.num_of_children_under_18 &&
+                          formik.touched.num_of_children_under_18 ? (
                             <span className="input-error-msg">
                               {formik.errors.num_of_children_under_18}
                             </span>
@@ -483,23 +515,26 @@ const General = () => {
                             <option value="Yes">Yes</option>
                             <option value="No">No</option>
                           </select>
-                          {formik.errors.other_dependants ? (
+                          {formik.errors.other_dependants &&
+                          formik.touched.other_dependants ? (
                             <span className="input-error-msg">
                               {formik.errors.other_dependants}
                             </span>
                           ) : null}
                         </div>
+
                         {formik.values.other_dependants === "Yes" && (
                           <div className="form-div">
-                            <label htmlFor="living_with_partner">
-                              Please specify *
+                            <label htmlFor="specify">
+                              Please specify <span>*</span>
                             </label>
                             <input
                               type="text"
                               name="Partner"
                               id="Partner"
                               className={`form-control ${
-                                formik.errors.living_with_partner
+                                formik.errors.living_with_partner &&
+                                formik.touched.living_with_partner
                                   ? "invalidInput"
                                   : ""
                               } `}
@@ -508,31 +543,14 @@ const General = () => {
                               onBlur={formik.handleBlur}
                               value={formik.values.living_with_partner}
                             />
-                            {formik.errors.living_with_partner ? (
+                            {formik.errors.living_with_partner &&
+                            formik.touched.living_with_partner ? (
                               <span className="input-error-msg">
                                 {formik.errors.living_with_partner}
                               </span>
                             ) : null}
                           </div>
                         )}
-                         <div className="form-div">
-                          <label htmlFor="specify">Please specify <span>*</span></label>
-                          <input
-                            type="text"
-                            name="specify"
-                            id="specify"
-                            className="form-control"
-                            placeholder=""
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur}
-                            value={formik.values.email}
-                          />
-                          {formik.errors.email && formik.touched.email ? (
-                            <span className="input-error-msg">
-                              {formik.errors.email}
-                            </span>
-                          ) : null}
-                        </div>
                       </div>
                     </div>
                   </div>
@@ -542,14 +560,14 @@ const General = () => {
           </div>
         </section>
 
-        <section class="Additional mb-80">
+        <section className="Additional mb-80">
           <div className="container">
             <h2>Additional information</h2>
-            <div class="bg-lightgray-color pt-70 pb-70">
+            <div className="bg-lightgray-color pt-70 pb-70">
               <div className="row justify-content-center">
-                <div class="col-lg-12">
-                  <div class="card">
-                    <div class="Additional-box">
+                <div className="col-lg-12">
+                  <div className="card">
+                    <div className="Additional-box">
                       <p>
                         This section is optional, however it will allow us to
                         make your carbon footprint more complete and your
@@ -570,9 +588,11 @@ const General = () => {
                         onBlur={formik.handleBlur}
                         value={formik.values.forest_or_farmland_details}
                       ></textarea>
-                      <div class="Additional-bottom-btn">
-                        <button class="btn">Save progress</button>
-                        <button class="btn">Continue</button>
+                      <div className="Additional-bottom-btn">
+                        <button className="btn">Save progress</button>
+                        <button className="btn" type="button">
+                          Continue
+                        </button>
                       </div>
                     </div>
                   </div>

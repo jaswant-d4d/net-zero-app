@@ -1,7 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "../api/axios";
 
-export const userSignup = createAsyncThunk('userSignup', async (data, thunkAPI) => {
+
+export const generalFormSubmit = createAsyncThunk('api/user/general/form/submit', async (data, thunkAPI) => {
     try {
         const response = await axios.post("/api/register", data);
         return response.data;

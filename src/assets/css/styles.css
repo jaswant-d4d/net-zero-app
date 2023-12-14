@@ -708,7 +708,7 @@ form {
     text-align: center;
 }
 
-.form input.invalidInput  {
+.form input.invalidInput, .form select.invalidInput {
     border: 2px solid #fd0200;
 }
 .form .input-error-msg {
