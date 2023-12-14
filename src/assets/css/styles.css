@@ -280,6 +280,7 @@ form.registerform {
 
 .footer-upper,.footer-lower {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
 }
@@ -702,6 +703,7 @@ section.protecting-data {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
 }
 form {
     margin-top: 50px;
@@ -750,6 +752,7 @@ textarea {
 .form-div label {
     text-align: left;
     display: flex;
+    flex-wrap: wrap;
     margin-bottom: 10px;
 }
 
@@ -837,16 +840,19 @@ label p {
       box-shadow: inset 0 0 10px #fff;
       border: 2px solid transparent;
   }
-  .sub-btn label:hover {
+  .sub-btn label.active {
     border: 2px solid #000;
     background: #81C14B;
-
 }
 
 select {
   
-    background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png) no-repeat right #ddd;
-    
+    background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png) no-repeat right #ddd;    
+}
+
+.general-form .bg-lightgray-color, .Additional .bg-lightgray-color{
+  padding-top: 70px;
+  padding-bottom: 70px;
 }
 
 @media (max-width:1440px){
@@ -893,6 +899,36 @@ select {
         font-size: 48px;
         line-height: 52px;
     }
+ }
+
+@media (max-width:767px){
+    .navbar .logo-img {
+        width: 56px;
+        height: 54px;
+    }
+    .user-img img {
+        width: 23px;
+        height: 27px;
+    }
+    .hamburger img {
+        width: 27px;
+        height: 23px;
+    }
+    .site-header .navbar ul {
+     gap: 30px;
+    }
+    .navbar-toggler {
+      padding-right: 0;
+    }
+    .site-header .navbar {
+        padding: 0 27px;
+    }
+    .btn {
+        font-size: 18px;
+        padding: 9px 16px;
+        border-radius: 10px;
+    }
+    
     p {
         font-size: 16px;
     }
@@ -903,10 +939,121 @@ select {
         margin-bottom: 20px;
     }
     .card p {
-        font-size: 20px;
-        line-height: 28px;
+        font-size: 16px;
+        line-height: 24px;
     }
     .Additional-bottom-btn {
         margin-top: 60px;
     }
+    .footer-box h2 {
+        font-size: 30px;
+        line-height: 36px;
+        margin-bottom: 20px;
+    }
+    .footer-box a, .footer-box p {
+        font-size: 24px;
+        line-height: 30px;
+    }
+    
+    .Additional-bottom-btn {
+        margin-top: 30px;
+    }
+    .Additional-bottom-btn .btn {
+        margin-bottom: 20px;
+    }
+    .card {
+        width: 100%;
+    }
+    label.last-name {
+        display: none;
+    }
+    .footer-box {
+    bottom: 0;
+    width: 100%;
+    padding: 25px 20px
+    }
+    .footer-container {
+        padding: 40px 0;
+    }
+    .footer-logo {
+        margin-bottom: 20px;
+    }
+    hr {
+       margin: 20px 0;
+    }
+    .mb-80 {
+        margin-bottom: 40px;
+    }
+    .mt-80 {
+        margin-top: 40px;
+    }
+    .pb-70 {
+        padding-bottom: 40px;
+    }
+    .pt-70 {
+        padding-top: 40px;
+    }
+    h1, .h1, .Additional h2 {
+        font-size: 28px;
+        line-height: 31px;
+        /* color: #2C2B34; */
+    }
+    .general-form, .Additional  {
+        background: #DCE0D9;
+        padding: 0 28px;
+    }
+    .general-form .bg-lightgray-color, .Additional .bg-lightgray-color {
+        background:none;
+    }
+    .general-form{
+        margin-bottom: 0;
+    }
+    .general-form .bg-lightgray-color, .Additional .bg-lightgray-color {
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+    .card.card-par p {
+        text-align: left;
+    }
+    .general-form h1 {
+        margin-bottom: 12px;
+        padding-top: 35px;
+        color: #2C2B34;
+    }
+    .Additional h2 {
+        color: #2C2B34;
+    }
+    .sub-btn label {
+        padding: 12px 50px 
+    }   
+    .Additional h2 {
+        color: #2C2B34;
+        padding-top: 35px;
+        margin-bottom: 21px;
+    }
+    .Additional-box p {
+        margin-bottom: 30px;
+    }
+    /********** header-section ***********/
+    .information-header .col {
+        width: 100%;
+    }
+    .information .information-header {
+       
+        margin: 0px 28px;
+    }
+    .information-cricle-box:after {
+       display: none;
+    }
+    .information .information-icon-box .information-cricle-box {
+        width: 61px;
+        height: 61px;
+    }
+    .information .information-cricle-box img {
+        width: 35px;
+        height: 31px;
+    }
+     /********** form-section ***********/
+    
+   
 }
