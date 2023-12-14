@@ -5,42 +5,11 @@ import Swal from "sweetalert2";
 import SuccessImg from "../assets/images/Group 9106.png";
 import { useNavigate } from "react-router-dom";
 import { formvalidation } from "../helpers/validations/Schema";
-
-const validate = (values) => {
-    const errors = {};
-    if (!values.first_name?.trim()) {
-        errors.first_name = "First Name field is required";
-    }
-
-    if (!values.last_name?.trim()) {
-        errors.last_name = "Last Name field is required";
-    }
-
-    if (!values.email?.trim()) {
-        errors.email = "Email Address field is required";
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-        errors.email = "Invalid email address";
-    }
-
-    if (!values.password?.trim()) {
-        errors.password = "Password field is required";
-    } else if (values.password.length < 6) {
-        errors.password = "Password must be atleast 6 characters";
-    }
-
-    if (!values.cpassword?.trim()) {
-        errors.cpassword = "Confirm Password field is required";
-    } else if (values.password !== values.cpassword) {
-        errors.cpassword = "Confirm Password not matched";
-    }
-
-    return errors;
-};
+import generalImg from '../assets/images/user.svg'
 
 const General = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { loading, userInfo, error } = useSelector((state) => state.auth);
 
     const counts = ["First", "Second", "Third", "Fourth", "Fifth"];
 
@@ -126,6 +95,55 @@ const General = () => {
 
     return (
         <>
+            <section class="information mt-80 mb-80">
+                <div class="container">
+                    <div class="row">
+                        <div class="information-header">
+                            <div class="col">
+                                <div class="information-icon-box">
+                                    <div class="information-cricle-box">
+                                        <img src={generalImg} alt="" />
+                                    </div>
+                                    <p>General Information</p>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="information-icon-box">
+                                    <div class="information-cricle-box">
+                                        <img src={generalImg} alt="" />
+                                    </div>
+                                    <p>General Information</p>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="information-icon-box">
+                                    <div class="information-cricle-box">
+                                        <img src={generalImg} alt="" />
+                                    </div>
+                                    <p>General Information</p>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="information-icon-box">
+                                    <div class="information-cricle-box">
+                                        <img src={generalImg} alt="" />
+                                    </div>
+                                    <p>General Information</p>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="information-icon-box">
+                                    <div class="information-cricle-box">
+                                        <img src={generalImg} alt="" />
+                                    </div>
+                                    <p>General Information</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <form onSubmit={formik.handleSubmit}>
                 <section className="general-form mt-80 mb-80">
                     <div className="container ">
@@ -397,7 +415,7 @@ const General = () => {
                                                         </span>
                                                     ) : null}
                                                 </div>
-                                                {formik.values.other_dependants ==="Yes" && (
+                                                {formik.values.other_dependants === "Yes" && (
 
                                                     < div className="form-div">
                                                         <label htmlFor="living_with_partner">Please specify *</label>
@@ -429,8 +447,8 @@ const General = () => {
                         </div>
                     </div>
                 </section>
-                <section class="Additional mb-80">
 
+                <section class="Additional mb-80">
                     <div className="container">
                         <h2>Additional information</h2>
                         <div class="bg-lightgray-color pt-70 pb-70">
@@ -450,11 +468,7 @@ const General = () => {
                                                 onBlur={formik.handleBlur}
                                                 value={formik.values.forest_or_farmland_details}>
                                             </textarea>
-                                            {formik.errors.forest_or_farmland_details && formik.touched.forest_or_farmland_details ? (
-                                                <span className="input-error-msg">
-                                                    {formik.errors.forest_or_farmland_details}
-                                                </span>
-                                            ) : null}
+
                                             {/* </form> */}
                                         </div>
                                     </div>
@@ -462,7 +476,7 @@ const General = () => {
                             </div>
                         </div>
                     </div>
-                </section>
+                </section >
             </form >
         </>
     );
