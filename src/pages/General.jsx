@@ -98,6 +98,7 @@ const General = () => {
       <section class="information mt-80 mb-80">
         <div class="container">
           <div class="row">
+          <div className="col-lg-12">
             <div class="information-header">
               <div class="col">
                 <div class="information-icon-box">
@@ -140,6 +141,7 @@ const General = () => {
                 </div>
               </div>
             </div>
+           </div>
           </div>
         </div>
       </section>
