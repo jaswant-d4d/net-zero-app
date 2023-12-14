@@ -478,9 +478,10 @@ const General = () => {
                                                                     value="Yes"
                                                                     checked={formik.values.living_with_partner === 'Yes'}
                                                                     onChange={formik.handleChange}
-                                                                    className={`${formik.values.living_with_partner === 'Yes' ? "active" : ""}`}
                                                                 />
-                                                                <label htmlFor="living_with_partner_yes">Yes</label>
+                                                                <label htmlFor="living_with_partner_yes"
+                                                                    className={`${formik.values.living_with_partner === 'Yes' ? "active" : ""}`}
+                                                                >Yes</label>
                                                                 <input
                                                                     type="radio"
                                                                     id="living_with_partner_no"
@@ -488,9 +489,10 @@ const General = () => {
                                                                     value="No"
                                                                     checked={formik.values.living_with_partner === 'No'}
                                                                     onChange={formik.handleChange}
-                                                                    className={`${formik.values.living_with_partner === 'No' ? "active" : ""}`}
                                                                 />
-                                                                <label htmlFor="living_with_partner_no">No</label>
+                                                                <label htmlFor="living_with_partner_no"
+                                                                    className={`${formik.values.living_with_partner === 'No' ? "active" : ""}`}
+                                                                >No</label>
                                                             </div>
                                                             {formik.errors.living_with_partner && formik.touched.living_with_partner && (
                                                                 <span className="input-error-msg">{formik.errors.living_with_partner}</span>
