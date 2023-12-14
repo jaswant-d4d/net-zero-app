@@ -65,6 +65,15 @@ padding-top: 70px;
     margin-bottom: 12px;
     font-family: 'Poppins', sans-serif;
 }
+ label, label p {
+    font-size: 18px !important;
+    line-height: 24px;
+    font-weight: 500;
+}
+input{
+    font-size: 18px;
+    font-weight: 300;
+}
 
 .container{    max-width: 1440px;    margin: 0 auto;    }
 .site-header .navbar {    display: flex;    justify-content: space-between;}
@@ -188,11 +197,9 @@ border-bottom: none !important;
 .form-control {
     width: 100%;
     padding: 18px 15px;
-    font-size: 22px;
-    font-weight: 400;
     line-height: 26px;
     color: #2C2B34;
-    background-color: #CCCCCC;
+    background-color: #fff;
     border: none;
     border-radius: 10px !important;
 }
@@ -711,7 +718,7 @@ form {
 .form-div span {
     text-align: left !important;
     display: block;
-    padding-left: 12px;
+    /* padding-left: 12px; */
 }
 .Additional-box form {
     display: flex;
@@ -742,8 +749,8 @@ textarea {
 
 .form-div label {
     text-align: left;
-    display: block;
-    margin-bottom: 20px;
+    display: flex;
+    margin-bottom: 10px;
 }
 
 .sub-btn {
@@ -753,12 +760,14 @@ textarea {
 .general-form h1 {
     color: #fff;
     margin-bottom: 40px;
+    text-align: left;
 }
 .Additional h2 {
     color: #fff;
     font-size: 60px;
     line-height: 62px;
     margin-bottom: 40px;
+    text-align: left;
 }
 .Additional-bottom-btn {
     display: flex;
@@ -775,6 +784,11 @@ textarea {
 }
 .Additional-box p {
     margin-bottom: 43px;
+    text-align: left;   
+}
+.Additional-box label {
+    text-align: left;
+    margin-bottom: 20px;
 }
 .general-form form input, .general-form form select {
     background: #fff;
@@ -785,18 +799,53 @@ textarea {
 }
 
 .general-form .form-div {
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 }
 .card.card-par p {
     text-align: right;
-    margin-bottom: 0;
+    margin-bottom: 30px;
+    color: #818181;
 }   
+.card.card-par span{
+  color:#FF0000;
+}
 label.last-name {
     opacity: 0;
 }
+.general-form input {
+    font-weight: 300;
+}
+label p {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+.sub-btn input[type="radio"] {
+    opacity: 0;
+    position: fixed;
+    width: 0;
+  }
+  
+  .sub-btn label {
+      display: inline-block;
+      background-color: #fff;
+      padding: 12px 70px;
+      font-family: sans-serif, Arial;
+      font-size: 16px;
+      /* border: 2px solid #444; */
+      border-radius: 4px;
+      box-shadow: inset 0 0 10px #fff;
+      border: 2px solid transparent;
+  }
+  .sub-btn label:hover {
+    border: 2px solid #000;
+    background: #81C14B;
+}
 
-
-
+select {
+  
+    background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png) no-repeat right #ddd;
+    
+}
 
 @media (max-width:1440px){
     .login-img img {
