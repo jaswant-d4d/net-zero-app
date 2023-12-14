@@ -151,14 +151,14 @@ const General = () => {
             <div className="bg-lightgray-color pt-70 pb-70 ">
               <div className="row">
                 <div className="col-lg-12">
-                  <div className="d-flex justify-content-center align-items-center mt-5">
+                  <div className="d-flex justify-content-center align-items-center">
                     <div className="card card-par">
-                      <p> Fields marked with an * are required</p>
+                      <p> Fields marked with an <span>*</span> are required</p>
                       <div className="form ">
                         <div className="row">
                           <div className="col-md-6">
                             <div className="form-div">
-                              <label htmlFor="first_name">Name*</label>
+                              <label htmlFor="first_name">Name<span>*</span></label>
                               <input
                                 type="text"
                                 name="first_name"
@@ -179,8 +179,8 @@ const General = () => {
                           </div>
                           <div className="col-md-6">
                             <div className="form-div">
-                              <label htmlFor="first_name" className="mt-5">
-                                {/* Fields marked with an * are required */}
+                              <label htmlFor="first_name" className="last-name">
+                                Fields marked with an * are required
                               </label>
                               <input
                                 type="text"
@@ -202,7 +202,7 @@ const General = () => {
                           </div>
                         </div>
                         <div className="form-div">
-                          <label htmlFor="email">Email*</label>
+                          <label htmlFor="email">Email<span>*</span></label>
                           <input
                             type="text"
                             name="email"
@@ -221,7 +221,7 @@ const General = () => {
                         </div>
                         <div className="form-div">
                           <label htmlFor="emailConfirmation">
-                            Email Confirmation*
+                            Email Confirmation<span>*</span>
                           </label>
                           <input
                             type="text"
@@ -241,7 +241,7 @@ const General = () => {
                           ) : null}
                         </div>
                         <div className="form-div">
-                          <label htmlFor="year_of_birth">Year*</label>
+                          <label htmlFor="year_of_birth">Year<span>*</span></label>
                           <input
                             type="month"
                             name="year_of_birth"
@@ -263,7 +263,7 @@ const General = () => {
                           <div className="col-md-6">
                             <div className="form-div">
                               <label htmlFor="country_of_residence">
-                                Country of primary residence*
+                                Country of primary residence<span>*</span>
                               </label>
                               <select
                                 name="country_of_residence"
@@ -394,28 +394,29 @@ const General = () => {
                               </div>
                             ))}
 
-                          <div className="col-md-7">
+                          <div className="col-md-6">
                             <div className="form-div">
                               <label htmlFor="living_with_partner">
-                                Do you live with a partner?*
+                                Do you live with a partner?<span>*</span>
                               </label>
                               <div class="sub-btn">
-                                <label>
+                               
                                   <input
                                     type="radio"
                                     id="living_with_partner"
                                     name="living_with_partner"
                                     value="Yes"
                                   />
-                                </label>
-                                <label>
+                                  <label for="radioBanana">Yes</label>
+                              
+                                
                                   <input
                                     type="radio"
                                     id="living_with_partner"
                                     name="living_with_partner"
                                     value="No"
                                   />
-                                </label>
+                                <label for="radioBanana">No</label>
                               </div>
                               {formik.errors.living_with_partner ? (
                                 <span className="input-error-msg">
@@ -427,8 +428,8 @@ const General = () => {
                         </div>
                         <div className="form-div">
                           <label htmlFor="homeCount">
-                            How many children under 18 living with you? *{" "}
-                            <span>(As of 31st December of selected year)</span>
+                            How many children under 18 living with you?<span>*</span>{" "}
+                            <p>(As of 31st December of selected year)</p>
                           </label>
                           <select
                             name="num_of_children_under_18"
@@ -460,8 +461,8 @@ const General = () => {
                         <div className="form-div">
                           <label htmlFor="other_dependants">
                             Do you have any other dependants who live with you
-                            all of the time or most of the time? *{" "}
-                            <span>(grand-parents etc)</span>
+                            all of the time or most of the time?<span>*</span>{" "}
+                            <p>(grand-parents etc)</p>
                           </label>
                           <select
                             name="other_dependants"
@@ -512,6 +513,24 @@ const General = () => {
                             ) : null}
                           </div>
                         )}
+                         <div className="form-div">
+                          <label htmlFor="specify">Please specify <span>*</span></label>
+                          <input
+                            type="text"
+                            name="specify"
+                            id="specify"
+                            className="form-control"
+                            placeholder=""
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            value={formik.values.email}
+                          />
+                          {formik.errors.email && formik.touched.email ? (
+                            <span className="input-error-msg">
+                              {formik.errors.email}
+                            </span>
+                          ) : null}
+                        </div>
                       </div>
                     </div>
                   </div>
