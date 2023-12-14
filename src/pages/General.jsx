@@ -6,6 +6,10 @@ import SuccessImg from "../assets/images/Group 9106.png";
 import { useNavigate } from "react-router-dom";
 import { formvalidation } from "../helpers/validations/Schema";
 import generalImg from "../assets/images/user.svg";
+import houseImg from "../assets/images/t_house.svg";
+import foodImg from "../assets/images/food.svg";
+import carImg from "../assets/images/t_car.svg";
+import financialImg from "../assets/images/financial .svg";
 import { generalFormSubmit } from "../redux-store/actions/user";
 
 const General = () => {
@@ -102,33 +106,33 @@ const General = () => {
                 <div className="col">
                   <div className="information-icon-box">
                     <div className="information-cricle-box">
-                      <img src={generalImg} alt="" />
+                      <img src={houseImg} alt="" />
                     </div>
-                    <p>General Information</p>
+                    <p>Your Home</p>
                   </div>
                 </div>
                 <div className="col">
                   <div className="information-icon-box">
                     <div className="information-cricle-box">
-                      <img src={generalImg} alt="" />
+                      <img src={carImg} alt="" />
                     </div>
-                    <p>General Information</p>
+                    <p>Travel</p>
                   </div>
                 </div>
                 <div className="col">
                   <div className="information-icon-box">
                     <div className="information-cricle-box">
-                      <img src={generalImg} alt="" />
+                      <img src={foodImg} alt="" />
                     </div>
-                    <p>General Information</p>
+                    <p>Food and Shopping</p>
                   </div>
                 </div>
                 <div className="col">
                   <div className="information-icon-box">
                     <div className="information-cricle-box">
-                      <img src={generalImg} alt="" />
+                      <img src={financialImg} alt="" />
                     </div>
-                    <p>General Information</p>
+                    <p>Financial assets</p>
                   </div>
                 </div>
               </div>
