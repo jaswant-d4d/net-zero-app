@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 import Swal from "sweetalert2";
@@ -10,12 +10,14 @@ import houseImg from "../assets/images/t_house.svg";
 import foodImg from "../assets/images/food.svg";
 import carImg from "../assets/images/t_car.svg";
 import financialImg from "../assets/images/financial .svg";
-import { generalFormSubmit } from "../redux-store/actions/user";
+import { generalFormSubmit, getCountry } from "../redux-store/actions/user";
+import CountryOptions from "../components/CountryOptions";
 
 const General = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const user = useSelector((state) => state.auth);
+    const details = useSelector((state) => state.users);
 
     const counts = ["First", "Second", "Third", "Fourth", "Fifth"];
     const alphabets = Array.from({ length: 26 }, (_, index) => String.fromCharCode(65 + index));
@@ -24,9 +26,14 @@ const General = () => {
     const startYear = endYear - 100;
 
     const years = [];
+
     for (let year = endYear; year >= startYear; year--) {
         years.push(year);
     }
+
+    useEffect(() => {
+        dispatch(getCountry())
+    }, [])
 
     const formik = useFormik({
         initialValues: {
@@ -89,10 +96,11 @@ const General = () => {
     };
 
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
 
         const { values } = formik;
+
         if (
             !values.first_name ||
             !values.last_name ||
@@ -114,19 +122,53 @@ const General = () => {
             return false;
         }
         try {
-            const filteredValues = validateAndFilterFields(values);
-            dispatch(generalFormSubmit(filteredValues));
+            const filteredValues = await validateAndFilterFields(values);
 
+            const response = await dispatch(generalFormSubmit(filteredValues));
+
+            if (!response?.payload?.error && response?.payload?.data) {
+                Swal.fire({
+                    title: "Success!",
+                    text: "Form submitted successfully",
+                    imageUrl: SuccessImg,
+                    imageWidth: 100,
+                    imageHeight: 100,
+                    showCancelButton: false,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        navigate("/")
+                    }
+                });
+            } else {
+                const errorMsg = response?.payload?.response?.data?.errorMsg;
+                if (errorMsg) {
+                    const errorMessages = Object.values(errorMsg).flatMap(messages => messages);
+                    if (errorMessages.length > 0) {
+                        const errorMessage = errorMessages.join("\n");
+                        Swal.fire({
+                            title: "Failed!",
+                            html: errorMessage || "Failed to form submit, please try again",
+                            icon: "error",
+                            showCancelButton: false,
+                            confirmButtonColor: "#3085d6",
+                            cancelButtonColor: "#d33",
+                        });
+                    }
+                }
+            }
         } catch (error) {
             Swal.fire({
                 title: "Failed!",
-                text: "Something went wrong",
+                text: "Something went wrong, please check the form.",
                 icon: "error",
                 showCancelButton: false,
                 confirmButtonColor: "#3085d6",
                 cancelButtonColor: "#d33",
             });
         }
+
 
     }
 
@@ -347,9 +389,7 @@ const General = () => {
                                                                 value={formik.values.country_of_residence}
                                                             >
                                                                 <option value="">Select option</option>
-                                                                <option value="America">America</option>
-                                                                <option value="America">India</option>
-                                                                <option value="America">Italy</option>
+                                                                <CountryOptions countries={details?.countries} />
                                                             </select>
                                                             {formik.errors.country_of_residence &&
                                                                 formik.touched.country_of_residence ? (
@@ -402,14 +442,10 @@ const General = () => {
                                                         .map((opt, index) => (
                                                             <div className="col-md-6" key={index}>
                                                                 <div className="form-div">
-                                                                    <label
-                                                                        htmlFor={`${counts[
-                                                                            index
-                                                                        ]?.toLowerCase()}_home_country`}
-                                                                    >
+                                                                    <label htmlFor={`${counts[index]?.toLowerCase()}_home_country`}                                                                    >
                                                                         <strong>6{alphabets[index]?.toLowerCase()}.</strong>  {counts[index]} home country <span>*</span>
                                                                     </label>
-                                                                    <input
+                                                                    <select
                                                                         type="text"
                                                                         name={`${counts[
                                                                             index
@@ -430,7 +466,6 @@ const General = () => {
                                                                             ? "invalidInput"
                                                                             : ""
                                                                             } `}
-                                                                        placeholder="Enter country"
                                                                         onChange={formik.handleChange}
                                                                         onBlur={formik.handleBlur}
                                                                         value={
@@ -440,7 +475,10 @@ const General = () => {
                                                                             ]?.toLowerCase()}_home_country`
                                                                             ]
                                                                         }
-                                                                    />
+                                                                    >
+                                                                        <option value="">Select option</option>
+                                                                        <CountryOptions countries={details?.countries} />
+                                                                    </select>
                                                                     {formik.errors[
                                                                         `${counts[
                                                                             index
@@ -629,7 +667,9 @@ const General = () => {
                                                 value={formik.values.forest_or_farmland_details}
                                             ></textarea>
                                             <div className="Additional-bottom-btn">
-                                                <button className="btn" type="button" onClick={handleSubmit} >Save progress</button>
+
+                                                <button className="btn" type='button' onClick={handleSubmit} >Save progress {details?.loading ? <div className="spinner-border text-primary" role="status">
+                                                </div> : ''}</button>
                                                 <button className="btn" type="button">
                                                     Continue
                                                 </button>

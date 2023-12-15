@@ -6,6 +6,7 @@ import { useFormik } from 'formik';
 import Swal from 'sweetalert2';
 import SuccessImg from "../assets/images/Group 9106.png"
 import { useNavigate } from 'react-router-dom';
+import SweetAlert from '../components/SweetAlert';
 
 const signupValidate = values => {
     const errors = {};
@@ -110,6 +111,41 @@ const Login = () => {
                     cancelButtonColor: "#d33",
                 });
             }
+            // try {
+            //     const response = await dispatch(userLogin(values));
+            //     debugger
+            //     if (!response?.payload?.error && response?.payload?.data) {
+            //         // Successful login
+            //         <SweetAlert
+            //             type="success"
+            //             title="Success!"
+            //             text="User login successfully"
+            //             imageUrl={SuccessImg}
+            //             imageWidth={100}
+            //             imageHeight={100}
+            //             confirmButtonColor="#3085d6"
+            //             callback={() => navigate("/")}
+            //         />;
+            //     } else {
+            //         // Failed login
+            //         <SweetAlert
+            //             type="error"
+            //             title="Failed!"
+            //             text={response?.payload?.response?.data?.errorMsg || "Please check credentials"}
+            //             icon="error"
+            //             confirmButtonColor="#3085d6"
+            //         />;
+            //     }
+            // } catch (error) {
+            //     // Error in login attempt
+            //     <SweetAlert
+            //         type="error"
+            //         title="Failed!"
+            //         text="Please check credentials!"
+            //         icon="error"
+            //         confirmButtonColor="#3085d6"
+            //     />;
+            // }
         },
     });
     const signupFormik = useFormik({
@@ -196,19 +232,19 @@ const Login = () => {
                                         </ul>
                                         <div className="tab-content" id="pills-tabContent">
                                             <div className={`tab-pane fade ${loginActive && "show active"}`} id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-                                                <div class="form-heading">
+                                                <div className="form-heading">
                                                     <p>Admin port login <a href="#">here</a></p>
                                                     <h1>Welcome back</h1>
                                                     <p>Sign in to continue </p>
                                                 </div>
                                                 <div className="form">
                                                     <form onSubmit={loginFormik.handleSubmit}>
-                                                        <div class="form-div">
+                                                        <div className="form-div">
                                                             <input type="text" name="email" className={`form-control ${loginFormik.errors.email && loginFormik.touched.email ? "invalidInput" : ""} `} placeholder="Email Address" onChange={loginFormik.handleChange}
                                                                 onBlur={loginFormik.handleBlur} value={loginFormik.values.email} />
                                                             {loginFormik.errors.email && loginFormik.touched.email ? <span className='input-error-msg'>{loginFormik.errors.email}</span> : null}
                                                         </div>
-                                                        <div class="form-div">
+                                                        <div className="form-div">
                                                             <input type="text" name="password" className={`form-control ${loginFormik.errors.password && loginFormik.touched.password ? "invalidInput" : ""} `} placeholder="Password" onChange={loginFormik.handleChange} onBlur={loginFormik.handleBlur} value={loginFormik.values.password} />
                                                             {loginFormik.errors.password && loginFormik.touched.password ? <span className='input-error-msg'>{loginFormik.errors.password}</span> : null}
                                                         </div>
@@ -221,29 +257,29 @@ const Login = () => {
                                             <div className={`tab-pane fade ${!loginActive && "show active"}`} id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                                                 <div className="form ">
                                                     <form onSubmit={signupFormik.handleSubmit}>
-                                                        <div class="form-div">
+                                                        <div className="form-div">
                                                             <input type="text" name="first_name" className={`form-control ${signupFormik.errors.first_name && signupFormik.touched.first_name ? "invalidInput" : ""} `} placeholder="First Name" onChange={signupFormik.handleChange} onBlur={signupFormik.handleBlur} value={signupFormik.values.first_name} />
                                                             {signupFormik.errors.first_name && signupFormik.touched.first_name ? <span className='input-error-msg'>{signupFormik.errors.first_name}</span> : null}
 
                                                         </div>
-                                                        <div class="form-div">
+                                                        <div className="form-div">
                                                             <input type="text" name="last_name" className={`form-control ${signupFormik.errors.last_name && signupFormik.touched.last_name ? "invalidInput" : ""} `} placeholder="Last Name" onChange={signupFormik.handleChange} onBlur={signupFormik.handleBlur} value={signupFormik.values.last_name} />
                                                             {signupFormik.errors.last_name && signupFormik.touched.last_name ? <span className='input-error-msg'>{signupFormik.errors.last_name}</span> : null}
                                                         </div>
-                                                        <div class="form-div">
+                                                        <div className="form-div">
                                                             <input type="text" name="email" className={`form-control ${signupFormik.errors.email && signupFormik.touched.email ? "invalidInput" : ""} `} placeholder="Email Address" onChange={signupFormik.handleChange} onBlur={signupFormik.handleBlur} value={signupFormik.values.email} />
                                                             {signupFormik.errors.email && signupFormik.touched.email ? <span className='input-error-msg'>{signupFormik.errors.email}</span> : null}
                                                         </div>
-                                                        <div class="form-div">
+                                                        <div className="form-div">
                                                             <input type="text" name="password" className={`form-control ${signupFormik.errors.password && signupFormik.touched.password ? "invalidInput" : ""} `} placeholder="Password" onChange={signupFormik.handleChange} onBlur={signupFormik.handleBlur} value={signupFormik.values.password} />
                                                             {signupFormik.errors.password && signupFormik.touched.password ? <span className='input-error-msg'>{signupFormik.errors.password}</span> : null}
                                                         </div>
-                                                        <div class="form-div">
+                                                        <div className="form-div">
                                                             <input type="text" name="cpassword" className={`form-control ${signupFormik.errors.cpassword && signupFormik.touched.cpassword ? "invalidInput" : ""} `} placeholder="Confirm Password" onChange={signupFormik.handleChange} onBlur={signupFormik.handleBlur} value={signupFormik.values.cpassword} />
                                                             {signupFormik.errors.cpassword && signupFormik.touched.cpassword ? <span className='input-error-msg'>{signupFormik.errors.cpassword}</span> : null}
                                                         </div>
 
-                                                        <button className="submit-btn" type='submit' >Signup {loading ? <div class="spinner-border text-primary" role="status">
+                                                        <button className="submit-btn" type='submit' >Signup {loading ? <div className="spinner-border text-primary" role="status">
                                                         </div> : ''}</button>
                                                     </form>
                                                 </div>
