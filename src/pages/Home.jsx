@@ -7,6 +7,7 @@ import houseImage from "../assets/images/t_house.svg"
 import bulbImage from "../assets/images/blub.png"
 import carImage from "../assets/images/t_car.svg"
 import travelImage from "../assets/images/travel.png"
+import travel2Image from "../assets/images/travel2.png"
 import securityImage from "../assets/images/security.png"
 
 const Home = () => {
@@ -33,9 +34,11 @@ const Home = () => {
                 <div className="container">
                     <div className="row align-items-center">
                         <div className="col-lg-6">
+                            <div class="home-banner-content">
                             <h1>The Anthos Net Zero Project</h1>
                             <div className="P_Lead">
                                 <p>Created to provied an ongoing service to help all family members</p>
+                            </div>
                             </div>
                         </div>
                     </div>
@@ -71,12 +74,12 @@ const Home = () => {
 
                     <div className="carbon-contant">
                         <div className="row">
-                            <div className="col-lg-4">
+                            <div className="col-lg-4 col-md-4">
                                 <div className="img-col">
                                     <img src={bulbImage} />
                                 </div>
                             </div>
-                            <div className="col-lg-8">
+                            <div className="col-lg-8 col-md-8">
                                 <div className="carbon-box">
                                     <div className="text-col">
                                         <div className="text-scroll">
@@ -100,8 +103,8 @@ const Home = () => {
 
             <section className="Form-essentials pt-70 pb-70">
                 <div className="container">
-                    <div className="row">
-                        <div className="col-lg-9">
+                    <div className="row Form-essentials-main-row">
+                        <div className="col-lg-9 col-md-8">
                             <div className="form-content">
                                 <div className="title-block">
                                     <div class='sub-title'>How to complete the form</div>
@@ -110,7 +113,7 @@ const Home = () => {
                                 <p>The first step is to provide information through the tailored form, relating to your home, travel, shopping and assets. Information is encrypted and held on a <span>secure server*</span> and the form should take no more than 15 minutes to complete. On each page there are some sections that are required and others that are optional. The optional sections are for activities that we expect aren’t the biggest sources of emissions or which taken more time to complete. However, adding this information will give you a more accurate carbon footprint and more tailored recommendations.</p>
                                 <span>To make the process quicker and easier, gather the following details before starting:</span>
                                 <div className="row">
-                                    <div className="col-lg-3">
+                                    <div className="col-lg-4 col-md-4 col-12">
                                         <div className="icon-box">
                                             <div className="cricle-box">
                                                 <img src={houseImage} alt="" />
@@ -118,7 +121,7 @@ const Home = () => {
                                             <p>Your residential energy consumption (electricity, natural gas, heating oil, any others)</p>
                                         </div>
                                     </div>
-                                    <div className="col-lg-3">
+                                    <div className="col-lg-4 col-md-4 col-6">
                                         <div className="icon-box">
                                             <div className="cricle-box">
                                                 <img src={planeImage} alt="" />
@@ -126,7 +129,7 @@ const Home = () => {
                                             <p>Your air travel use (number of flights/distance travelled)</p>
                                         </div>
                                     </div>
-                                    <div className="col-lg-3">
+                                    <div className="col-lg-4 col-md-4 col-6">
                                         <div className="icon-box">
                                             <div className="cricle-box">
                                                 <img src={carImage} alt="" />
@@ -140,9 +143,12 @@ const Home = () => {
                                 <a href="#" className="btn">Calculate your footprint</a>
                             </div>
                         </div>
-                        <div className="col-lg-3">
+                        <div className="col-lg-3 Form-col-div">
                             <div className="Form-col-img">
                                 <img src={travelImage} alt="" />
+                            </div>
+                            <div className="Form-col-travel">
+                                <img src={travel2Image} alt="" />
                             </div>
                         </div>
                     </div>
@@ -164,12 +170,12 @@ const Home = () => {
 
 
                     <div className="row">
-                        <div className="col-lg-5">
-                            <div className="Protecting">
+                        <div className="col-lg-5 col-md-5">
+                            <div className="Protecting-div">
                                 <img src={securityImage} alt="" />
                             </div>
                         </div>
-                        <div className="col-lg-6 Protecting-content">
+                        <div className="col-lg-6 col-md-6 offset-lg-1 offset-md-1 Protecting-content">
                             <p>Lorem ipsum dolor sit amet, consetetur sadipscing
                                 elitr, sed diam nonumy eirmod tempor invidunt ut
                                 labore et dolore magna aliquyam erat, sed diam
