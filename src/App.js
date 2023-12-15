@@ -7,6 +7,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import "./assets/css/styles.css"
 import General from "./pages/General";
+import Homeform from "./pages/Homeform";
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/general" element={<General />} />
+          <Route path="/homeform" element={<Homeform />} />
         </Route>
       </Routes>
 
