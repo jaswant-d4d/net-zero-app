@@ -75,6 +75,34 @@ input{
     font-weight: 300;
 }
 
+/* Transparent Header Start  */
+.bg-home{
+    background:url("../images/home_img1.png");
+}
+.nav-items{
+    display: none;
+}
+.bg-home .nav-items.active {
+    background: white;
+    color: #000;
+    padding: 20px 30px;
+    display: flex;
+    align-items: center;
+    border-radius: 25px;
+    margin-bottom: 0px;
+    display: block;
+}
+.bg-home .site-header {
+    padding: 15px 0;
+    box-shadow: none;
+    background-color: transparent;
+}
+
+.site-header {
+    background-color: #fff;
+}
+/* Transparent Header End */
+
 .container{    max-width: 1440px;    margin: 0 auto;    }
 .site-header .navbar {    display: flex;    justify-content: space-between;}
 .site-header .navbar ul {    display: flex;    justify-content: space-between;    align-items: center;    gap: 50px;    border: none;}
@@ -529,6 +557,9 @@ section.protecting-data {
   .text-scroll{
     overflow: auto;
 }
+  .text-scroll{
+    overflow: auto;
+}
 
 .text-scroll {
     position: absolute;
@@ -710,12 +741,13 @@ form {
     text-align: center;
 }
 
-.form input.invalidInput, .form select.invalidInput {
+.form input.invalidInput, .form select.invalidInput, .Additional-box textarea.invalidInput {
     border: 2px solid #fd0200;
 }
-.form .input-error-msg {
+.form .input-error-msg, span.input-error-msg {
     color: #fd0200;
     font-size: 14px;
+    text-align: left !important;
 }
 .form-div span {
     text-align: left !important;

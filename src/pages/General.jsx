@@ -16,6 +16,8 @@ import CountryOptions from "../components/CountryOptions";
 const General = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const [activeTab, setActiveTab] = useState("general")
+    const [disabled, setDisabled] = useState(false)
     const user = useSelector((state) => state.auth);
     const details = useSelector((state) => state.users);
 
@@ -74,6 +76,11 @@ const General = () => {
             other_dependants_details,
             year_of_birth,
             num_of_children_under_18,
+            first_name,
+            last_name,
+            email,
+            emailConfirmation,
+            forest_or_farmland_details,
             ...rest
         } = values;
 
@@ -85,12 +92,17 @@ const General = () => {
             ...(num_of_homes >= 3 ? { third_home_country } : {}),
             ...(num_of_homes >= 4 ? { fourth_home_country } : {}),
             ...(num_of_homes >= 5 ? { fifth_home_country } : {}),
-            ...(other_dependants === "Yes" ? { other_dependants_details } : {}),
-            other_dependants: other_dependants,
+            ...(other_dependants === "Yes" ? { other_dependants_details: other_dependants_details?.trim() } : {}),
+            ...(emailConfirmation && {}),
+            other_dependants: other_dependants?.trim(),
             num_of_homes: Number(num_of_homes),
             year_of_birth: Number(year_of_birth),
             num_of_children_under_18: Number(num_of_children_under_18),
             user_id,
+            first_name: first_name?.trim(),
+            last_name: last_name?.trim(),
+            email: email?.trim(),
+            forest_or_farmland_details: forest_or_farmland_details?.trim()
         };
         return filteredValues;
     };
@@ -98,7 +110,7 @@ const General = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-
+        formik.handleSubmit()
         const { values } = formik;
 
         if (
@@ -122,10 +134,11 @@ const General = () => {
             return false;
         }
         try {
+            setDisabled(true)
             const filteredValues = await validateAndFilterFields(values);
 
             const response = await dispatch(generalFormSubmit(filteredValues));
-
+            setDisabled(false)
             if (!response?.payload?.error && response?.payload?.data) {
                 Swal.fire({
                     title: "Success!",
@@ -181,7 +194,7 @@ const General = () => {
                             <div className="information-header">
                                 <div className="col">
                                     <div className="information-icon-box">
-                                        <div className="information-cricle-box">
+                                        <div className={`information-cricle-box ${activeTab === "general" ? "active" : ""}`} onClick={() => setActiveTab("general")}>
                                             <img src={generalImg} alt="" />
                                         </div>
                                         <p>General Information</p>
@@ -189,7 +202,7 @@ const General = () => {
                                 </div>
                                 <div className="col">
                                     <div className="information-icon-box">
-                                        <div className="information-cricle-box">
+                                        <div className={`information-cricle-box ${activeTab === "home" ? "active" : ""}`} onClick={() => setActiveTab("home")}>
                                             <img src={houseImg} alt="" />
                                         </div>
                                         <p>Your Home</p>
@@ -197,7 +210,7 @@ const General = () => {
                                 </div>
                                 <div className="col">
                                     <div className="information-icon-box">
-                                        <div className="information-cricle-box">
+                                        <div className={`information-cricle-box ${activeTab === "travel" ? "active" : ""}`} onClick={() => setActiveTab("travel")}>
                                             <img src={carImg} alt="" />
                                         </div>
                                         <p>Travel</p>
@@ -205,7 +218,7 @@ const General = () => {
                                 </div>
                                 <div className="col">
                                     <div className="information-icon-box">
-                                        <div className="information-cricle-box">
+                                        <div className={`information-cricle-box ${activeTab === "food" ? "active" : ""}`} onClick={() => setActiveTab("food")}>
                                             <img src={foodImg} alt="" />
                                         </div>
                                         <p>Food and Shopping</p>
@@ -213,7 +226,7 @@ const General = () => {
                                 </div>
                                 <div className="col">
                                     <div className="information-icon-box">
-                                        <div className="information-cricle-box">
+                                        <div className={`information-cricle-box ${activeTab === "financial" ? "active" : ""}`} onClick={() => setActiveTab("financial")}>
                                             <img src={financialImg} alt="" />
                                         </div>
                                         <p>Financial assets</p>
@@ -225,7 +238,7 @@ const General = () => {
                 </div>
             </section>
 
-            <form >
+            <form>
                 <section className="general-form mt-80 mb-80">
                     <div className="container ">
                         <h1>General information</h1>
@@ -557,7 +570,7 @@ const General = () => {
                                                         value={formik.values.num_of_children_under_18}
                                                     >
                                                         <option value="">Select option</option>
-                                                        {Array(5)
+                                                        {Array(20)
                                                             .fill()
                                                             .map((opt, index) => (
                                                                 <option value={index + 1} key={"opt" + index}>
@@ -660,15 +673,22 @@ const General = () => {
                                                 id="forest_or_farmland_details"
                                                 name="forest_or_farmland_details"
                                                 rows="6"
-                                                className="form-control"
+                                                className={`form-control ${formik.errors.forest_or_farmland_details && formik.touched.forest_or_farmland_details ? "invalidInput" : ""}`}
                                                 cols="50"
                                                 onChange={formik.handleChange}
                                                 onBlur={formik.handleBlur}
+                                                maxLength={1000}
                                                 value={formik.values.forest_or_farmland_details}
                                             ></textarea>
+                                            {formik.errors.forest_or_farmland_details &&
+                                                formik.touched.forest_or_farmland_details ? (
+                                                <span className="input-error-msg">
+                                                    {formik.errors.forest_or_farmland_details}
+                                                </span>
+                                            ) : null}
                                             <div className="Additional-bottom-btn">
 
-                                                <button className="btn" type='button' onClick={handleSubmit} >Save progress {details?.loading ? <div className="spinner-border text-primary" role="status">
+                                                <button className="btn" type='submit' disabled={disabled} onClick={handleSubmit} >Save progress {disabled ? <div className="spinner-border text-primary" role="status">
                                                 </div> : ''}</button>
                                                 <button className="btn" type="button">
                                                     Continue

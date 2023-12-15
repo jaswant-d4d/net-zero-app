@@ -8,28 +8,16 @@ import bulbImage from "../assets/images/blub.png"
 import carImage from "../assets/images/t_car.svg"
 import travelImage from "../assets/images/travel.png"
 import securityImage from "../assets/images/security.png"
+import { Link } from "react-router-dom";
 
 const Home = () => {
-    // const dispatch = useDispatch();
-    // const data = useSelector((state) => state.users);
-
-    // // useEffect(() => {
-    // //     dispatch(fetchUsers())
-    // // }, [])
-
-
-    // useEffect(() => {
-    //     console.log(data.data, "//////////")
-    // }, [data])
-
-
     const containerStyle = {
         backgroundImage: `url(${backgroundImage})`,
     };
 
     return (
         <>
-            <section className="home-banner bgCover" style={containerStyle}>
+            <section className="home-banner bgCover" >
                 <div className="container">
                     <div className="row align-items-center">
                         <div className="col-lg-6">
@@ -90,7 +78,7 @@ const Home = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <a href="#" className="btn">Calculate your footprint</a>
+                                <Link to="/general" className="btn">Calculate your footprint</Link>
                             </div>
                         </div>
                     </div>
@@ -137,7 +125,7 @@ const Home = () => {
                                 </div>
                                 <p>You can save your responses if you are not able to complete the form, and return to it later. Once you have submitted the information, the net zero team will respond with initial results and suggested actions, and an invitation to arrange a consultation to discuss.</p>
                                 <p>The tool has been built by Good Business and is based on the principles of the Greenhouse Gas Protocol. It has been developed specifically for Anthos and gives family members a tailored and personal service, making it stand out from the many carbon calculators available online.</p>
-                                <a href="#" className="btn">Calculate your footprint</a>
+                                <Link to="/general" className="btn">Calculate your footprint</Link>
                             </div>
                         </div>
                         <div className="col-lg-3">

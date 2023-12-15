@@ -1,5 +1,5 @@
 import * as Yup from 'yup'
-export const formvalidation = Yup.object({
+export const formvalidation = Yup.object().shape({
     first_name: Yup.string().min(2).max(25).required("Please enter your first name"),
     last_name: Yup.string().min(2).max(25).required("Please enter your last name"),
     email: Yup.string().matches(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/, 'Please enter valid email address').required('Please enter your email'),
@@ -18,7 +18,6 @@ export const formvalidation = Yup.object({
     num_of_children_under_18: Yup.string().required("This field is required"),
     other_dependants: Yup.string().required("This field is required"),
     other_dependants_details: Yup.string().required("This field is required"),
-    forest_or_farmland_details: Yup.string().required("This field is required"),
-
+    forest_or_farmland_details: Yup.string().min(5, "Min length must be atleast 5 character").max(1000, "Max length must be 1000 character"),
 })
 

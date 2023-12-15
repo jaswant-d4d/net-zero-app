@@ -8,9 +8,10 @@ import Signup from "./pages/Signup";
 import "./assets/css/styles.css"
 import General from "./pages/General";
 import Homeform from "./pages/Homeform";
+import ProtectedRoute from "./routes/ProtectedRoute";
+
 
 function App() {
-
   return (
     <div className="App">
       <Routes>
@@ -18,13 +19,11 @@ function App() {
           <Route index element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/general" element={<General />} />
+          <Route path="/general" element={<ProtectedRoute><General /></ProtectedRoute>} />
           <Route path="/homeform" element={<Homeform />} />
         </Route>
       </Routes>
-
     </div>
   );
 }
-
 export default App;
