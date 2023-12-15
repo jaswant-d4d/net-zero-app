@@ -641,6 +641,7 @@ section.protecting-data {
 } */
 .Form-essentials {
     position: relative;
+    background: #fff;
 }
 .Form-col-img img {
     position: absolute;
