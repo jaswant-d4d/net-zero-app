@@ -79,6 +79,9 @@ input{
 /* Transparent Header Start  */
 .bg-home{
     background:url("../images/home_img1.png");
+    /* background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh; */
 }
 .nav-items{
     display: none;
@@ -360,7 +363,18 @@ form.registerform {
     height: 980px;
     right: 0;
 }
-
+.home-banner::after{
+    background-image: url("../images/circle1.png");
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    right: 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: none;
+    top: 390px;
+}
 .Form-essentials-main-row {
     flex-direction: column-reverse;
 }
@@ -1288,6 +1302,19 @@ select {
     .icon-box p {
         word-break: break-all;
     }
+    .Form-essentials .title-block, .Protecting h2 {
+        margin-bottom: 25px;
+    }
+    .Form-essentials .form-content span {
+        margin-bottom: 25px;
+        display: block;
+    }
+    .footer-content-privacy {
+        display: block;
+    }
+    .personal-carbon {
+      position: relative;
+    }
     /*************** navbar responsive ****************/
     .bg-home .nav-items.active {
       
@@ -1311,5 +1338,8 @@ select {
     }
     .nav-items.active{
         position: relative;
+    }
+    .home-banner::after{
+      display: block;
     }
 }
