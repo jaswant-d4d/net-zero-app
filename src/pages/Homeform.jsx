@@ -1,10 +1,12 @@
 import React from "react";
 import { Formik } from "formik";
+import FormActionTabs from "../components/FormActionTabs";
 // import homeimage from "../assets/images/home-img.png"
 
 const Homeform = () => {
   return (
     <>
+      <FormActionTabs />
       <form>
         <section className="general-form mt-80 mb-80">
           <div className="container ">

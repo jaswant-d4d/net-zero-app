@@ -28,14 +28,14 @@ const Header = ({ bgTransparent }) => {
                         <Link to="/">
                             <img src={homePage ? White_Anthos_logo : Anthos_logo} alt="" className="logo-img" />
                         </Link>
-                        <div className={`nav-items ${openNavbar ? "active" : ""}`}>
+                        <div className={`nav-items slide-in ${openNavbar ? "active" : ""}`}>
                             <ul>
                                 
                                 <li className="nav-item">My account</li>
                                 <li className="nav-item">Footprint Calculator</li>
                                 <li className="nav-item">T&Cs</li>
                                 <li className="nav-item emain-div">netzero@good.business</li>
-                                <li className="nav-item" onClick={() => { setOpenNavbar(false) }}><img src={closeImage} /></li>
+                                <li className="nav-item close-icon" onClick={() => { setOpenNavbar(false) }}><img src={closeImage} /></li>
                             </ul>
                         </div>
                         <div className="navbar-toggler">
