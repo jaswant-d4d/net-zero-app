@@ -103,6 +103,11 @@ input{
     padding: 15px 0;
     box-shadow: none;
     background-color: transparent;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    left: 0;
+    right: 0;
 }
 
 .site-header {
@@ -209,9 +214,19 @@ border-bottom: none !important;
     max-width: calc(100% - 60px);
     margin: 0 0 25px;
 } */
-.nav-link{
+.nav-link, .card .nav .nav-pills{
     position: relative;
     padding-bottom: 30px;
+}
+.card .nav .nav-pills:after{
+    position: absolute;
+    content: "";
+    height: 4px;
+    width: 100%;
+    background: #cad2c5;
+    left: 0;
+    bottom: 0;
+    border-radius: 7px;
 }
 .nav-link:after {
     position: absolute;
@@ -221,6 +236,7 @@ border-bottom: none !important;
     background: #cad2c5;
     left: 0;
     bottom: 0;
+    border-radius: 7px;
 }
 .nav-link.active:after{
     position: absolute;
@@ -230,6 +246,7 @@ border-bottom: none !important;
     background: #81c14b;
     left: 0;
     bottom: 0;
+    border-radius: 7px;
 }
 
 .form-control {
@@ -338,6 +355,7 @@ form.registerform {
     line-height: 56px;
     font-weight: 600;
     margin-bottom: 30px;
+    color: #fff;
 }
 .footer-box a {
     color: #000;
@@ -353,6 +371,11 @@ form.registerform {
 .footer-content-privacy {
     display: none;
 }
+.footer-lower{
+    border-top: 1px solid #00FF9B;
+    padding-top: 20px;
+}
+
 /********Main Home page******/
 .home-banner {
     height: 100vh;
@@ -917,8 +940,8 @@ label p {
 }
 
 select {
-  
-    background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png) no-repeat right #ddd;    
+    background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png) no-repeat;
+    background-position: 95% center;
 }
 
 .general-form .bg-lightgray-color, .Additional .bg-lightgray-color{
@@ -963,11 +986,23 @@ select {
     text-align: center;
 }
 
+.login-form .form-control {
+    color: #2C2B34;
+    background-color: #cacaca;
+}
+.login-form-div{
+  margin-top: 40px;
+}
+.login-img-two {
+    display: none;
+}
 
-
-
-
-
+.form-label-div {
+    display: flex;
+}
+.form-label-div p {
+    margin: 0 0 10px 0;
+}
 
 
 
@@ -1056,6 +1091,12 @@ select {
     .carbon-contant .btn {
         margin-left: 110px;
     }
+    .login-form .col-lg-7.offset-1 {
+        margin-left: 0;
+    }
+    .login-form-div{
+        margin-top: 0px;
+      }
  }
 
 @media (max-width:767px){
@@ -1078,7 +1119,7 @@ select {
       padding-right: 0;
     }
     .site-header .navbar {
-        padding: 0 0px 0 27px;
+        padding: 0 27px 0 27px;
     }
     .btn {
         font-size: 18px;
@@ -1138,8 +1179,8 @@ select {
         padding-top: 40px;
     }
     h1, .h1, .Additional h2 {
-        font-size: 50px;
-        line-height: 53px;
+        font-size: 31px;
+        line-height: 37px;
         font-weight: 600;
         /* color: #2C2B34; */
     }
@@ -1158,6 +1199,7 @@ select {
     .general-form, .Additional  {
         background: #DCE0D9;
         padding: 0 28px;
+        margin-bottom: 0;
     }
     .general-form .bg-lightgray-color, .Additional .bg-lightgray-color {
         background:none;
@@ -1168,6 +1210,9 @@ select {
     .general-form .bg-lightgray-color, .Additional .bg-lightgray-color {
         padding-top: 0px;
         padding-bottom: 0px;
+    }
+    .Additional .card {
+        padding-bottom: 60px;
     }
     .card.card-par p {
         text-align: left;
@@ -1318,6 +1363,9 @@ select {
     .footer-content-privacy {
         display: block;
     }
+    .footer-lower {
+       margin-top: 30px;
+    }
     .personal-carbon {
       position: relative;
     }
@@ -1347,5 +1395,47 @@ select {
     }
     .home-banner::after{
       display: block;
+    }
+    /****************************/
+    .login-form {
+        margin: 0;
+        background:#F8F8F8;
+        
+    }
+    .login-form .card{
+        padding: 28px;
+    }
+    .login-form  .bg-lightgray-color {
+        background:none ;
+        padding-bottom: 0;
+    }
+    .login-form .col-lg-7.offset-1 {
+        margin-left: 0;
+        padding: 0 !important;
+    }
+    .tab-content {
+        padding-left: 0px;
+    }
+    .nav-pills .nav-link {
+        font-size: 21px;
+        line-height: 26px;
+        font-weight: 800;
+    }
+    .nav-link {
+        padding-bottom: 14px;
+    }
+    .form-heading h1 {
+        font-size: 31px;
+        font-weight: 700;
+        line-height: 37px;
+    }
+    .login-img-two {
+        display: block;
+    }
+    .login-img {
+        display: none;
+    }
+    select {
+        background-position: 95% center;
     }
 }

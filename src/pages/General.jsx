@@ -532,11 +532,14 @@ const General = () => {
                                                     ) : null}
                                                 </div>
                                                 <div className="form-div">
+                                                    <div class="form-label-div">
                                                     <label htmlFor="other_dependants">
-                                                        <strong>9. </strong>     Do you have any other dependants who live with you
+                                                        <strong>9. </strong> Do you have any other dependants who live with you
                                                         all of the time or most of the time?<span>*</span>{" "}
-                                                        <p>(grand-parents etc)</p>
+                                                       
                                                     </label>
+                                                    <p>(grand-parents etc)</p>
+                                                    </div>
                                                     <select
                                                         name="other_dependants"
                                                         id="other_dependants"
@@ -564,7 +567,7 @@ const General = () => {
                                                 {formik.values.other_dependants === "Yes" && (
                                                     <div className="form-div">
                                                         <label htmlFor="other_dependants_details">
-                                                            <strong>9a.</strong>   Please specify <span>*</span>
+                                                            <strong>9a.</strong> Please specify <span>*</span>
                                                         </label>
                                                         <input
                                                             type="other_dependants_details"

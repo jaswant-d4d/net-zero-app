@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import login_img from '../assets/images/login_img.png'
+import login_img1 from '../assets/images/login_img1.png'
 import { userLogin, userSignup } from '../redux-store/actions/auth'
 import { useDispatch, useSelector } from 'react-redux'
 import { useFormik } from 'formik';
@@ -220,7 +221,7 @@ const Login = () => {
                     <div className="bg-lightgray-color pt-70 pb-70 ">
                         <div className="row">
                             <div className="col-xl-7 col-lg-6">
-                                <div className="d-flex justify-content-center align-items-center mt-5">
+                                <div className="d-flex justify-content-center align-items-center login-form-div">
                                     <div className="card">
                                         <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
                                             <li className="nav-item text-center" onClick={() => setLoginActive(true)}>
@@ -291,6 +292,9 @@ const Login = () => {
                             <div className="col-lg-7 offset-1">
                                 <div className="login-img">
                                     <img src={login_img} alt="" />
+                                </div>
+                                <div class="login-img-two">
+                                     <img src={login_img1} alt="" />
                                 </div>
                             </div>
                         </div>
