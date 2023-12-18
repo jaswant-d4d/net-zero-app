@@ -106,7 +106,7 @@ input{
 
 .container{    max-width: 1440px;    margin: 0 auto;    }
 .site-header .navbar {    display: flex;    justify-content: space-between;}
-.site-header .navbar ul {    display: flex;    justify-content: space-between;    align-items: center;    gap: 50px;    border: none;}
+.site-header .navbar ul {    display: flex;    justify-content: space-between;    align-items: center;    gap: 50px;    border: none; flex-wrap: wrap;}
 .site-header .navbar ul li {    list-style: none;}
 
 .site-header .navbar .navbar-toggler {    border: none;}
@@ -1052,13 +1052,13 @@ select {
         height: 23px;
     }
     .site-header .navbar ul {
-     gap: 30px;
+     gap: 26px;
     }
     .navbar-toggler {
       padding-right: 0;
     }
     .site-header .navbar {
-        padding: 0 27px;
+        padding: 0 0px 0 27px;
     }
     .btn {
         font-size: 18px;
@@ -1287,5 +1287,29 @@ select {
     }
     .icon-box p {
         word-break: break-all;
+    }
+    /*************** navbar responsive ****************/
+    .bg-home .nav-items.active {
+      
+      position: absolute;
+    top: 0;
+    z-index: 1;
+    right: 0;
+    }
+   .nav-item img {
+        width: 25px;
+        height: 25px;
+        position: absolute;
+        top: 25px;
+        right: 30px;
+    }
+    .nav-items.active ul {
+        padding-left: 0;
+        padding-top: 85px;
+        width: 182px;
+      height: 379px;
+    }
+    .nav-items.active{
+        position: relative;
     }
 }

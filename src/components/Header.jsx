@@ -30,10 +30,11 @@ const Header = ({ bgTransparent }) => {
                         </Link>
                         <div className={`nav-items ${openNavbar ? "active" : ""}`}>
                             <ul>
-                                <li className="nav-item">netzero@good.business</li>
+                                
                                 <li className="nav-item">My account</li>
                                 <li className="nav-item">Footprint Calculator</li>
                                 <li className="nav-item">T&Cs</li>
+                                <li className="nav-item emain-div">netzero@good.business</li>
                                 <li className="nav-item" onClick={() => { setOpenNavbar(false) }}><img src={closeImage} /></li>
                             </ul>
                         </div>
