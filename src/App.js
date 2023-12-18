@@ -20,7 +20,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/general" element={<ProtectedRoute><General /></ProtectedRoute>} />
-          <Route path="/homeform" element={<Homeform />} />
+          <Route path="/home-form" element={<Homeform />} />
         </Route>
       </Routes>
     </div>

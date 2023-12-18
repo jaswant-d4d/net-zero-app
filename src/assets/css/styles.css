@@ -77,11 +77,14 @@ input{
 }
 
 /* Transparent Header Start  */
-.bg-home{
+.home-banner{
     background:url("../images/home_img1.png");
     /* background-size: cover;
     background-repeat: no-repeat;
     height: 100vh; */
+}
+.bg-home-form{
+    background:url("../images/home-img.png");
 }
 .nav-items{
     display: none;
@@ -104,6 +107,9 @@ input{
 
 .site-header {
     background-color: #fff;
+}
+.hamburger, .close-icon{
+    z-index: 999;
 }
 /* Transparent Header End */
 
