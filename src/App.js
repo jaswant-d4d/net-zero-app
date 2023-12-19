@@ -9,6 +9,9 @@ import "./assets/css/styles.css"
 import General from "./pages/General";
 import Homeform from "./pages/Homeform";
 import ProtectedRoute from "./routes/ProtectedRoute";
+import Travel from "./pages/Travel";
+import FoodAndShopping from "./pages/FoodAndShopping";
+import Financial from "./pages/Financial";
 
 
 function App() {
@@ -21,6 +24,9 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/general" element={<ProtectedRoute><General /></ProtectedRoute>} />
           <Route path="/home-form" element={<Homeform />} />
+          <Route path="/travel" element={<Travel />} />
+          <Route path="/food-shopping" element={<FoodAndShopping />} />
+          <Route path="/financial" element={<Financial />} />
         </Route>
       </Routes>
     </div>

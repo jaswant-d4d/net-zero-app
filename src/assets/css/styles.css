@@ -43,11 +43,11 @@ p:last-child{
 img {
     width: 100%;
 }
-.pt-70{
-padding-top: 70px;
+.pt-80{
+padding-top: 80px;
 }
-.pb-70{
-    padding-bottom: 70px;
+.pb-80{
+    padding-bottom: 80px;
 }
 .mt-80{
     margin-top: 80px;
@@ -143,8 +143,9 @@ input{
     max-width: 100%;
     max-height: 100%;
 }
-.login-form {
+.login-form, .Protecting{
     position: relative;
+    margin-bottom: 130px;
 }
 .welcome-sec .login-btns button {    background: transparent;    border: none;      border-radius: 0;    font-size: 36px;
     font-weight: 500;    padding: 0;}
@@ -617,13 +618,14 @@ section.protecting-data {
     top: 10px;
     bottom: 60px;
     left: 0;
-    padding: 0 0 0 140px; 
-    overflow-y: scroll;
+    padding: 0 0 0 140px;
+    overflow-y: auto;
     overflow-x: hidden;
     direction: rtl;
+    height: 300px;
 }
 
-.p-box { height: 1000px; direction: ltr;}
+.p-box { height: 1000px; direction: ltr;height: 300px;}
 
 /* Scrollbar Styling */
 .text-scroll::-webkit-scrollbar {
@@ -659,6 +661,7 @@ section.protecting-data {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    text-align: center;
 }
 
 .icon-box img{
@@ -785,7 +788,7 @@ section.protecting-data {
     height: 80px;
 }
 .information .information-header{
-    background: #ffffffa8;
+    background: #ffffffeb;
     border-radius: 50px;
     padding: 64px 83px;
     display: flex;
@@ -833,9 +836,11 @@ textarea {
 .bg-general .site-header{
     opacity: 0.9;
 }
-.general-form .bg-lightgray-color, .Additional .bg-lightgray-color {
+.general-form .bg-lightgray-color, .Additional .bg-lightgray-color, .economy-table .bg-color {
     border-radius: 50px;
-    background: #ffffff8a;
+    background: #ffffffeb;
+    padding-top: 80px;
+    padding-bottom: 80px;
 }
 
 .form-div label {
@@ -856,8 +861,6 @@ textarea {
 }
 .Additional h2 {
     color: #fff;
-    font-size: 60px;
-    line-height: 62px;
     margin-bottom: 40px;
     text-align: left;
 }
@@ -944,10 +947,7 @@ select {
     background-position: 95% center;
 }
 
-.general-form .bg-lightgray-color, .Additional .bg-lightgray-color{
-  padding-top: 70px;
-  padding-bottom: 70px;
-}
+
 .Form-col-travel {
     display:none;
 }
@@ -1004,7 +1004,122 @@ select {
     margin: 0 0 10px 0;
 }
 
+/*************** travel css ****************/
+.economy-table h2 {
+    color: #fff;
+    text-align: left;
+    margin-bottom: 40px;
+}
 
+.bg-travel{
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/travel_img.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.economy-row, .economy-table .modal-row  {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin: 0 0 60px;
+}
+.economy-row:last-child {
+    margin-bottom: 0;
+}
+.economy-table .label-block, .economy-table .modal-label-block {
+    width: 20%;
+    font-size: 28px;
+    font-weight: 300;
+    margin-bottom: 15px;
+    text-align: right;
+}
+
+.economy-table .input-block {
+    width: 75%;
+}
+
+.economy-table .input-block .input-row, .economy-table .modal-input-block .modal-input-row {
+    display: flex;
+    justify-content: space-between;
+}
+.economy-table .input-block .input-row .input-col, .economy-table .modal-input-block .modal-input-row .modal-input-col {
+    padding: 0 15px;
+}
+
+.economy-table .input-block .input-row .input-col label {
+    display: none;
+}
+
+.economy-table .economy-row:first-child .input-block .input-row .input-col label {
+    display: block;
+}
+.economy-row .input-col label {
+    margin-bottom: 40px;
+    font-size: 31px !important;
+    font-weight: 600;
+}
+.economy-row .input-col input[type="text"], .economy-table .modal-input-col input[type="text"]{
+    border: none;
+    width: 100%;
+    max-width: 100%;
+    height: 64px;
+    padding: 0 20px;
+    border-radius: 20px;
+}
+.economy-row-main {
+    border: 7px solid #fff;
+    border-radius: 10px;
+    padding: 40px 20px;
+    margin-bottom: 60px;
+}
+.form-div ul {
+    text-align: left;
+}
+.form-div .inner-li {
+    list-style: none;
+    font-size: 23px !important;
+    font-weight: 300;
+    line-height: 35px;
+    margin-top: 9px !important;
+}
+
+.economy-table .card {
+    width: 85%;
+}
+.economy-table .main-li {
+    font-size: 31px;
+    font-weight: 300;
+    line-height: 39px;
+    margin-bottom: 20px;
+}
+.economy-table .form-div ul {
+    margin-top: 32px;
+}
+.economy-table .form-div ul li::marker{
+    color: #81C14B;
+}
+
+/************************* modal ****************/
+
+.modal-row {
+    margin: 0 0 25px !important;
+}
+.modal-label-block {
+    text-align: left !important;
+}
+
+.modal-input-col label {
+    margin-bottom: 17px;
+    font-size: 26px !important;
+    font-weight: 300;
+}
+.modal-row-main {
+    margin-top: 15px;
+}
+
+.economy-table .modal-label-block {
+    font-weight: 500 !important;
+}
 
 
 

@@ -45,7 +45,7 @@ const Home = () => {
 
             {/* <!--------------------- personal-carbon -----------------------> */}
 
-            <section className="personal-carbon bg-lightgray-color pt-70 pb-70">
+            <section className="personal-carbon bg-lightgray-color pt-80 pb-80">
                 <div className="container">
                     <div className="carbon-top">
                         <div className="row">
@@ -89,7 +89,7 @@ const Home = () => {
             </section>
 
 
-            <section className="Form-essentials pt-70 pb-70">
+            <section className="Form-essentials mt-80 mb-80 ">
                 <div className="container">
                     <div className="row Form-essentials-main-row">
                         <div className="col-lg-9 col-md-8">
@@ -101,7 +101,7 @@ const Home = () => {
                                 <p>The first step is to provide information through the tailored form, relating to your home, travel, shopping and assets. Information is encrypted and held on a <span>secure server*</span> and the form should take no more than 15 minutes to complete. On each page there are some sections that are required and others that are optional. The optional sections are for activities that we expect aren’t the biggest sources of emissions or which taken more time to complete. However, adding this information will give you a more accurate carbon footprint and more tailored recommendations.</p>
                                 <span>To make the process quicker and easier, gather the following details before starting:</span>
                                 <div className="row">
-                                    <div className="col-lg-4 col-md-4 col-12">
+                                    <div className="col-lg-4 col-md-4 col-12 text-align-center">
                                         <div className="icon-box">
                                             <div className="cricle-box">
                                                 <img src={houseImage} alt="" />
@@ -145,7 +145,7 @@ const Home = () => {
 
             {/* <!------------Protecting----------> */}
 
-            <section className="Protecting  bg-lightgray-color pt-70 pb-70">
+            <section className="Protecting  bg-lightgray-color pt-80 pb-80">
                 <div className="container">
                     <div className="row justify-content-center">
                         <div className="col-lg-10">

@@ -28,8 +28,8 @@ const Footer = () => {
                     
                 </div>
                 <div className="footer-lower">
-                    <div className="footer-content"><p> &#169; {year} Net Zero All Right|Website Design By Creative Folks</p></div>
-                    <div className="footer-content-div"><p>Privacy &nbsp;| &nbsp; Terms & Cookies</p></div>
+                    <div className="footer-content"><p> &#169; {year} Net Zero All Rights | Website Design By CREATIVEFOLKS</p></div>
+                    <div className="footer-content-div"><p>Privacy&nbsp;|&nbsp;Terms & Cookies</p></div>
                 </div>
             </div>
         </footer>
