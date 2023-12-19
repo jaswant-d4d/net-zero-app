@@ -10,9 +10,9 @@ export const fetchUsers = createAsyncThunk("fetchUsers", async () => {
 
 export const userLogin = createAsyncThunk('userLogin', async (data, thunkAPI) => {
     try {
-        const response = await axios.post("/api/login", data);
+        const response = await axios.post("/api/login", data, { headers: { "Accept": "application/json", "Content-Type": "application/json" } });
         return response.data;
-        
+
     } catch (error) {
         return error;
     }
@@ -28,7 +28,7 @@ export const userSignup = createAsyncThunk('userSignup', async (data, thunkAPI) 
     } catch (error) {
         return error;
     }
-});   
+});
 
 // export const userSignup = createAsyncThunk(
 //     "userSignup",
