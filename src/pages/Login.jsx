@@ -95,7 +95,7 @@ const Login = () => {
                 } else {
                     Swal.fire({
                         title: "Failed!",
-                        text: response?.payload?.response?.data?.errorMsg || "Please check credentials",
+                        text: response?.payload?.response?.data?.errorMsg || "Something went wrong!",
                         icon: "error",
                         showCancelButton: false,
                         confirmButtonColor: "#3085d6",
@@ -105,48 +105,13 @@ const Login = () => {
             } catch (error) {
                 Swal.fire({
                     title: "Failed!",
-                    text: "Please check credentials!",
+                    text: "Something went wrong!",
                     icon: "error",
                     showCancelButton: false,
                     confirmButtonColor: "#3085d6",
                     cancelButtonColor: "#d33",
                 });
             }
-            // try {
-            //     const response = await dispatch(userLogin(values));
-            //     debugger
-            //     if (!response?.payload?.error && response?.payload?.data) {
-            //         // Successful login
-            //         <SweetAlert
-            //             type="success"
-            //             title="Success!"
-            //             text="User login successfully"
-            //             imageUrl={SuccessImg}
-            //             imageWidth={100}
-            //             imageHeight={100}
-            //             confirmButtonColor="#3085d6"
-            //             callback={() => navigate("/")}
-            //         />;
-            //     } else {
-            //         // Failed login
-            //         <SweetAlert
-            //             type="error"
-            //             title="Failed!"
-            //             text={response?.payload?.response?.data?.errorMsg || "Please check credentials"}
-            //             icon="error"
-            //             confirmButtonColor="#3085d6"
-            //         />;
-            //     }
-            // } catch (error) {
-            //     // Error in login attempt
-            //     <SweetAlert
-            //         type="error"
-            //         title="Failed!"
-            //         text="Please check credentials!"
-            //         icon="error"
-            //         confirmButtonColor="#3085d6"
-            //     />;
-            // }
         },
     });
     const signupFormik = useFormik({
@@ -203,7 +168,7 @@ const Login = () => {
             } catch (error) {
                 Swal.fire({
                     title: "Failed!",
-                    text: "Please check credentials",
+                    text: "Something went wrong!",
                     icon: "error",
                     showCancelButton: false,
                     confirmButtonColor: "#3085d6",
