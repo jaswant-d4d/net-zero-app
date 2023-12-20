@@ -836,7 +836,7 @@ textarea {
 .bg-general .site-header{
     opacity: 0.9;
 }
-.general-form .bg-lightgray-color, .Additional .bg-lightgray-color, .economy-table .bg-color {
+.general-form .bg-lightgray-color, .Additional .bg-lightgray-color, .economy-table .bg-color, .food-shopping .bg-color, .investments .bg-color{
     border-radius: 50px;
     background: #ffffffeb;
     padding-top: 80px;
@@ -1005,7 +1005,11 @@ select {
 }
 
 /*************** travel css ****************/
-.economy-table h2 {
+.economy-table.economy-table-tow {
+    margin-bottom: 130px;
+    margin-top: 80px;
+}
+.economy-table h2 , .food-shopping h2, .investments h2{
     color: #fff;
     text-align: left;
     margin-bottom: 40px;
@@ -1086,7 +1090,7 @@ select {
 .economy-table .card {
     width: 85%;
 }
-.economy-table .main-li {
+.economy-table .main-li , .food-shopping .main-li{
     font-size: 31px;
     font-weight: 300;
     line-height: 39px;
@@ -1095,10 +1099,24 @@ select {
 .economy-table .form-div ul {
     margin-top: 32px;
 }
-.economy-table .form-div ul li::marker{
+.economy-table .form-div ul li::marker, .food-shopping .form-div ul li::marker{
     color: #81C14B;
 }
 
+/******Food Shipping*****/
+.food-shopping .form-div label {
+    display: inline-block;
+}
+
+.food-shopping .form-div label strong {
+    display: inline-block;
+    margin-right: 5px;
+}
+.food-shopping .Additional-box {
+    text-align: left;
+}
+.food-shopping.top{ padding-bottom: 0; margin-bottom: 80px;}
+.food-shopping{ margin-bottom: 130px;}
 /************************* modal ****************/
 
 .modal-row {
@@ -1120,6 +1138,51 @@ select {
 .economy-table .modal-label-block {
     font-weight: 500 !important;
 }
+
+/********************** foodandshopping *********************/
+
+.bg-food-shopping{
+    background:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/food_img.png");
+    background-size: cover;
+    background-repeat: no-repeat;   
+}
+
+/****************financial******************/
+
+.bg-financial{
+    background:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/finance_img.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.investments .card p {
+    font-size: 31px;
+    font-weight: 400;
+    line-height: 40px;
+}
+.investments .card p:last-of-type {
+    font-size: 23px;
+    font-weight: 400;
+    line-height: 32px;
+}
+.investments h3 {
+    text-align: center;
+    font-size: 47px;
+    line-height: 57px;
+    font-weight: 600;
+    margin-bottom: 40px;
+}
+.investments {
+    margin-bottom: 130px;
+}
+
+
+
+
+.sub-btn input[type="checkbox"] {
+    display: none;
+}
+
+
 
 
 

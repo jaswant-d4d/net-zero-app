@@ -216,7 +216,7 @@ const Travel = () => {
           </div>
         </section>
 
-        <section className="economy-table">
+        <section className="economy-table economy-table-tow">
           <div className="container">
             <h2>Additional information</h2>
             <div className=" bg-color">
