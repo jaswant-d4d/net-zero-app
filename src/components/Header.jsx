@@ -24,7 +24,8 @@ const Header = ({ bgTransparent }) => {
     // }
 
     const logoutHandler = () => {
-        dispatch(userLogout())
+        dispatch(userLogout());
+        setOpenNavbar(false)
     }
 
     const navbarHandler = (status) => {

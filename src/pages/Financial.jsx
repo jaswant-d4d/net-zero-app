@@ -5,7 +5,7 @@ import FormActionTabs from "../components/FormActionTabs";
 const Financial = () => {
   return (
     <>
-      <FormActionTabs />
+      <FormActionTabs selectedTab={"financial"} />
       <section className="investments">
         <div className="container">
         <div className="sub-heading">
