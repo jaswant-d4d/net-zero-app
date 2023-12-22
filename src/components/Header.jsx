@@ -7,17 +7,31 @@ import MenuImage from '../assets/images/bur.svg';
 import WhiteMenuImage from '../assets/images/white-bar.svg';
 import closeImage from '../assets/images/close.svg';
 import { Link, useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { userLogout } from "../redux-store/actions/auth";
 
 
 const Header = ({ bgTransparent }) => {
+    const dispatch = useDispatch()
     const [openNavbar, setOpenNavbar] = useState(false);
-    const location = useLocation()
+    const location = useLocation();
+
     const homePage = location?.pathname === "/" || location?.pathname === ""
+    const authUser = useSelector((state) => state.auth)
     // const navbarStyle = {
     //     background: bgTransparent ? "transparent" : "#ffffff",
     //     boxShadow: bgTransparent ? "none" : "1px 1px 6.5px rgba(0,0,0,0.16)",
     // }
 
+    const logoutHandler = () => {
+        dispatch(userLogout())
+    }
+
+    const navbarHandler = (status) => {
+        if(authUser?.userInfo){
+            setOpenNavbar(status)
+        }
+    }
 
     return (
         <>
@@ -28,20 +42,23 @@ const Header = ({ bgTransparent }) => {
                         <Link to="/">
                             <img src={homePage ? White_Anthos_logo : Anthos_logo} alt="" className="logo-img" />
                         </Link>
-                        <div className={`nav-items slide-in ${openNavbar ? "active" : ""}`}>
-                            <ul>
-                                
-                                <li className="nav-item">My account</li>
-                                <li className="nav-item">Footprint Calculator</li>
-                                <li className="nav-item">T&Cs</li>
-                                <li className="nav-item emain-div">netzero@good.business</li>
-                                <li className="nav-item close-icon" onClick={() => { setOpenNavbar(false) }}><img src={closeImage} /></li>
-                            </ul>
-                        </div>
+                        {/* {!authUser && ( */}
+                            <div className={`nav-items slide-in ${openNavbar ? "active" : ""}`}>
+                                <ul>
+
+                                    <li className="nav-item">My account</li>
+                                    <li className="nav-item">Footprint Calculator</li>
+                                    <li className="nav-item">T&Cs</li>
+                                    <li className="nav-item emain-div">netzero@good.business</li>
+                                    <li className="nav-item" onClick={() => logoutHandler()}>Logout</li>
+                                    <li className="nav-item close-icon" onClick={() => { navbarHandler(false) }}><img src={closeImage} /></li>
+                                </ul>
+                            </div>
+                        {/* )} */}
                         <div className="navbar-toggler">
                             <ul>
                                 <li className='user-img'><img src={homePage ? White_User_Icon : User_Icon} alt="" /></li>
-                                <li className='hamburger' onClick={() => {setOpenNavbar(true)}}><img src={homePage ? WhiteMenuImage : MenuImage} alt="" /></li>
+                                <li className='hamburger' onClick={() => { navbarHandler(true) }}><img src={homePage ? WhiteMenuImage : MenuImage} alt="" /></li>
                             </ul>
 
                         </div>

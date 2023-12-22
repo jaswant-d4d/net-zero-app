@@ -11,6 +11,7 @@ const Homeform = () => {
   const dispatch = useDispatch()
   const details = useSelector((state) => state.users);
   const [disabled, setDisabled] = useState(false)
+  const [activeTab, setActiveTab] = useState("general")
 
   const endYear = new Date().getFullYear();
   const startYear = endYear - 20;
@@ -282,74 +283,111 @@ const Homeform = () => {
                             ) : null}
 
                           </div>
-
-                          <div className="col-md-6">
-                            <input type="text" placeholder="Amount"
-                              name="electricity_usage_amount"
-                              id="electricity_usage_amount"
-                              className={`form-control ${formik.errors.electricity_usage_amount &&
-                                formik.touched.electricity_usage_amount
-                                ? "invalidInput"
-                                : ""
-                                } `}
-                              onChange={formik.handleChange}
-                              onBlur={formik.handleBlur}
-                              value={formik.values.electricity_usage_amount} />
-                            {formik.errors.electricity_usage_amount &&
-                              formik.touched.electricity_usage_amount ? (
-                              <span className="input-error-msg">
-                                {formik.errors.electricity_usage_amount}
-                              </span>
-                            ) : null}
-
-                          </div>
-                          <div className="col-md-6">
-                            <input type="text" placeholder="Kwh"
-                              name="electricity_usage_unit"
-                              id="electricity_usage_unit"
-                              className={`form-control ${formik.errors.electricity_usage_unit &&
-                                formik.touched.electricity_usage_unit
-                                ? "invalidInput"
-                                : ""
-                                } `}
-                              onChange={formik.handleChange}
-                              onBlur={formik.handleBlur}
-                              value={formik.values.electricity_usage_unit} />
-                            {formik.errors.electricity_usage_unit &&
-                              formik.touched.electricity_usage_unit ? (
-                              <span className="input-error-msg">
-                                {formik.errors.electricity_usage_unit}
-                              </span>
-                            ) : null}
-                          </div>
                           {formik.values.electricity_usage_known !== "Yes" && (
-                            <div className="form-div">
-                              <label htmlFor="electricity_usage_time_period">
-                                <strong>4b. </strong> Please specify the time period for which you have electricity bills <span>*</span>{" "}
-                                <p>
-                                  (100% electricity generated from wind, water,
-                                  solar, nuclear)
-                                </p>
-                              </label>
-                              <input type="text" placeholder=""
-                                name="electricity_usage_time_period"
-                                id="electricity_usage_time_period"
-                                className={`form-control ${formik.errors.electricity_usage_time_period &&
-                                  formik.touched.electricity_usage_time_period
-                                  ? "invalidInput"
-                                  : ""
-                                  } `}
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                value={formik.values.electricity_usage_time_period} />
-                              {formik.errors.electricity_usage_time_period &&
-                                formik.touched.electricity_usage_time_period ? (
-                                <span className="input-error-msg">
-                                  {formik.errors.electricity_usage_time_period}
-                                </span>
-                              ) : null}
-                            </div>
+                            <>
+                              <div className="col-md-6">
+                                <input type="text" placeholder="Amount"
+                                  name="electricity_usage_amount"
+                                  id="electricity_usage_amount"
+                                  className={`form-control ${formik.errors.electricity_usage_amount &&
+                                    formik.touched.electricity_usage_amount
+                                    ? "invalidInput"
+                                    : ""
+                                    } `}
+                                  onChange={formik.handleChange}
+                                  onBlur={formik.handleBlur}
+                                  value={formik.values.electricity_usage_amount} />
+                                {formik.errors.electricity_usage_amount &&
+                                  formik.touched.electricity_usage_amount ? (
+                                  <span className="input-error-msg">
+                                    {formik.errors.electricity_usage_amount}
+                                  </span>
+                                ) : null}
+
+                              </div>
+                              <div className="col-md-6">
+                                <input type="text" placeholder="Kwh"
+                                  name="electricity_usage_unit"
+                                  id="electricity_usage_unit"
+                                  className={`form-control ${formik.errors.electricity_usage_unit &&
+                                    formik.touched.electricity_usage_unit
+                                    ? "invalidInput"
+                                    : ""
+                                    } `}
+                                  onChange={formik.handleChange}
+                                  onBlur={formik.handleBlur}
+                                  value={formik.values.electricity_usage_unit} />
+                                {formik.errors.electricity_usage_unit &&
+                                  formik.touched.electricity_usage_unit ? (
+                                  <span className="input-error-msg">
+                                    {formik.errors.electricity_usage_unit}
+                                  </span>
+                                ) : null}
+                              </div>
+                            </>
                           )}
+                          {/* {formik.values.electricity_usage_known !== "Yes" && ( */}
+                          <div className="form-div">
+                            <label htmlFor="electricity_usage_time_period">
+                              <strong>4b. </strong> Please specify the time period for which you have electricity bills <span>*</span>{" "}
+                              <p>
+                                (100% electricity generated from wind, water,
+                                solar, nuclear)
+                              </p>
+                            </label>
+                            <input type="text" placeholder=""
+                              name="electricity_usage_time_period"
+                              id="electricity_usage_time_period"
+                              className={`form-control ${formik.errors.electricity_usage_time_period &&
+                                formik.touched.electricity_usage_time_period
+                                ? "invalidInput"
+                                : ""
+                                } `}
+                              onChange={formik.handleChange}
+                              onBlur={formik.handleBlur}
+                              value={formik.values.electricity_usage_time_period} />
+                            {formik.errors.electricity_usage_time_period &&
+                              formik.touched.electricity_usage_time_period ? (
+                              <span className="input-error-msg">
+                                {formik.errors.electricity_usage_time_period}
+                              </span>
+                            ) : null}
+                          </div>
+                          {/* {formik.values.electricity_usage_known !== "Yes" && ( */}
+                          <div className="form-div">
+                            <label htmlFor="">
+                              <strong>4b. </strong> Do you know what the annual spend was for electricity in the selected year? <span>*</span>{" "}
+                              <p>
+                                (100% electricity generated from wind, water,
+                                solar, nuclear)
+                              </p>
+                            </label>
+                            <select
+                              name="b4"
+                              id="b4"
+                              className={`form-control ${formik.errors.b4 &&
+                                formik.touched.b4
+                                ? "invalidInput"
+                                : ""
+                                } `}
+                              onChange={formik.handleChange}
+                              onBlur={formik.handleBlur}
+                              value={formik.values.b4}
+                            >
+                              <option value="">Select option</option>
+                              <option value="Yes">Yes</option>
+                              <option value="No">No</option>
+                            </select>
+
+
+                            {formik.errors.b4 &&
+                              formik.touched.b4 ? (
+                              <span className="input-error-msg">
+                                {formik.errors.b4}
+                              </span>
+                            ) : null}
+                          </div>
+                          {/* )} */}
                           <div className="form-div">
                             <label htmlFor="electricity_supplier">
                               <strong>5. </strong> Who  was your electricity supplier? <span>*</span>{" "}
@@ -407,7 +445,7 @@ const Homeform = () => {
                             ) : null}
                           </div>
 
-                          {formik.values.on_site_renewable_energy === "Yes" && (
+                          {formik.values.on_site_renewable_energy !== "No" && (
                             <>
                               <div className="col-md-6">
                                 <input type="text" name="on_site_renewable_amount"
@@ -847,7 +885,7 @@ const Homeform = () => {
                             </span>
                           ) : null}
                         </div>
-                        {formik.values.other_energy_usage === "Yes" && (
+                        {formik.values.other_energy_usage !== "No" && (
                           <div className="">
                             <input type="text" placeholder="What energy and the amount used"
                               name="other_energy_which_and_amount"

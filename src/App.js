@@ -12,6 +12,8 @@ import ProtectedRoute from "./routes/ProtectedRoute";
 import Travel from "./pages/Travel";
 import FoodAndShopping from "./pages/FoodAndShopping";
 import Financial from "./pages/Financial";
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
 
 
 function App() {
@@ -22,7 +24,10 @@ function App() {
           <Route index element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/general" element={<ProtectedRoute><General /></ProtectedRoute>} />
+          {/* <Route path="/general" element={<ProtectedRoute><General /></ProtectedRoute>} /> */}
+          <Route path="/general" element={<General />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password/:token" element={<ResetPassword />} />
           <Route path="/home-form" element={<Homeform />} />
           <Route path="/travel" element={<Travel />} />
           <Route path="/food-shopping" element={<FoodAndShopping />} />

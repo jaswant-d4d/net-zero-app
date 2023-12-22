@@ -5,7 +5,7 @@ import travel_img from "../assets/images/travel_img.png";
 const Travel = () => {
   return (
     <>
-      <FormActionTabs />
+      <FormActionTabs/>
       <form>
         <section className="economy-table">
           <div className="container">

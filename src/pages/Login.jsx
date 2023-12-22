@@ -6,11 +6,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useFormik } from 'formik';
 import Swal from 'sweetalert2';
 import SuccessImg from "../assets/images/Group 9106.png"
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import SweetAlert from '../components/SweetAlert';
 
 const signupValidate = values => {
     const errors = {};
+       const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
+
     if (!values.first_name?.trim()) {
         errors.first_name = 'First Name field is required';
     }
@@ -28,8 +30,11 @@ const signupValidate = values => {
     if (!values.password?.trim()) {
         errors.password = 'Password field is required';
     } else if (values.password.length < 6) {
-        errors.password = 'Password must be atleast 6 characters';
+        errors.password = 'Password must be at least 6 characters';
+    } else if (!strongPasswordRegex.test(values.password)) {
+        errors.password = 'Password must include an uppercase letter, a lowercase letter, a number, and a special character';
     }
+
 
     if (!values.cpassword?.trim()) {
         errors.cpassword = 'Confirm Password field is required';
@@ -214,7 +219,7 @@ const Login = () => {
                                                             <input type="text" name="password" className={`form-control ${loginFormik.errors.password && loginFormik.touched.password ? "invalidInput" : ""} `} placeholder="Password" onChange={loginFormik.handleChange} onBlur={loginFormik.handleBlur} value={loginFormik.values.password} />
                                                             {loginFormik.errors.password && loginFormik.touched.password ? <span className='input-error-msg'>{loginFormik.errors.password}</span> : null}
                                                         </div>
-                                                        <p>Forgot your password?</p>
+                                                        <p><Link to="/forgot-password">Forgot your password?</Link></p>
                                                         <button className="submit-btn " type='submit' >Login {loading ? <div class="spinner-border text-primary" role="status">
                                                         </div> : ''}</button>
                                                     </form>

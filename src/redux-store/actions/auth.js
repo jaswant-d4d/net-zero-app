@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "../api/axios";
 import { setMessage } from "./message";
+import { logout } from "../reducers/auth";
 
 
 export const fetchUsers = createAsyncThunk("fetchUsers", async () => {
@@ -29,6 +30,12 @@ export const userSignup = createAsyncThunk('userSignup', async (data, thunkAPI) 
         return error;
     }
 });
+
+export const userLogout = createAsyncThunk('auth/logout', async (_, { dispatch }) => {
+    dispatch(logout());
+    return { success: true };
+});
+
 
 // export const userSignup = createAsyncThunk(
 //     "userSignup",
