@@ -259,7 +259,7 @@ const Login = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-lg-7 offset-1">
+                            <div className="">
                                 <div className="login-img">
                                     <img src={login_img} alt="" />
                                 </div>

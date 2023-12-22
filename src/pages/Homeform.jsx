@@ -12,8 +12,7 @@ import delete_img from "../assets/images/delete_img.svg";
 const Homeform = () => {
   const dispatch = useDispatch();
   const details = useSelector((state) => state.users);
-  const [disabled, setDisabled] = useState(false)
-  const [activeTab, setActiveTab] = useState("general")
+  const [disabled, setDisabled] = useState(false);
 
   const endYear = new Date().getFullYear();
   const startYear = endYear - 20;
@@ -373,7 +372,7 @@ const Homeform = () => {
                               </span>
                             ) : null}
                             <div className="row electricity-row">
-                              <div className="col-md-6">
+                              <div className="col-md-6 electricity-col">
                                 <input
                                   type="text"
                                   placeholder="Amount"
@@ -460,68 +459,6 @@ const Homeform = () => {
                               ) : null}
                             </div>
                           )}
-                          {/* {formik.values.electricity_usage_known !== "Yes" && ( */}
-                          <div className="form-div">
-                            <label htmlFor="electricity_usage_time_period">
-                              <strong>4b. </strong> Please specify the time period for which you have electricity bills <span>*</span>{" "}
-                              <p>
-                                (100% electricity generated from wind, water,
-                                solar, nuclear)
-                              </p>
-                            </label>
-                            <input type="text" placeholder=""
-                              name="electricity_usage_time_period"
-                              id="electricity_usage_time_period"
-                              className={`form-control ${formik.errors.electricity_usage_time_period &&
-                                formik.touched.electricity_usage_time_period
-                                ? "invalidInput"
-                                : ""
-                                } `}
-                              onChange={formik.handleChange}
-                              onBlur={formik.handleBlur}
-                              value={formik.values.electricity_usage_time_period} />
-                            {formik.errors.electricity_usage_time_period &&
-                              formik.touched.electricity_usage_time_period ? (
-                              <span className="input-error-msg">
-                                {formik.errors.electricity_usage_time_period}
-                              </span>
-                            ) : null}
-                          </div>
-                          {/* {formik.values.electricity_usage_known !== "Yes" && ( */}
-                          <div className="form-div">
-                            <label htmlFor="">
-                              <strong>4b. </strong> Do you know what the annual spend was for electricity in the selected year? <span>*</span>{" "}
-                              <p>
-                                (100% electricity generated from wind, water,
-                                solar, nuclear)
-                              </p>
-                            </label>
-                            <select
-                              name="b4"
-                              id="b4"
-                              className={`form-control ${formik.errors.b4 &&
-                                formik.touched.b4
-                                ? "invalidInput"
-                                : ""
-                                } `}
-                              onChange={formik.handleChange}
-                              onBlur={formik.handleBlur}
-                              value={formik.values.b4}
-                            >
-                              <option value="">Select option</option>
-                              <option value="Yes">Yes</option>
-                              <option value="No">No</option>
-                            </select>
-
-
-                            {formik.errors.b4 &&
-                              formik.touched.b4 ? (
-                              <span className="input-error-msg">
-                                {formik.errors.b4}
-                              </span>
-                            ) : null}
-                          </div>
-                          {/* )} */}
                           <div className="form-div">
                           <div class="form-label-div">
                             <label htmlFor="electricity_supplier">
@@ -590,9 +527,9 @@ const Homeform = () => {
                             ) : null}
                           </div>
 
-                          {formik.values.on_site_renewable_energy !== "No" && (
+                          {formik.values.on_site_renewable_energy === "Yes" && (
                             <>
-                              <div className="col-md-6">
+                              <div className="col-md-6 electricity-col">
                                 <input
                                   type="text"
                                   name="on_site_renewable_amount"
@@ -689,7 +626,7 @@ const Homeform = () => {
                               </span>
                             ) : null}
                             <div className="row electricity-row">
-                              <div className="col-md-6">
+                              <div className="col-md-6 electricity-col">
                                 <input
                                   type="text"
                                   placeholder="Amount"
@@ -849,7 +786,7 @@ const Homeform = () => {
                               </span>
                             ) : null}
                             <div className="row electricity-row">
-                              <div className="col-md-6">
+                              <div className="col-md-6 electricity-col">
                                 <input
                                   type="text"
                                   placeholder="Amount"
@@ -929,7 +866,7 @@ const Homeform = () => {
                               </span>
                             ) : null}
                             <div className="row electricity-row">
-                              <div className="col-md-6">
+                              <div className="col-md-6 electricity-col">
                                 <input
                                   type="text"
                                   placeholder="Amount"
@@ -1009,7 +946,7 @@ const Homeform = () => {
                               </span>
                             ) : null}
                             <div className="row electricity-row">
-                              <div className="col-md-6">
+                              <div className="col-md-6 electricity-col">
                                 <input
                                   type="text"
                                   placeholder="Amount"
@@ -1088,7 +1025,7 @@ const Homeform = () => {
                             </span>
                           ) : null}
                         </div>
-                        {formik.values.other_energy_usage !== "No" && (
+                        {formik.values.other_energy_usage === "Yes" && (
                           <div className="">
                             <input
                               type="text"
@@ -1124,7 +1061,7 @@ const Homeform = () => {
             <div className="sub-heading">
             <h2>Additional Information</h2>
             </div>
-            <div className="bg-lightgray-color ">
+            <div className="bg-lightgray-color additional-box-div-main">
               <div className="row">
                 <div className="col-lg-12">
                   <div className="d-flex justify-content-center align-items-center">
@@ -1283,7 +1220,7 @@ const Homeform = () => {
                               <span>{"Don't know"}</span>
                             </div>
                           </div>
-                          <div className="form-div">
+                          <div className="form-div additional-form-outer">
                             <label htmlFor="additional_property_features">
                               <strong>18. </strong>Does the property have any of
                               the following?{" "}

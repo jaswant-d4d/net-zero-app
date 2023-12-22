@@ -94,7 +94,7 @@ const ForgotPassword = () => {
         <>
             <section className="login-form  mt-80 mb-80">
                 <div className="container ">
-                    <div className="bg-lightgray-color pt-70 pb-70 ">
+                    <div className="bg-lightgray-color pt-80 pb-80 login-form-inner-bg">
                         <div className="row">
                             <div className="col-xl-7 col-lg-6">
                                 <div className="d-flex justify-content-center align-items-center login-form-div">
@@ -121,7 +121,7 @@ const ForgotPassword = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-lg-7 offset-1">
+                            <div className="login-form-inner-bg-div">
                                 <div className="login-img">
                                     <img src={login_img} alt="" />
                                 </div>

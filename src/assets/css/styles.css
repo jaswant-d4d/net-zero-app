@@ -1462,6 +1462,9 @@ select {
         font-size: 72px;
         line-height: 82px;
     }
+    .information-header-nav ul li {
+        padding: 22px 29px 
+      }
 }
 @media (max-width:991px){
     .login-img {
@@ -1494,6 +1497,15 @@ select {
     }
     .login-form-div{
         margin-top: 0px;
+      }
+      .information-header-nav ul li {
+        padding: 22px 29px 
+      }
+
+      /*********************** forgotpaddword *********************/
+
+      .login-form-inner-bg {
+        height: 1100px !important;
       }
  }
 
@@ -1843,6 +1855,7 @@ select {
     }
     .sub-heading h2 {
         color: #2C2B34;
+        font-weight: 700;
     }
     .information-header-nav {
         max-width: 72%;
@@ -1885,7 +1898,24 @@ select {
         margin-top: 28px;
     }
     .check-input {
-        width: 50%;
+        width: 48%;
+    }
+    .sub-btn .check-input label {
+        padding: 9px 25px;
+    }
+    .electricity-col {
+        margin-bottom: 20px;
+    }
+    .additional-form-outer .sub-btn .check-input {
+        width: 100%;
+    }
+    /*********************** forgotpaddword *********************/
+
+    .login-form-inner-bg {
+        height: auto !important;
+      }
+      .login-form-inner-bg-div {
+        padding: 0;
     }
 }
 
@@ -1924,14 +1954,26 @@ select {
     cursor: pointer;
   }
   .slider-labels {
-    width: 96%;
+    width: 100%;
     margin: 0 auto;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    margin-bottom: 30px;
+    /* margin-bottom: 30px; */
+}
+.slider-labels span {
+    width: 20%;
+    max-width: 100%;
+    text-align: center !important;
 }
 /* Range Slider End */
 .Additional-box .btn {
     margin: 0;
+}
+
+
+/*********************** forgotpaddword *********************/
+
+.login-form-inner-bg {
+    height: 600px;
 }
