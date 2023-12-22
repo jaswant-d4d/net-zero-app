@@ -9,7 +9,9 @@ const Travel = () => {
       <form>
         <section className="economy-table">
           <div className="container">
+          <div className="sub-heading">
             <h2>Travel</h2>
+            </div>
             <div className=" bg-color">
               <div className="card card-par">
                 <p>
@@ -216,9 +218,11 @@ const Travel = () => {
           </div>
         </section>
 
-        <section className="economy-table">
+        <section className="economy-table economy-table-tow">
           <div className="container">
+          <div className="sub-heading">
             <h2>Additional information</h2>
+            </div>
             <div className=" bg-color">
               <div className="card">
                 <div class="form-div">
@@ -426,8 +430,43 @@ const Travel = () => {
                   <div className="form-div">
                     <div class="form-label-div">
                       <label htmlFor="other_dependants">
-                        <strong>7. </strong> Did you use any other form of transport in the selected year?  
+                        <strong>7. </strong> Did you use any other form of
+                        transport in the selected year?
                       </label>
+                    </div>
+                    <div className="sub-btn">
+                      <div class="check-input">
+                        <input type="checkbox" name="" />
+                        <label>Motorbike</label>
+                      </div>
+                      <div class="check-input">
+                        <input type="checkbox" name="" />
+                        <label>Bicycle</label>
+                      </div>
+
+                      <div class="check-input">
+                        <input type="checkbox" name="" />
+                        <label>Passenger Ferry</label>
+                      </div>
+                      <div class="check-input">
+                        <input type="checkbox" name="" />
+                        <label>Train</label>
+                      </div>
+
+                      <div class="check-input">
+                        <input type="checkbox" name="" />
+                        <label>Private Yacht</label>
+                      </div>
+                      <div class="check-input">
+                        <input type="checkbox" name="" />
+                        <label>
+                          Private hire vehicles (taxis, transfers, limos, etc)
+                        </label>
+                      </div>
+                      <div class="check-input">
+                        <input type="checkbox" name="" />
+                        <label>Helicopter</label>
+                      </div>
                     </div>
                   </div>
                 </div>

@@ -89,7 +89,7 @@ const Home = () => {
             </section>
 
 
-            <section className="Form-essentials mt-80 mb-80 ">
+            <section className="Form-essentials pt-80 pb-80 ">
                 <div className="container">
                     <div className="row Form-essentials-main-row">
                         <div className="col-lg-9 col-md-8">

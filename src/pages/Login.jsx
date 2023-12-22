@@ -188,7 +188,7 @@ const Login = () => {
         <>
             <section className="login-form  mt-80 mb-80">
                 <div className="container ">
-                    <div className="bg-lightgray-color pt-70 pb-70 ">
+                    <div className="bg-lightgray-color pt-80 pb-80 ">
                         <div className="row">
                             <div className="col-xl-7 col-lg-6">
                                 <div className="d-flex justify-content-center align-items-center login-form-div">

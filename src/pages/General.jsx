@@ -187,7 +187,9 @@ const General = () => {
             <form>
                 <section className="general-form mt-80 mb-80">
                     <div className="container ">
-                        <h1>General information</h1>
+                        <div className="sub-heading">
+                        <h2>General information</h2>
+                        </div>
                         <div className="bg-lightgray-color">
                             <div className="row">
                                 <div className="col-lg-12">
@@ -498,11 +500,13 @@ const General = () => {
                                                     </div>
                                                 </div>
                                                 <div className="form-div">
+                                                <div class="form-label-div">
                                                     <label htmlFor="homeCount">
                                                         <strong>8.</strong> How many children under 18 living with you?
                                                         <span>*</span>{" "}
-                                                        <p>(As of 31st December of selected year)</p>
                                                     </label>
+                                                    <p>(As of 31st December of selected year)</p>
+                                                    </div>
                                                     <select
                                                         name="num_of_children_under_18"
                                                         id="num_of_children_under_18"
@@ -602,7 +606,9 @@ const General = () => {
 
                 <section className="Additional mb-80">
                     <div className="container">
+                    <div className="sub-heading">
                         <h2>Additional information</h2>
+                        </div>
                         <div className="bg-lightgray-color">
                             <div className="row justify-content-center">
                                 <div className="col-lg-12">

@@ -14,6 +14,8 @@ import FoodAndShopping from "./pages/FoodAndShopping";
 import Financial from "./pages/Financial";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
+import MyAccount from "./pages/MyAccount";
+import "../node_modules/bootstrap/dist/js/bootstrap.min.js";
 
 
 function App() {
@@ -32,6 +34,7 @@ function App() {
           <Route path="/travel" element={<Travel />} />
           <Route path="/food-shopping" element={<FoodAndShopping />} />
           <Route path="/financial" element={<Financial />} />
+          <Route path="/my-account" element={<MyAccount />} />
         </Route>
       </Routes>
     </div>
