@@ -9,7 +9,9 @@ const FoodAndShopping = () => {
       <form>
         <section class="food-shopping top">
           <div className="container">
+          <div className="sub-heading">
             <h2>Food and shopping</h2>
+            </div>
             <div className="bg-color">
               <div className="card card-par">
                 <p>
@@ -40,7 +42,9 @@ const FoodAndShopping = () => {
 
         <section class="food-shopping">
           <div className="container">
+          <div className="sub-heading">
             <h2>Additional information</h2>
+            </div>
             <div className="bg-color">
               <div className="card">
                 <div className="Additional-box">

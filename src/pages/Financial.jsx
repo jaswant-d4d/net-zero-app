@@ -8,7 +8,9 @@ const Financial = () => {
       <FormActionTabs />
       <section className="investments">
         <div className="container">
+        <div className="sub-heading">
           <h2>Financial assets</h2>
+          </div>
           <div className=" bg-color">
             <div className="card">
             <h3>Anthos investments</h3>
