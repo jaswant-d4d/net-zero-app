@@ -177,7 +177,6 @@ const Homeform = () => {
                               </label>
                               <p>(Select all that apply)</p>
                             </div>
-
                             <div className="sub-btn">
                               {heatingTypes.map((type, index) => (
                                 <div className="check-input" key={index}>
@@ -1360,7 +1359,7 @@ const Homeform = () => {
                               <span>{"Don't know"}</span>
                             </div>
                           </div>
-                          <div className="form-div additional-form-outer">
+                          <div className="form-div ">
                             <label htmlFor="additional_property_features">
                               <strong>18. </strong>Does the property have any of
                               the following?{" "}
@@ -1517,6 +1516,18 @@ const Homeform = () => {
                             </div>
                           </section>
                         </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card card-box-btn">
+                    <div class="Additional-box">
+                      <div class="Additional-bottom-btn">
+                        <button class="btn" type="submit">
+                          Save progress{" "}
+                        </button>
+                        <button class="btn" type="button">
+                          Continue
+                        </button>
                       </div>
                     </div>
                   </div>
