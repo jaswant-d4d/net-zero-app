@@ -46,7 +46,21 @@ export const formvalidation = Yup.object().shape({
     wood_usage_unit: Yup.string().required('Please select one option'),
     coal_usage_known: Yup.string().required('Please select one option'),
     coal_usage_unit: Yup.string().required('Please select one option'),
-    other_energy_usage: Yup.string().required('Other Energy Usage is required'),
+    other_energy_usage: Yup.string().required('Please select one option'),
+    other_energy_which_and_amount: Yup.string().required('This field is required'),
+
+
+    // Travel Form 
+    short_flights: Yup.string().required('This field is required'),
+    medium_flights: Yup.string().required('This field is required'),
+    long_flights: Yup.string().required('This field is required'),
+    extended_flights: Yup.string().required('This field is required'),
+    proportion_offset_flights: Yup.number().required('This field is required'),
+    how_many_cars: Yup.number().required('Please select one option'),
+    cars_detail: Yup.string().required('This field is required'),
+
+    // Food Form 
+    vehicle_detail: Yup.string().required('This field is required'),
 
 });
 

@@ -98,17 +98,17 @@ const FormActionTabs = ({ selectedTab }) => {
 
               <div class="information-header-nav">
                 <ul>
-                  <li>
+                  <li className="active">
                     <a href="#">Home 1</a>
                   </li>
                   <li>
                     <a href="#">Home 2</a>
                   </li>
                   <li>
-                    <a href="#">Home 2</a>
+                    <a href="#">Home 3</a>
                   </li>
                   <li>
-                    <a href="#">Home 2</a>
+                    <a href="#">Home 4</a>
                   </li>
                   <li>
                     <a href="#">
