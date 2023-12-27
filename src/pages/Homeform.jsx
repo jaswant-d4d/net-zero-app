@@ -152,12 +152,12 @@ const Homeform = () => {
                             ) : null}
                           </div>
                           <div className="form-div">
-                          <div class="form-label-div">
-                            <label htmlFor="first_name">
-                              <strong>2.</strong> How is the home heated?
-                              <span>*</span>
-                            </label>
-                            <p>(Select all that apply)</p>
+                            <div class="form-label-div">
+                              <label htmlFor="first_name">
+                                <strong>2.</strong> How is the home heated?
+                                <span>*</span>
+                              </label>
+                              <p>(Select all that apply)</p>
                             </div>
                             <div className="sub-btn">
                               <div class="check-input">
@@ -181,9 +181,8 @@ const Homeform = () => {
                                 >
                                   Electricity
                                 </label>
-                                </div>
+                              </div>
                               <div class="check-input">
-
                                 <input
                                   type="checkbox"
                                   name="heating_type"
@@ -223,7 +222,7 @@ const Homeform = () => {
                                 >
                                   Coal
                                 </label>
-                                </div>
+                              </div>
                               <div class="check-input">
                                 <input
                                   type="checkbox"
@@ -263,7 +262,7 @@ const Homeform = () => {
                                 >
                                   Wood
                                 </label>
-                                </div>
+                              </div>
                               <div class="check-input">
                                 <input
                                   type="checkbox"
@@ -290,12 +289,12 @@ const Homeform = () => {
                           </div>
                         </div>
                         <div className="form-div">
-                        <div class="form-label-div">             
-                          <label htmlFor="zero_carbon_energy_tariff">
-                            <strong>3. </strong> Was your electricity supplied
-                            under a zero-carbon energy tariff? <span>*</span>{" "}
-                          </label>
-                          <p>
+                          <div class="form-label-div">
+                            <label htmlFor="zero_carbon_energy_tariff">
+                              <strong>3. </strong> Was your electricity supplied
+                              under a zero-carbon energy tariff? <span>*</span>{" "}
+                            </label>
+                            <p>
                               (100% electricity generated from wind, water,
                               solar, nuclear)
                             </p>
@@ -341,7 +340,6 @@ const Homeform = () => {
                       <div className="form ">
                         <div className="row">
                           <div className="form-div">
-                            
                             <label htmlFor="electricity_usage_known">
                               <strong>4.</strong> Do you know how much
                               electricity was used at the home in the selected
@@ -423,13 +421,13 @@ const Homeform = () => {
 
                           {formik.values.electricity_usage_known !== "Yes" && (
                             <div className="form-div">
-                        <div class="form-label-div">            
-                              <label htmlFor="electricity_usage_time_period">
-                                <strong>4b. </strong> Please specify the time
-                                period for which you have electricity bills{" "}
-                                <span>*</span>{" "}
-                              </label>
-                              <p>
+                              <div class="form-label-div">
+                                <label htmlFor="electricity_usage_time_period">
+                                  <strong>4b. </strong> Please specify the time
+                                  period for which you have electricity bills{" "}
+                                  <span>*</span>{" "}
+                                </label>
+                                <p>
                                   (100% electricity generated from wind, water,
                                   solar, nuclear)
                                 </p>
@@ -460,12 +458,12 @@ const Homeform = () => {
                             </div>
                           )}
                           <div className="form-div">
-                          <div class="form-label-div">
-                            <label htmlFor="electricity_supplier">
-                              <strong>5. </strong> Who was your electricity
-                              supplier? <span>*</span>{" "}
-                            </label>
-                            <p>
+                            <div class="form-label-div">
+                              <label htmlFor="electricity_supplier">
+                                <strong>5. </strong> Who was your electricity
+                                supplier? <span>*</span>{" "}
+                              </label>
+                              <p>
                                 (100% electricity generated from wind, water,
                                 solar, nuclear)
                               </p>
@@ -493,13 +491,13 @@ const Homeform = () => {
                             ) : null}
                           </div>
                           <div className="form-div">
-                          <div class="form-label-div">
-                            <label htmlFor="on_site_renewable_energy">
-                              <strong>6.</strong> Do you know if any of the
-                              property's electricity was generated from onsite
-                              renewable sources?<span>*</span>
-                            </label>
-                            <p>(wind turbines, solar panel etc)</p>
+                            <div class="form-label-div">
+                              <label htmlFor="on_site_renewable_energy">
+                                <strong>6.</strong> Do you know if any of the
+                                property's electricity was generated from onsite
+                                renewable sources?<span>*</span>
+                              </label>
+                              <p>(wind turbines, solar panel etc)</p>
                             </div>
                             <select
                               name="on_site_renewable_energy"
@@ -594,13 +592,13 @@ const Homeform = () => {
                       <div className="form ">
                         <div className="row">
                           <div className="form-div">
-                          <div class="form-label-div">
-                            <label htmlFor="natural_gas_usage_known">
-                              <strong>7.</strong> Do you know how much natural
-                              gas was used at the home in the selected year?
-                              <span>*</span>
-                            </label>
-                            <p>(mains supply)</p>
+                            <div class="form-label-div">
+                              <label htmlFor="natural_gas_usage_known">
+                                <strong>7.</strong> Do you know how much natural
+                                gas was used at the home in the selected year?
+                                <span>*</span>
+                              </label>
+                              <p>(mains supply)</p>
                             </div>
                             <select
                               name="natural_gas_usage_known"
@@ -705,12 +703,12 @@ const Homeform = () => {
                             ) : null}
                           </div>
                           <div className="form-div">
-                          <div class="form-label-div">
-                            <label htmlFor="gas_consumption_offset">
-                              <strong>8.</strong> Has your gas consumption been
-                              offset by your supplier?<span>*</span> 
-                            </label>
-                            <p>(wind turbines, solar panel etc)</p>
+                            <div class="form-label-div">
+                              <label htmlFor="gas_consumption_offset">
+                                <strong>8.</strong> Has your gas consumption
+                                been offset by your supplier?<span>*</span>
+                              </label>
+                              <p>(wind turbines, solar panel etc)</p>
                             </div>
                             <select
                               name="gas_consumption_offset"
@@ -755,12 +753,12 @@ const Homeform = () => {
                       <div className="form ">
                         <div className="row">
                           <div className="form-div">
-                          <div class="form-label-div">
-                            <label htmlFor="oil_usage_known">
-                              <strong>9.</strong> Do you know how much oil was
-                              used at the home last year?<span>*</span>    
-                            </label>
-                            <p>(mains supply)</p>
+                            <div class="form-label-div">
+                              <label htmlFor="oil_usage_known">
+                                <strong>9.</strong> Do you know how much oil was
+                                used at the home last year?<span>*</span>
+                              </label>
+                              <p>(mains supply)</p>
                             </div>
                             <select
                               name="oil_usage_known"
@@ -1059,7 +1057,7 @@ const Homeform = () => {
 
             {/* Additional information Section */}
             <div className="sub-heading">
-            <h2>Additional Information</h2>
+              <h2>Additional Information</h2>
             </div>
             <div className="bg-lightgray-color additional-box-div-main">
               <div className="row">
@@ -1077,12 +1075,12 @@ const Homeform = () => {
                           </div>
                           <div className="col-lg-7 additional-form-outer">
                             <div className="form-div">
-                          <div class="form-label-div">
-                              <label htmlFor="first_name">
-                                <strong>13.</strong> Does the property have any
-                                of the folllowing?
-                              </label>
-                              <p>(mains supply)</p>
+                              <div class="form-label-div">
+                                <label htmlFor="first_name">
+                                  <strong>13.</strong> Does the property have
+                                  any of the folllowing?
+                                </label>
+                                <p>(mains supply)</p>
                               </div>
                               <div className="sub-btn">
                                 <div class="check-input">
@@ -1198,12 +1196,12 @@ const Homeform = () => {
                             ) : null}
                           </div>
                           <div className="form-div">
-                          <div class="form-label-div">
-                            <label htmlFor="winter_temperature">
-                              <strong>17. </strong>What temprature was the home
-                              kept in the winter?  
-                            </label>
-                            <p>(Use slider below)</p>
+                            <div class="form-label-div">
+                              <label htmlFor="winter_temperature">
+                                <strong>17. </strong>What temprature was the
+                                home kept in the winter?
+                              </label>
+                              <p>(Use slider below)</p>
                             </div>
                             <input
                               type="range"
@@ -1220,7 +1218,7 @@ const Homeform = () => {
                               <span>{"Don't know"}</span>
                             </div>
                           </div>
-                          <div className="form-div additional-form-outer">
+                          <div className="form-div ">
                             <label htmlFor="additional_property_features">
                               <strong>18. </strong>Does the property have any of
                               the following?{" "}
@@ -1234,6 +1232,8 @@ const Homeform = () => {
                                   value="Yes"
                                 />
                                 <label htmlFor="">Swimming Pool</label>
+                              </div>
+                              <div class="check-input">
                                 <input
                                   type="checkbox"
                                   id="living_with_partner_no"
@@ -1250,6 +1250,8 @@ const Homeform = () => {
                                   value="No"
                                 />
                                 <label htmlFor="">Solarium</label>
+                              </div>
+                              <div class="check-input">
                                 <input
                                   type="checkbox"
                                   id="living_with_partner_no"
@@ -1385,27 +1387,19 @@ const Homeform = () => {
                               maxLength={1000}
                             ></textarea>
                           </div>
-                          <section class="Additional">
-                            <div class="container">             
-                                <div class="row">
-                                  <div class="col-lg-12">
-                                    
-                                      <div class="Additional-box">             
-                                        <div class="Additional-bottom-btn">
-                                          <button class="btn" type="submit">
-                                            Save progress{" "}
-                                          </button>
-                                          <button class="btn" type="button">
-                                            Continue
-                                          </button>
-                                      
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                            </div>
-                          </section>
                         </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card card-box-btn">
+                    <div class="Additional-box">
+                      <div class="Additional-bottom-btn">
+                        <button class="btn" type="submit">
+                          Save progress{" "}
+                        </button>
+                        <button class="btn" type="button">
+                          Continue
+                        </button>
                       </div>
                     </div>
                   </div>

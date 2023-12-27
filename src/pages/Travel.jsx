@@ -24,7 +24,7 @@ const Travel = () => {
                   </label>
                   <ul>
                     <li class="main-li">
-                      Please include all flights you took in a personal capacity
+                      Please include all flights you took in a personal capacity<br></br>
                       (i.e. not for a business you work for).{" "}
                     </li>
                     <li class="main-li">
@@ -144,11 +144,13 @@ const Travel = () => {
                 </div>
 
                 <div class="form-div">
+                <div class="form-label-div">
                   <label for="www">
                     <strong>2.</strong>What proportion of your flights do you
-                    offset ?<span>*</span>
-                    <p>(estimated % by distance)</p>
+                    offset ?<span>*</span>                   
                   </label>
+                  <p>(estimated % by distance)</p>
+                  </div>
                   <input
                     type="text"
                     name="www"
@@ -354,11 +356,13 @@ const Travel = () => {
                 </div>
 
                 <div class="form-div">
+                <div class="form-label-div">
                   <label for="www">
                     <strong>5.</strong>What proportion of these flights did you
                     offset?
+                    </label>
                     <p>(estimated % by distance)</p>
-                  </label>
+                  </div>
                   <input
                     type="text"
                     name="www"
