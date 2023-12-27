@@ -183,7 +183,7 @@ const General = () => {
 
     return (
         <>
-            <FormActionTabs />
+            <FormActionTabs selectedTab={"general"}/>
             <form>
                 <section className="general-form mt-80 mb-80">
                     <div className="container ">

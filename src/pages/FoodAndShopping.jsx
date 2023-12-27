@@ -5,7 +5,7 @@ import FormActionTabs from "../components/FormActionTabs";
 const FoodAndShopping = () => {
   return (
     <>
-      <FormActionTabs />
+      <FormActionTabs  selectedTab={"food"}/>
       <form>
         <section class="food-shopping top">
           <div className="container">

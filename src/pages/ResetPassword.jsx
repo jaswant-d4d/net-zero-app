@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import login_img from '../assets/images/login_img.png'
 import login_img1 from '../assets/images/login_img1.png'
-import { userLogin, userSignup } from '../redux-store/actions/auth'
+import { resetPassword } from '../redux-store/actions/auth'
 import { useDispatch, useSelector } from 'react-redux'
 import { useFormik } from 'formik';
 import Swal from 'sweetalert2';
@@ -54,7 +54,15 @@ const ResetPassword = () => {
                 return false
             }
             try {
-                const response = await dispatch(userSignup(values, token));
+
+                const requestData = {
+                    email: "ravichaudhary.d4d@gmail.com",
+                    token: token,
+                    password: values.password,
+                    password_confirmation: values.cpassword
+                }
+
+                const response = await dispatch(resetPassword(requestData));
                 if (!response?.payload?.error && response?.payload?.data) {
                     Swal.fire({
                         title: "Success!",

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import login_img from '../assets/images/login_img.png'
 import login_img1 from '../assets/images/login_img1.png'
-import { userLogin, userSignup } from '../redux-store/actions/auth'
+import { forgetPassword } from '../redux-store/actions/auth'
 import { useDispatch, useSelector } from 'react-redux'
 import { useFormik } from 'formik';
 import Swal from 'sweetalert2';
@@ -11,7 +11,7 @@ import SweetAlert from '../components/SweetAlert';
 
 const validate = values => {
     const errors = {};
-      if (!values.email?.trim()) {
+    if (!values.email?.trim()) {
         errors.email = 'Email Address field is required';
     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
         errors.email = 'Invalid email address';
@@ -19,8 +19,6 @@ const validate = values => {
 
     return errors;
 };
-
-
 
 const ForgotPassword = () => {
     const navigate = useNavigate()
@@ -41,8 +39,11 @@ const ForgotPassword = () => {
                 return false
             }
             try {
-                values.baseurl = baseUrl;
-                const response = await dispatch(userSignup(values));
+                const requestData = {
+                    email: values.email,
+                    base_url: baseUrl
+                }
+                const response = await dispatch(forgetPassword(values));
                 if (!response?.payload?.error && response?.payload?.data) {
                     Swal.fire({
                         title: "Success!",
@@ -126,7 +127,7 @@ const ForgotPassword = () => {
                                     <img src={login_img} alt="" />
                                 </div>
                                 <div className="login-img-two">
-                                     <img src={login_img1} alt="" />
+                                    <img src={login_img1} alt="" />
                                 </div>
                             </div>
                         </div>

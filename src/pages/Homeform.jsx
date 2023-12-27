@@ -8,6 +8,14 @@ import { formvalidation } from "../helpers/validations/Schema";
 import delete_img from "../assets/images/delete_img.svg";
 
 // import homeimage from "../assets/images/home-img.png"
+const heatingTypes = [
+  "Electricity",
+  "Oil",
+  "Coal",
+  "Gas",
+  "Wood",
+  "Don't know"
+];
 
 const Homeform = () => {
   const dispatch = useDispatch();
@@ -32,12 +40,15 @@ const Homeform = () => {
       general_information_id: "1",
       location: "Sigapure",
       heating_type: "",
-      zero_carbon_energy_tariff: "Yes",
-      electricity_usage_known: "Yes",
-      electricity_usage_amount: 100,
-      electricity_usage_unit: "kwh",
-      electricity_usage_time_period: "2023-2024",
-      electricity_supplier: "Boadcaster",
+      zero_carbon_energy_tariff: "",
+      electricity_usage_known: "",
+      electricity_usage_amount: null,
+      electricity_usage_unit: "",
+      electricity_usage_time_period: "",
+      electricity_annual_spend: "",
+      electricity_annual_amount: null,
+      electricity_annual_unit: "",
+      electricity_supplier: "",
       on_site_renewable_energy: "Yes",
       on_site_renewable_amount: "200",
       on_site_renewable_unit: "kwh",
@@ -72,35 +83,24 @@ const Homeform = () => {
 
     validationSchema: formvalidation,
 
-    onSubmit: (values) => {},
+    onSubmit: (values) => { },
   });
+
+  const handleCheckboxChange = (event) => {
+    const { value } = event.target;
+    const { heating_type } = formik.values;
+    debugger
+    const updatedHeatingType = heating_type.includes(value)
+      ? heating_type.filter((type) => type !== value)
+      : [...heating_type, value];
+
+    formik.setFieldValue("heating_type", updatedHeatingType);
+  };
 
   return (
     <>
-      <FormActionTabs />
-      {/* <div class="information-header-nav">
-        <ul>
-          <li>
-            <a href="#">Home 1</a>
-          </li>
-          <li>
-            <a href="#">Home 2</a>
-          </li>
-          <li>
-            <a href="#">Home 2</a>
-          </li>
-          <li>
-            <a href="#">Home 2</a>
-          </li>
-          <li>
-            <a href="#">
-              Add <br /> home +
-            </a>
-          </li>
-        </ul>
-      </div> */}
-      <form>
-        {/* Home Section */}
+      <FormActionTabs selectedTab={"home"} />
+      <form onSubmit={formik.handleSubmit}>
 
         <section className="general-form mt-80 mb-80">
           <div className="container ">
@@ -129,13 +129,12 @@ const Homeform = () => {
                               <strong>1.</strong> Location of home<span>*</span>
                             </label>
                             <select
-                              name="country_of_residence"
-                              id="country_of_residence"
-                              className={`form-control ${
-                                formik.errors.location &&
+                              name="location"
+                              id="location"
+                              className={`form-control ${formik.errors.location &&
                                 formik.touched.location &&
                                 "invalidInput"
-                              }`}
+                                }`}
                               placeholder="First Name"
                               onChange={formik.handleChange}
                               onBlur={formik.handleBlur}
@@ -145,7 +144,7 @@ const Homeform = () => {
                               <CountryOptions countries={details?.countries} />
                             </select>
                             {formik.errors.location &&
-                            formik.touched.location ? (
+                              formik.touched.location ? (
                               <span className="input-error-msg">
                                 {formik.errors.location}
                               </span>
@@ -159,7 +158,7 @@ const Homeform = () => {
                               </label>
                               <p>(Select all that apply)</p>
                             </div>
-                            <div className="sub-btn">
+                            {/* <div className="sub-btn">
                               <div class="check-input">
                                 <input
                                   type="checkbox"
@@ -171,13 +170,12 @@ const Homeform = () => {
                                   onChange={formik.handleChange}
                                 />
                                 <label
-                                  className={`${
-                                    formik.values.heating_type.includes(
-                                      "Electricity"
-                                    )
+                                  className={`${formik.values.heating_type.includes(
+                                    "Electricity"
+                                  )
                                       ? "active"
                                       : ""
-                                  }`}
+                                    }`}
                                 >
                                   Electricity
                                 </label>
@@ -193,11 +191,10 @@ const Homeform = () => {
                                   onChange={formik.handleChange}
                                 />
                                 <label
-                                  className={`${
-                                    formik.values.heating_type.includes("Oil")
+                                  className={`${formik.values.heating_type.includes("Oil")
                                       ? "active"
                                       : ""
-                                  }`}
+                                    }`}
                                 >
                                   Oil
                                 </label>
@@ -214,11 +211,10 @@ const Homeform = () => {
                                   onChange={formik.handleChange}
                                 />
                                 <label
-                                  className={`${
-                                    formik.values.heating_type.includes("Coal")
+                                  className={`${formik.values.heating_type.includes("Coal")
                                       ? "active"
                                       : ""
-                                  }`}
+                                    }`}
                                 >
                                   Coal
                                 </label>
@@ -234,11 +230,10 @@ const Homeform = () => {
                                   onChange={formik.handleChange}
                                 />
                                 <label
-                                  className={`${
-                                    formik.values.heating_type.includes("Gas")
+                                  className={`${formik.values.heating_type.includes("Gas")
                                       ? "active"
                                       : ""
-                                  }`}
+                                    }`}
                                 >
                                   Gas
                                 </label>
@@ -254,11 +249,10 @@ const Homeform = () => {
                                   onChange={formik.handleChange}
                                 />
                                 <label
-                                  className={`${
-                                    formik.values.heating_type.includes("Wood")
+                                  className={`${formik.values.heating_type.includes("Wood")
                                       ? "active"
                                       : ""
-                                  }`}
+                                    }`}
                                 >
                                   Wood
                                 </label>
@@ -274,17 +268,34 @@ const Homeform = () => {
                                   onChange={formik.handleChange}
                                 />
                                 <label
-                                  className={`${
-                                    formik.values.heating_type.includes(
-                                      "Don't know"
-                                    )
+                                  className={`${formik.values.heating_type.includes(
+                                    "Don't know"
+                                  )
                                       ? "active"
                                       : ""
-                                  }`}
+                                    }`}
                                 >
                                   Don't know
                                 </label>
                               </div>
+                            </div> */}
+                            {formik.values.heating_type}
+                            <div className="sub-btn">
+                              {heatingTypes.map((type, index) => (
+                                <div className="check-input" key={index}>
+                                  <input
+                                    id={type + "1"}
+                                    type="checkbox"
+                                    name="heating_type"
+                                    value={type}
+                                    checked={formik.values.heating_type.includes(type)}
+                                    onChange={formik.handleChange}
+                                  />
+                                  <label htmlFor={type + "1"} className={`${formik.values.heating_type.includes(type) ? "active" : ""}`}>
+                                    {type}
+                                  </label>
+                                </div>
+                              ))}
                             </div>
                           </div>
                         </div>
@@ -302,12 +313,11 @@ const Homeform = () => {
                           <select
                             name="zero_carbon_energy_tariff"
                             id="zero_carbon_energy_tariff"
-                            className={`form-control ${
-                              formik.errors.zero_carbon_energy_tariff &&
+                            className={`form-control ${formik.errors.zero_carbon_energy_tariff &&
                               formik.touched.zero_carbon_energy_tariff
-                                ? "invalidInput"
-                                : ""
-                            } `}
+                              ? "invalidInput"
+                              : ""
+                              } `}
                             onChange={formik.handleChange}
                             onBlur={formik.handleBlur}
                             value={formik.values.zero_carbon_energy_tariff}
@@ -317,7 +327,7 @@ const Homeform = () => {
                             <option value="No">No</option>
                           </select>
                           {formik.errors.zero_carbon_energy_tariff &&
-                          formik.touched.zero_carbon_energy_tariff ? (
+                            formik.touched.zero_carbon_energy_tariff ? (
                             <span className="input-error-msg">
                               {formik.errors.zero_carbon_energy_tariff}
                             </span>
@@ -348,23 +358,23 @@ const Homeform = () => {
                             <select
                               name="electricity_usage_known"
                               id="electricity_usage_known"
-                              className={`form-control ${
-                                formik.errors.electricity_usage_known &&
+                              className={`form-control ${formik.errors.electricity_usage_known &&
                                 formik.touched.electricity_usage_known
-                                  ? "invalidInput"
-                                  : ""
-                              } `}
+                                ? "invalidInput"
+                                : ""
+                                } `}
                               onChange={formik.handleChange}
                               onBlur={formik.handleBlur}
                               value={formik.values.electricity_usage_known}
                             >
                               <option value="">Select option</option>
-                              <option value="Yes">Yes</option>
+                              <option value="Yes, for part of the year">Yes, for part of the year</option>
+                              <option value="Yes, for the whole year">Yes, for the whole year</option>
                               <option value="No">No</option>
                             </select>
 
                             {formik.errors.electricity_usage_known &&
-                            formik.touched.electricity_usage_known ? (
+                              formik.touched.electricity_usage_known ? (
                               <span className="input-error-msg">
                                 {formik.errors.electricity_usage_known}
                               </span>
@@ -376,18 +386,17 @@ const Homeform = () => {
                                   placeholder="Amount"
                                   name="electricity_usage_amount"
                                   id="electricity_usage_amount"
-                                  className={`form-control ${
-                                    formik.errors.electricity_usage_amount &&
+                                  className={`form-control ${formik.errors.electricity_usage_amount &&
                                     formik.touched.electricity_usage_amount
-                                      ? "invalidInput"
-                                      : ""
-                                  } `}
+                                    ? "invalidInput"
+                                    : ""
+                                    } `}
                                   onChange={formik.handleChange}
                                   onBlur={formik.handleBlur}
                                   value={formik.values.electricity_usage_amount}
                                 />
                                 {formik.errors.electricity_usage_amount &&
-                                formik.touched.electricity_usage_amount ? (
+                                  formik.touched.electricity_usage_amount ? (
                                   <span className="input-error-msg">
                                     {formik.errors.electricity_usage_amount}
                                   </span>
@@ -399,18 +408,17 @@ const Homeform = () => {
                                   placeholder="Kwh"
                                   name="electricity_usage_unit"
                                   id="electricity_usage_unit"
-                                  className={`form-control ${
-                                    formik.errors.electricity_usage_unit &&
+                                  className={`form-control ${formik.errors.electricity_usage_unit &&
                                     formik.touched.electricity_usage_unit
-                                      ? "invalidInput"
-                                      : ""
-                                  } `}
+                                    ? "invalidInput"
+                                    : ""
+                                    } `}
                                   onChange={formik.handleChange}
                                   onBlur={formik.handleBlur}
                                   value={formik.values.electricity_usage_unit}
                                 />
                                 {formik.errors.electricity_usage_unit &&
-                                formik.touched.electricity_usage_unit ? (
+                                  formik.touched.electricity_usage_unit ? (
                                   <span className="input-error-msg">
                                     {formik.errors.electricity_usage_unit}
                                   </span>
@@ -419,7 +427,7 @@ const Homeform = () => {
                             </div>
                           </div>
 
-                          {formik.values.electricity_usage_known !== "Yes" && (
+                          {formik.values.electricity_usage_known === "Yes, for part of the year" && (
                             <div className="form-div">
                               <div class="form-label-div">
                                 <label htmlFor="electricity_usage_time_period">
@@ -427,22 +435,17 @@ const Homeform = () => {
                                   period for which you have electricity bills{" "}
                                   <span>*</span>{" "}
                                 </label>
-                                <p>
-                                  (100% electricity generated from wind, water,
-                                  solar, nuclear)
-                                </p>
                               </div>
                               <input
                                 type="text"
-                                placeholder=""
+                                placeholder="2023-2024"
                                 name="electricity_usage_time_period"
                                 id="electricity_usage_time_period"
-                                className={`form-control ${
-                                  formik.errors.electricity_usage_time_period &&
+                                className={`form-control ${formik.errors.electricity_usage_time_period &&
                                   formik.touched.electricity_usage_time_period
-                                    ? "invalidInput"
-                                    : ""
-                                } `}
+                                  ? "invalidInput"
+                                  : ""
+                                  } `}
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
                                 value={
@@ -450,11 +453,99 @@ const Homeform = () => {
                                 }
                               />
                               {formik.errors.electricity_usage_time_period &&
-                              formik.touched.electricity_usage_time_period ? (
+                                formik.touched.electricity_usage_time_period ? (
                                 <span className="input-error-msg">
                                   {formik.errors.electricity_usage_time_period}
                                 </span>
                               ) : null}
+                            </div>
+                          )}
+
+                          {formik.values.electricity_usage_known === "No" && (
+                            <div className="form-div">
+                              <div class="form-label-div">
+                                <label htmlFor="">
+                                  <strong>4b. </strong> Do you know what the annual spend was for electricity in the selected year? <span>*</span>{" "}
+                                </label>
+                                <p>
+                                  (100% electricity generated from wind, water,
+                                  solar, nuclear)
+                                </p>
+                              </div>
+                              <select
+                                name="electricity_annual_spend"
+                                id="electricity_annual_spend"
+                                className={`form-control ${formik.errors.electricity_annual_spend &&
+                                  formik.touched.electricity_annual_spend
+                                  ? "invalidInput"
+                                  : ""
+                                  } `}
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                value={formik.values.electricity_annual_spend}
+                              >
+                                <option value="">Select option</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                              </select>
+                              {formik.errors.electricity_annual_spend &&
+                                formik.touched.electricity_annual_spend ? (
+                                <span className="input-error-msg">
+                                  {formik.errors.electricity_annual_spend}
+                                </span>
+                              ) : null}
+                              {formik.values.electricity_annual_spend !== "No" && (
+                                <div className="row electricity-row">
+                                  <div className="col-md-6">
+                                    <input
+                                      type="text"
+                                      placeholder="Amount"
+                                      name="electricity_annual_amount"
+                                      id="electricity_annual_amount"
+                                      className={`form-control ${formik.errors.electricity_annual_amount &&
+                                        formik.touched.electricity_annual_amount
+                                        ? "invalidInput"
+                                        : ""
+                                        } `}
+                                      onChange={formik.handleChange}
+                                      onBlur={formik.handleBlur}
+                                      value={formik.values.electricity_annual_amount}
+                                    />
+                                    {formik.errors.electricity_annual_amount &&
+                                      formik.touched.electricity_annual_amount ? (
+                                      <span className="input-error-msg">
+                                        {formik.errors.electricity_annual_amount}
+                                      </span>
+                                    ) : null}
+                                  </div>
+                                  <div className="col-md-6">
+                                    <select
+                                      name="electricity_annual_unit"
+                                      id="electricity_annual_unit"
+                                      className={`form-control ${formik.errors.electricity_annual_unit &&
+                                        formik.touched.electricity_annual_unit
+                                        ? "invalidInput"
+                                        : ""
+                                        } `}
+                                      onChange={formik.handleChange}
+                                      onBlur={formik.handleBlur}
+                                      value={formik.values.electricity_annual_unit}
+                                    >
+                                      <option value="">Select option</option>
+                                      <option value="Kwh">Kwh</option>
+                                      <option value="Kwh">Kwh</option>
+                                      <option value="Kwh">Kwh</option>
+                                      <option value="Kwh">Kwh</option>
+                                    </select>
+                                    {formik.errors.electricity_annual_unit &&
+                                      formik.touched.electricity_annual_unit ? (
+                                      <span className="input-error-msg">
+                                        {formik.errors.electricity_annual_unit}
+                                      </span>
+                                    ) : null}
+                                  </div>
+                                </div>
+                              )}
                             </div>
                           )}
                           <div className="form-div">
@@ -473,18 +564,17 @@ const Homeform = () => {
                               placeholder=""
                               name="electricity_supplier"
                               id="electricity_supplier"
-                              className={`form-control ${
-                                formik.errors.electricity_supplier &&
+                              className={`form-control ${formik.errors.electricity_supplier &&
                                 formik.touched.electricity_supplier
-                                  ? "invalidInput"
-                                  : ""
-                              } `}
+                                ? "invalidInput"
+                                : ""
+                                } `}
                               onChange={formik.handleChange}
                               onBlur={formik.handleBlur}
                               value={formik.values.electricity_supplier}
                             />
                             {formik.errors.electricity_supplier &&
-                            formik.touched.electricity_supplier ? (
+                              formik.touched.electricity_supplier ? (
                               <span className="input-error-msg">
                                 {formik.errors.electricity_supplier}
                               </span>
@@ -502,12 +592,11 @@ const Homeform = () => {
                             <select
                               name="on_site_renewable_energy"
                               id="on_site_renewable_energy"
-                              className={`form-control ${
-                                formik.errors.on_site_renewable_energy &&
+                              className={`form-control ${formik.errors.on_site_renewable_energy &&
                                 formik.touched.on_site_renewable_energy
-                                  ? "invalidInput"
-                                  : ""
-                              } `}
+                                ? "invalidInput"
+                                : ""
+                                } `}
                               onChange={formik.handleChange}
                               onBlur={formik.handleBlur}
                               value={formik.values.on_site_renewable_energy}
@@ -518,7 +607,7 @@ const Homeform = () => {
                             </select>
 
                             {formik.errors.on_site_renewable_energy &&
-                            formik.touched.on_site_renewable_energy ? (
+                              formik.touched.on_site_renewable_energy ? (
                               <span className="input-error-msg">
                                 {formik.errors.on_site_renewable_energy}
                               </span>
@@ -532,18 +621,17 @@ const Homeform = () => {
                                   type="text"
                                   name="on_site_renewable_amount"
                                   id="on_site_renewable_amount"
-                                  className={`form-control ${
-                                    formik.errors.on_site_renewable_amount &&
+                                  className={`form-control ${formik.errors.on_site_renewable_amount &&
                                     formik.touched.on_site_renewable_amount
-                                      ? "invalidInput"
-                                      : ""
-                                  } `}
+                                    ? "invalidInput"
+                                    : ""
+                                    } `}
                                   onChange={formik.handleChange}
                                   onBlur={formik.handleBlur}
                                   value={formik.values.on_site_renewable_amount}
                                 />
                                 {formik.errors.on_site_renewable_amount &&
-                                formik.touched.on_site_renewable_amount ? (
+                                  formik.touched.on_site_renewable_amount ? (
                                   <span className="input-error-msg">
                                     {formik.errors.on_site_renewable_amount}
                                   </span>
@@ -554,18 +642,17 @@ const Homeform = () => {
                                   type="text"
                                   name="on_site_renewable_unit"
                                   id="on_site_renewable_unit"
-                                  className={`form-control ${
-                                    formik.errors.electricity_usage_unit &&
+                                  className={`form-control ${formik.errors.electricity_usage_unit &&
                                     formik.touched.on_site_renewable_unit
-                                      ? "invalidInput"
-                                      : ""
-                                  } `}
+                                    ? "invalidInput"
+                                    : ""
+                                    } `}
                                   onChange={formik.handleChange}
                                   onBlur={formik.handleBlur}
                                   value={formik.values.on_site_renewable_unit}
                                 />
                                 {formik.errors.on_site_renewable_unit &&
-                                formik.touched.on_site_renewable_unit ? (
+                                  formik.touched.on_site_renewable_unit ? (
                                   <span className="input-error-msg">
                                     {formik.errors.on_site_renewable_unit}
                                   </span>
@@ -603,12 +690,11 @@ const Homeform = () => {
                             <select
                               name="natural_gas_usage_known"
                               id="natural_gas_usage_known"
-                              className={`form-control ${
-                                formik.errors.natural_gas_usage_known &&
+                              className={`form-control ${formik.errors.natural_gas_usage_known &&
                                 formik.touched.natural_gas_usage_known
-                                  ? "invalidInput"
-                                  : ""
-                              } `}
+                                ? "invalidInput"
+                                : ""
+                                } `}
                               onChange={formik.handleChange}
                               onBlur={formik.handleBlur}
                               value={formik.values.natural_gas_usage_known}
@@ -618,7 +704,7 @@ const Homeform = () => {
                               <option value="No">No</option>
                             </select>
                             {formik.errors.natural_gas_usage_known &&
-                            formik.touched.natural_gas_usage_known ? (
+                              formik.touched.natural_gas_usage_known ? (
                               <span className="input-error-msg">
                                 {formik.errors.natural_gas_usage_known}
                               </span>
@@ -630,18 +716,17 @@ const Homeform = () => {
                                   placeholder="Amount"
                                   name="natural_gas_usage_amount"
                                   id="natural_gas_usage_amount"
-                                  className={`form-control ${
-                                    formik.errors.natural_gas_usage_amount &&
+                                  className={`form-control ${formik.errors.natural_gas_usage_amount &&
                                     formik.touched.natural_gas_usage_amount
-                                      ? "invalidInput"
-                                      : ""
-                                  } `}
+                                    ? "invalidInput"
+                                    : ""
+                                    } `}
                                   onChange={formik.handleChange}
                                   onBlur={formik.handleBlur}
                                   value={formik.values.natural_gas_usage_amount}
                                 />
                                 {formik.errors.natural_gas_usage_amount &&
-                                formik.touched.natural_gas_usage_amount ? (
+                                  formik.touched.natural_gas_usage_amount ? (
                                   <span className="input-error-msg">
                                     {formik.errors.natural_gas_usage_amount}
                                   </span>
@@ -653,18 +738,17 @@ const Homeform = () => {
                                   placeholder="Kwh"
                                   name="natural_gas_usage_unit"
                                   id="natural_gas_usage_unit"
-                                  className={`form-control ${
-                                    formik.errors.natural_gas_usage_unit &&
+                                  className={`form-control ${formik.errors.natural_gas_usage_unit &&
                                     formik.touched.natural_gas_usage_unit
-                                      ? "invalidInput"
-                                      : ""
-                                  } `}
+                                    ? "invalidInput"
+                                    : ""
+                                    } `}
                                   onChange={formik.handleChange}
                                   onBlur={formik.handleBlur}
                                   value={formik.values.natural_gas_usage_unit}
                                 />
                                 {formik.errors.natural_gas_usage_unit &&
-                                formik.touched.natural_gas_usage_unit ? (
+                                  formik.touched.natural_gas_usage_unit ? (
                                   <span className="input-error-msg">
                                     {formik.errors.natural_gas_usage_unit}
                                   </span>
@@ -683,12 +767,11 @@ const Homeform = () => {
                               placeholder="Kwh"
                               name="natural_gas_usage_time_period"
                               id="natural_gas_usage_time_period"
-                              className={`form-control ${
-                                formik.errors.natural_gas_usage_time_period &&
+                              className={`form-control ${formik.errors.natural_gas_usage_time_period &&
                                 formik.touched.natural_gas_usage_time_period
-                                  ? "invalidInput"
-                                  : ""
-                              } `}
+                                ? "invalidInput"
+                                : ""
+                                } `}
                               onChange={formik.handleChange}
                               onBlur={formik.handleBlur}
                               value={
@@ -696,7 +779,7 @@ const Homeform = () => {
                               }
                             />
                             {formik.errors.natural_gas_usage_time_period &&
-                            formik.touched.natural_gas_usage_time_period ? (
+                              formik.touched.natural_gas_usage_time_period ? (
                               <span className="input-error-msg">
                                 {formik.errors.natural_gas_usage_time_period}
                               </span>
@@ -705,20 +788,19 @@ const Homeform = () => {
                           <div className="form-div">
                             <div class="form-label-div">
                               <label htmlFor="gas_consumption_offset">
-                                <strong>8.</strong> Has your gas consumption
-                                been offset by your supplier?<span>*</span>
+                                <strong>8.</strong> Has your gas consumption been
+                                offset by your supplier?<span>*</span>
                               </label>
                               <p>(wind turbines, solar panel etc)</p>
                             </div>
                             <select
                               name="gas_consumption_offset"
                               id="gas_consumption_offset"
-                              className={`form-control ${
-                                formik.errors.gas_consumption_offset &&
+                              className={`form-control ${formik.errors.gas_consumption_offset &&
                                 formik.touched.gas_consumption_offset
-                                  ? "invalidInput"
-                                  : ""
-                              } `}
+                                ? "invalidInput"
+                                : ""
+                                } `}
                               onChange={formik.handleChange}
                               onBlur={formik.handleBlur}
                               value={formik.values.gas_consumption_offset}
@@ -728,7 +810,7 @@ const Homeform = () => {
                               <option value="No">No</option>
                             </select>
                             {formik.errors.gas_consumption_offset &&
-                            formik.touched.gas_consumption_offset ? (
+                              formik.touched.gas_consumption_offset ? (
                               <span className="input-error-msg">
                                 {formik.errors.gas_consumption_offset}
                               </span>
@@ -763,12 +845,11 @@ const Homeform = () => {
                             <select
                               name="oil_usage_known"
                               id="oil_usage_known"
-                              className={`form-control ${
-                                formik.errors.oil_usage_known &&
+                              className={`form-control ${formik.errors.oil_usage_known &&
                                 formik.touched.oil_usage_known
-                                  ? "invalidInput"
-                                  : ""
-                              } `}
+                                ? "invalidInput"
+                                : ""
+                                } `}
                               onChange={formik.handleChange}
                               onBlur={formik.handleBlur}
                               value={formik.values.oil_usage_known}
@@ -778,7 +859,7 @@ const Homeform = () => {
                               <option value="No">No</option>
                             </select>
                             {formik.errors.oil_usage_known &&
-                            formik.touched.oil_usage_known ? (
+                              formik.touched.oil_usage_known ? (
                               <span className="input-error-msg">
                                 {formik.errors.oil_usage_known}
                               </span>
@@ -790,18 +871,17 @@ const Homeform = () => {
                                   placeholder="Amount"
                                   name="oil_usage_amount"
                                   id="oil_usage_amount"
-                                  className={`form-control ${
-                                    formik.errors.oil_usage_amount &&
+                                  className={`form-control ${formik.errors.oil_usage_amount &&
                                     formik.touched.oil_usage_amount
-                                      ? "invalidInput"
-                                      : ""
-                                  } `}
+                                    ? "invalidInput"
+                                    : ""
+                                    } `}
                                   onChange={formik.handleChange}
                                   onBlur={formik.handleBlur}
                                   value={formik.values.oil_usage_amount}
                                 />
                                 {formik.errors.oil_usage_amount &&
-                                formik.touched.oil_usage_amount ? (
+                                  formik.touched.oil_usage_amount ? (
                                   <span className="input-error-msg">
                                     {formik.errors.oil_usage_amount}
                                   </span>
@@ -813,18 +893,17 @@ const Homeform = () => {
                                   placeholder="Tonnes"
                                   name="oil_usage_unit"
                                   id="oil_usage_unit"
-                                  className={`form-control ${
-                                    formik.errors.oil_usage_unit &&
+                                  className={`form-control ${formik.errors.oil_usage_unit &&
                                     formik.touched.oil_usage_unit
-                                      ? "invalidInput"
-                                      : ""
-                                  } `}
+                                    ? "invalidInput"
+                                    : ""
+                                    } `}
                                   onChange={formik.handleChange}
                                   onBlur={formik.handleBlur}
                                   value={formik.values.oil_usage_unit}
                                 />
                                 {formik.errors.oil_usage_unit &&
-                                formik.touched.oil_usage_unit ? (
+                                  formik.touched.oil_usage_unit ? (
                                   <span className="input-error-msg">
                                     {formik.errors.oil_usage_unit}
                                   </span>
@@ -843,12 +922,11 @@ const Homeform = () => {
                             <select
                               name="wood_usage_known"
                               id="wood_usage_known"
-                              className={`form-control ${
-                                formik.errors.wood_usage_known &&
+                              className={`form-control ${formik.errors.wood_usage_known &&
                                 formik.touched.wood_usage_known
-                                  ? "invalidInput"
-                                  : ""
-                              } `}
+                                ? "invalidInput"
+                                : ""
+                                } `}
                               onChange={formik.handleChange}
                               onBlur={formik.handleBlur}
                               value={formik.values.wood_usage_known}
@@ -858,7 +936,7 @@ const Homeform = () => {
                               <option value="No">No</option>
                             </select>
                             {formik.errors.wood_usage_known &&
-                            formik.touched.wood_usage_known ? (
+                              formik.touched.wood_usage_known ? (
                               <span className="input-error-msg">
                                 {formik.errors.wood_usage_known}
                               </span>
@@ -870,18 +948,17 @@ const Homeform = () => {
                                   placeholder="Amount"
                                   name="wood_usage_amount"
                                   id="wood_usage_amount"
-                                  className={`form-control ${
-                                    formik.errors.wood_usage_amount &&
+                                  className={`form-control ${formik.errors.wood_usage_amount &&
                                     formik.touched.wood_usage_amount
-                                      ? "invalidInput"
-                                      : ""
-                                  } `}
+                                    ? "invalidInput"
+                                    : ""
+                                    } `}
                                   onChange={formik.handleChange}
                                   onBlur={formik.handleBlur}
                                   value={formik.values.wood_usage_amount}
                                 />
                                 {formik.errors.wood_usage_amount &&
-                                formik.touched.wood_usage_amount ? (
+                                  formik.touched.wood_usage_amount ? (
                                   <span className="input-error-msg">
                                     {formik.errors.wood_usage_amount}
                                   </span>
@@ -893,18 +970,17 @@ const Homeform = () => {
                                   placeholder="Tonnes"
                                   name="wood_usage_unit"
                                   id="wood_usage_unit"
-                                  className={`form-control ${
-                                    formik.errors.wood_usage_unit &&
+                                  className={`form-control ${formik.errors.wood_usage_unit &&
                                     formik.touched.wood_usage_unit
-                                      ? "invalidInput"
-                                      : ""
-                                  } `}
+                                    ? "invalidInput"
+                                    : ""
+                                    } `}
                                   onChange={formik.handleChange}
                                   onBlur={formik.handleBlur}
                                   value={formik.values.wood_usage_unit}
                                 />
                                 {formik.errors.wood_usage_unit &&
-                                formik.touched.wood_usage_unit ? (
+                                  formik.touched.wood_usage_unit ? (
                                   <span className="input-error-msg">
                                     {formik.errors.wood_usage_unit}
                                   </span>
@@ -923,12 +999,11 @@ const Homeform = () => {
                             <select
                               name="coal_usage_known"
                               id="coal_usage_known"
-                              className={`form-control ${
-                                formik.errors.coal_usage_known &&
+                              className={`form-control ${formik.errors.coal_usage_known &&
                                 formik.touched.coal_usage_known
-                                  ? "invalidInput"
-                                  : ""
-                              } `}
+                                ? "invalidInput"
+                                : ""
+                                } `}
                               onChange={formik.handleChange}
                               onBlur={formik.handleBlur}
                               value={formik.values.coal_usage_known}
@@ -938,7 +1013,7 @@ const Homeform = () => {
                               <option value="No">No</option>
                             </select>
                             {formik.errors.coal_usage_known &&
-                            formik.touched.coal_usage_known ? (
+                              formik.touched.coal_usage_known ? (
                               <span className="input-error-msg">
                                 {formik.errors.coal_usage_known}
                               </span>
@@ -950,18 +1025,17 @@ const Homeform = () => {
                                   placeholder="Amount"
                                   name="coal_usage_amount"
                                   id="coal_usage_amount"
-                                  className={`form-control ${
-                                    formik.errors.coal_usage_amount &&
+                                  className={`form-control ${formik.errors.coal_usage_amount &&
                                     formik.touched.coal_usage_amount
-                                      ? "invalidInput"
-                                      : ""
-                                  } `}
+                                    ? "invalidInput"
+                                    : ""
+                                    } `}
                                   onChange={formik.handleChange}
                                   onBlur={formik.handleBlur}
                                   value={formik.values.coal_usage_amount}
                                 />
                                 {formik.errors.coal_usage_amount &&
-                                formik.touched.coal_usage_amount ? (
+                                  formik.touched.coal_usage_amount ? (
                                   <span className="input-error-msg">
                                     {formik.errors.coal_usage_amount}
                                   </span>
@@ -973,18 +1047,17 @@ const Homeform = () => {
                                   placeholder="Tonnes"
                                   name="coal_usage_unit"
                                   id="coal_usage_unit"
-                                  className={`form-control ${
-                                    formik.errors.coal_usage_unit &&
+                                  className={`form-control ${formik.errors.coal_usage_unit &&
                                     formik.touched.coal_usage_unit
-                                      ? "invalidInput"
-                                      : ""
-                                  } `}
+                                    ? "invalidInput"
+                                    : ""
+                                    } `}
                                   onChange={formik.handleChange}
                                   onBlur={formik.handleBlur}
                                   value={formik.values.coal_usage_unit}
                                 />
                                 {formik.errors.coal_usage_unit &&
-                                formik.touched.coal_usage_unit ? (
+                                  formik.touched.coal_usage_unit ? (
                                   <span className="input-error-msg">
                                     {formik.errors.coal_usage_unit}
                                   </span>
@@ -1002,12 +1075,11 @@ const Homeform = () => {
                           <select
                             name="other_energy_usage"
                             id="other_energy_usage"
-                            className={`form-control ${
-                              formik.errors.other_energy_usage &&
+                            className={`form-control ${formik.errors.other_energy_usage &&
                               formik.touched.other_energy_usage
-                                ? "invalidInput"
-                                : ""
-                            } `}
+                              ? "invalidInput"
+                              : ""
+                              } `}
                             onChange={formik.handleChange}
                             onBlur={formik.handleBlur}
                             value={formik.values.other_energy_usage}
@@ -1017,7 +1089,7 @@ const Homeform = () => {
                             <option value="No">No</option>
                           </select>
                           {formik.errors.other_energy_usage &&
-                          formik.touched.other_energy_usage ? (
+                            formik.touched.other_energy_usage ? (
                             <span className="input-error-msg">
                               {formik.errors.other_energy_usage}
                             </span>
@@ -1030,18 +1102,17 @@ const Homeform = () => {
                               placeholder="What energy and the amount used"
                               name="other_energy_which_and_amount"
                               id="other_energy_which_and_amount"
-                              className={`form-control ${
-                                formik.errors.other_energy_which_and_amount &&
+                              className={`form-control ${formik.errors.other_energy_which_and_amount &&
                                 formik.touched.other_energy_which_and_amount
-                                  ? "invalidInput"
-                                  : ""
-                              } `}
+                                ? "invalidInput"
+                                : ""
+                                } `}
                               onChange={formik.handleChange}
                               onBlur={formik.handleBlur}
                               value={formik.values.other_energy_usage}
                             />
                             {formik.errors.other_energy_which_and_amount &&
-                            formik.touched.other_energy_which_and_amount ? (
+                              formik.touched.other_energy_which_and_amount ? (
                               <span className="input-error-msg">
                                 {formik.errors.other_energy_which_and_amount}
                               </span>
@@ -1077,8 +1148,8 @@ const Homeform = () => {
                             <div className="form-div">
                               <div class="form-label-div">
                                 <label htmlFor="first_name">
-                                  <strong>13.</strong> Does the property have
-                                  any of the folllowing?
+                                  <strong>13.</strong> Does the property have any
+                                  of the folllowing?
                                 </label>
                                 <p>(mains supply)</p>
                               </div>
@@ -1171,12 +1242,11 @@ const Homeform = () => {
                             <select
                               name="year_built"
                               id="year_built"
-                              className={`form-control ${
-                                formik.errors.year_built &&
+                              className={`form-control ${formik.errors.year_built &&
                                 formik.touched.year_built
-                                  ? "invalidInput"
-                                  : ""
-                              } `}
+                                ? "invalidInput"
+                                : ""
+                                } `}
                               onChange={formik.handleChange}
                               onBlur={formik.handleBlur}
                               value={formik.values.year_built}
@@ -1189,7 +1259,7 @@ const Homeform = () => {
                               ))}
                             </select>
                             {formik.errors.year_built &&
-                            formik.touched.year_built ? (
+                              formik.touched.year_built ? (
                               <span className="input-error-msg">
                                 {formik.errors.year_built}
                               </span>
@@ -1198,8 +1268,8 @@ const Homeform = () => {
                           <div className="form-div">
                             <div class="form-label-div">
                               <label htmlFor="winter_temperature">
-                                <strong>17. </strong>What temprature was the
-                                home kept in the winter?
+                                <strong>17. </strong>What temprature was the home
+                                kept in the winter?
                               </label>
                               <p>(Use slider below)</p>
                             </div>
@@ -1208,7 +1278,7 @@ const Homeform = () => {
                               className={`custom-range`}
                               onChange={formik.handleChange}
                               onBlur={formik.handleBlur}
-                              // value={formik.values.winter_temperature}
+                            // value={formik.values.winter_temperature}
                             />
                             <div className="slider-labels">
                               <span>{"< 14%"}</span>
@@ -1287,12 +1357,11 @@ const Homeform = () => {
                             <select
                               name="live_in_staff"
                               id="live_in_staff"
-                              className={`form-control ${
-                                formik.errors.live_in_staff &&
+                              className={`form-control ${formik.errors.live_in_staff &&
                                 formik.touched.live_in_staff
-                                  ? "invalidInput"
-                                  : ""
-                              } `}
+                                ? "invalidInput"
+                                : ""
+                                } `}
                               onChange={formik.handleChange}
                               onBlur={formik.handleBlur}
                               value={formik.values.live_in_staff}
@@ -1387,6 +1456,26 @@ const Homeform = () => {
                               maxLength={1000}
                             ></textarea>
                           </div>
+                          <section class="Additional">
+                            <div class="container">
+                              <div class="row">
+                                <div class="col-lg-12">
+
+                                  <div class="Additional-box">
+                                    <div class="Additional-bottom-btn">
+                                      <button class="btn" type="submit">
+                                        Save progress{" "}
+                                      </button>
+                                      <button class="btn" type="button">
+                                        Continue
+                                      </button>
+
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </section>
                         </div>
                       </div>
                     </div>
