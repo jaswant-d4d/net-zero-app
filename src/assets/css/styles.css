@@ -2067,8 +2067,6 @@ select {
 
 
 /* Range Slider Start */
-
-
 .custom-range {
     -webkit-appearance: none;
     width: 100%;
@@ -2111,6 +2109,12 @@ select {
     max-width: 100%;
     text-align: center !important;
 }
+
+.custom-range.temp_dontKnow {
+    /* background: linear-gradient(to right, #cad2c5 #c0dfa4 ) !important; */
+    background: #cad2c5 !important;
+}
+
 /* Range Slider End */
 .Additional-box .btn {
     margin: 0;
