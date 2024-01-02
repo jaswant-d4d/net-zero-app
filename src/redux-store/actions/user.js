@@ -64,9 +64,18 @@ export const getCountry = createAsyncThunk('getCountry', async (data, thunkAPI) 
     }
 });
 
-export const getUserDetails = createAsyncThunk('getUserDetails', async (data, user_id, thunkAPI) => {
+export const getUserDetails = createAsyncThunk('getUserDetails', async (user_id, thunkAPI) => {
     try {
         const response = await axios.get(`/api/get/user/detail?user_id=${user_id}`);
+        return response.data;
+    } catch (error) {
+        return error;
+    }
+});
+
+export const formlist = createAsyncThunk('formlist', async (user_id, thunkAPI) => {
+    try {
+        const response = await axios.get(`/api/get/user/formlist?user_id=${user_id}`);
         return response.data;
     } catch (error) {
         return error;

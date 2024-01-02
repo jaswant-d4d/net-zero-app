@@ -24,6 +24,8 @@ const authSlice = createSlice({
             state.error = null;
             state.userInfo = null;
             state.success = false;
+            state.generalInfoId = null;
+
         }
     },
     extraReducers: (builder) => {

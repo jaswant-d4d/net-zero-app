@@ -1,4 +1,4 @@
-import React, { useEffect, useState,  } from "react";
+import React, { useEffect, useState, } from "react";
 import form_user from "../assets/images/form_user.svg";
 import delete2_img from "../assets/images/delete2_img.svg";
 import share_img from "../assets/images/share_img.svg";
@@ -34,7 +34,9 @@ const MyAccount = () => {
 
     useEffect(() => {
         dispatch(getCountry());
-        // dispatch(getUserDetails(user));
+        const userId = user?.userInfo?.user_id
+        dispatch(getUserDetails(userId));
+
     }, []);
 
 
@@ -54,10 +56,10 @@ const MyAccount = () => {
     const formik = useFormik({
 
         initialValues: {
-            first_name: "",
-            last_name: "",
-            email: "",
-            password: ""
+            first_name: user?.userInfo?.first_name,
+            last_name: user?.userInfo?.last_name,
+            email: user?.userInfo?.email,
+            password: user?.userInfo?.password,
         },
 
         // validationSchema: foodFormValidation,
@@ -126,22 +128,22 @@ const MyAccount = () => {
                                 </div>
                                 <form>
                                     <div class="form-div">
-                                        <label htmlFor="text">Your name</label>
-                                        <input type="text" name="" placeholder="First name"  />
+                                        <label htmlFor="first_name">Your name</label>
+                                        <input type="text" id="first_name" name="first_name" placeholder="First name" value={formik.values.first_name} onChange={formik.handleChange} onBlur={formik.handleBlur} />
                                     </div>
                                     <div class="form-div">
-                                        <label htmlFor="text">Last name</label>
-                                        <input type="text" name="" placeholder="Last name" />
+                                        <label htmlFor="last_name">Last name</label>
+                                        <input type="text" id="last_name" name="last_name" placeholder="Last name" value={formik.values.last_name} onChange={formik.handleChange} onBlur={formik.handleBlur} />
                                     </div>
                                     <div class="form-div">
                                         <label htmlFor="email">Your email address</label>
-                                        <input type="email" name="" placeholder="Email address" />
+                                        <input type="email" id="email" name="email" placeholder="Email address" value={formik.values.email} onChange={formik.handleChange} onBlur={formik.handleBlur} />
                                     </div>
                                     <div class="form-div">
-                                        <label htmlFor="paddword">Your password</label>
-                                        <input type="password" name="" placeholder="************" />
+                                        <label htmlFor="password">Your password</label>
+                                        <input type="password" id="password" name="password" placeholder="************" value={formik?.values?.password} onChange={formik.handleChange} onBlur={formik.handleBlur} />
                                     </div>
-                                    <button class="submit-btn " type="submit">Save</button>
+                                    <button class="submit-btn " type="submit" onClick={submitHandler}>Save</button>
                                 </form>
                             </div>
                         </div>
