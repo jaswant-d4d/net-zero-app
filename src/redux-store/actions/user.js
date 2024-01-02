@@ -73,7 +73,7 @@ export const getUserDetails = createAsyncThunk('getUserDetails', async (user_id,
     }
 });
 
-export const formlist = createAsyncThunk('formlist', async (user_id, thunkAPI) => {
+export const getformlist = createAsyncThunk('formlist', async (user_id, thunkAPI) => {
     try {
         const response = await axios.get(`/api/get/user/formlist?user_id=${user_id}`);
         return response.data;

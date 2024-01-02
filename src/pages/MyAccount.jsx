@@ -8,7 +8,7 @@ import arrow_img from "../assets/images/arrow_img.svg";
 import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { foodFormSubmit, getCountry, getUserDetails } from "../redux-store/actions/user";
+import { foodFormSubmit, getCountry, getUserDetails, getformlist } from "../redux-store/actions/user";
 import SuccessImg from "../assets/images/Group 9106.png";
 import Swal from "sweetalert2";
 import { foodFormValidation } from "../helpers/validations/Schema";
@@ -35,7 +35,7 @@ const MyAccount = () => {
     useEffect(() => {
         dispatch(getCountry());
         const userId = user?.userInfo?.user_id
-        dispatch(getUserDetails(userId));
+        dispatch(getformlist(userId));
 
     }, []);
 
