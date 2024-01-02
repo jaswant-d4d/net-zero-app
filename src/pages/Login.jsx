@@ -219,7 +219,7 @@ const Login = () => {
                                                                 onBlur={loginFormik.handleBlur} value={loginFormik.values.email} />
                                                             {loginFormik.errors.email && loginFormik.touched.email ? <span className='input-error-msg'>{loginFormik.errors.email}</span> : null}
                                                         </div>
-                                                        <div className="form-div">
+                                                        <div className="form-div login-pass-filed">
                                                             <PasswordInput name="password" className={`form-control ${loginFormik.errors.password && loginFormik.touched.password ? "invalidInput" : ""} `} placeholder="Password" changeHandler={loginFormik.handleChange} blurHandler={loginFormik.handleBlur} value={loginFormik.values.password} showPassword={showPassword} setShowPassword={() => setShowPassword(!showPassword)} />
 
                                                             {loginFormik.errors.password && loginFormik.touched.password ? <span className='input-error-msg'>{loginFormik.errors.password}</span> : null}
@@ -246,11 +246,11 @@ const Login = () => {
                                                             <input type="text" name="email" className={`form-control ${signupFormik.errors.email && signupFormik.touched.email ? "invalidInput" : ""} `} placeholder="Email Address" onChange={signupFormik.handleChange} onBlur={signupFormik.handleBlur} value={signupFormik.values.email} />
                                                             {signupFormik.errors.email && signupFormik.touched.email ? <span className='input-error-msg'>{signupFormik.errors.email}</span> : null}
                                                         </div>
-                                                        <div className="form-div">
+                                                        <div className="form-div login-pass-filed">
                                                             <PasswordInput name="password" className={`form-control ${signupFormik.errors.password && signupFormik.touched.password ? "invalidInput" : ""} `} placeholder="Password" changeHandler={signupFormik.handleChange} blurHandler={signupFormik.handleBlur} value={signupFormik.values.password} showPassword={showSPassword} setShowPassword={() => setShowSPassword(!showSPassword)} />
                                                             {signupFormik.errors.password && signupFormik.touched.password ? <span className='input-error-msg'>{signupFormik.errors.password}</span> : null}
                                                         </div>
-                                                        <div className="form-div">
+                                                        <div className="form-div login-pass-filed">
                                                             <PasswordInput name="cpassword" className={`form-control ${signupFormik.errors.cpassword && signupFormik.touched.cpassword ? "invalidInput" : ""} `} placeholder="Confirm Password" changeHandler={signupFormik.handleChange} blurHandler={signupFormik.handleBlur} value={signupFormik.values.cpassword} showPassword={showSCPassword} setShowPassword={() => setShowSCPassword(!showSCPassword)} />
                                                             {signupFormik.errors.cpassword && signupFormik.touched.cpassword ? <span className='input-error-msg'>{signupFormik.errors.cpassword}</span> : null}
                                                         </div>
