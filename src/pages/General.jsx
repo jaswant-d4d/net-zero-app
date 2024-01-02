@@ -147,7 +147,7 @@ const General = () => {
                     cancelButtonColor: "#d33",
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        navigate("/")
+                        navigate("/home-form")
                     }
                 });
             } else {
@@ -168,6 +168,8 @@ const General = () => {
                 }
             }
         } catch (error) {
+            setDisabled(false)
+            console.log(error,"//////")
             Swal.fire({
                 title: "Failed!",
                 text: "Something went wrong, please check the form.",

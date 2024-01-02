@@ -817,8 +817,8 @@ form {
     text-align: center;
 }
 
-.form input.invalidInput, .form select.invalidInput, .Additional-box textarea.invalidInput {
-    border: 2px solid #fd0200;
+.form input.invalidInput, .form select.invalidInput, .Additional-box textarea.invalidInput, .economy-table input.invalidInput,.economy-table select.invalidInput  {
+    border: 2px solid #fd0200 !important;
 }
 .form .input-error-msg, span.input-error-msg {
     color: #fd0200;
