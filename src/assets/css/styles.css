@@ -151,6 +151,7 @@ input{
     height: 664px;
     max-width: 100%;
     max-height: 100%;
+   
 }
 .login-form{
     position: relative;
@@ -1714,6 +1715,7 @@ select {
     .login-img img {
         width: 100%;
         margin-top: 70px;
+        object-fit: cover;
     }
     /* .Additional h2 {
         font-size: 40px;
@@ -2126,6 +2128,16 @@ select {
         padding: 19px 26px;
         width:50%;
     }
+    .information-header-nav ul li:nth-child(2), .information-header-nav ul li:nth-child(4) {
+        border-right: 0px solid #fff;
+    }
+    
+    .information-header-nav ul li:nth-child(1), .information-header-nav ul li:nth-child(2) {
+        border-bottom: 2px solid #fff;
+    }
+    .information-header-nav ul li:nth-child(4) {
+        display: none;
+    }
     .information-header-nav ul li a {
         font-size: 18px;
         line-height: 21px;
@@ -2384,6 +2396,9 @@ select {
         .admin-view-header {
            display:unset !important;
            text-align: center;
+        }
+        .slider-labels span {
+            font-size: 11px;
         }
     /*********************** forgotpaddword *********************/
 
