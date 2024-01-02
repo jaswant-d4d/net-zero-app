@@ -168,6 +168,8 @@ const General = () => {
                 }
             }
         } catch (error) {
+            setDisabled(false)
+            console.log(error,"//////")
             Swal.fire({
                 title: "Failed!",
                 text: "Something went wrong, please check the form.",
