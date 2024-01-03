@@ -188,7 +188,7 @@ const MyAccount = () => {
                                         </div>
                                     </div>
                                 </div> */}
-                                {isLoading ? (<>loading</>) :
+                                {isLoading ? (<div className="text-center">loading...</div>) :
                                     formList?.length > 0 ? formList?.map((form, index) => (
                                         <div className={"accordion-item " + form?.form_status?.toLowerCase() + "-form"} key={index}>
                                             <h2 class="accordion-header" id={`regularHeading${index + 1}`}>
@@ -211,7 +211,7 @@ const MyAccount = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                    )) : (<>Data not found</>)}
+                                    )) : (<div className="text-center">Data not found</div>)}
 
 
                             </div>
