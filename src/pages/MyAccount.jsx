@@ -8,20 +8,22 @@ import arrow_img from "../assets/images/arrow_img.svg";
 import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { foodFormSubmit, getCountry, getUserDetails, getformlist } from "../redux-store/actions/user";
+import { foodFormSubmit, getCountry, formlist, updateUserDetails, getUserDetails, formDelete } from "../redux-store/actions/user";
 import SuccessImg from "../assets/images/Group 9106.png";
 import Swal from "sweetalert2";
-import { foodFormValidation } from "../helpers/validations/Schema";
+import { ordinalNumbers } from "../helpers/ordinalNumber";
 
 
 const MyAccount = () => {
 
-
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const user = useSelector((state) => state.auth);
+    const formList = useSelector((state) => state.users.formList);
+    const isLoading = useSelector((state) => state.users.isLoading);
     const [disabled, setDisabled] = useState(false);
 
+    const userId = user?.userInfo?.user_id
 
     const endYear = new Date().getFullYear();
     const startYear = endYear - 20;
@@ -34,24 +36,9 @@ const MyAccount = () => {
 
     useEffect(() => {
         dispatch(getCountry());
-        const userId = user?.userInfo?.user_id
-        dispatch(getformlist(userId));
-
+        dispatch(formlist(userId));
+        dispatch(getUserDetails(userId));
     }, []);
-
-
-    const validateAndFilterFields = (values) => {
-        const {
-            ...rest
-        } = values;
-
-        const user_id = Number(user?.userInfo?.user_id) || 1;
-        const filteredValues = {
-            ...rest,
-            user_id,
-        };
-        return filteredValues;
-    };
 
     const formik = useFormik({
 
@@ -74,14 +61,14 @@ const MyAccount = () => {
 
         if (isValid) {
             setDisabled(true);
+            const user_id = Number(user?.userInfo?.user_id);
 
-            const filteredValues = await validateAndFilterFields(values);
-            const response = await dispatch(foodFormSubmit(filteredValues));
+            const response = await dispatch(updateUserDetails({ data: values, user_id }));
             setDisabled(false)
             if (!response?.payload?.error && response?.payload?.data) {
                 Swal.fire({
                     title: "Success!",
-                    text: "Form submitted successfully",
+                    text: "Profile Information saved successfully",
                     imageUrl: SuccessImg,
                     imageWidth: 100,
                     imageHeight: 100,
@@ -90,7 +77,6 @@ const MyAccount = () => {
                     cancelButtonColor: "#d33",
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        navigate("/financial");
                     }
                 });
             } else {
@@ -101,7 +87,7 @@ const MyAccount = () => {
                         const errorMessage = errorMessages.join("\n");
                         Swal.fire({
                             title: "Failed!",
-                            html: errorMessage || "Failed to form submit, please try again",
+                            html: errorMessage || "Failed to saved profile Information, please try again",
                             icon: "error",
                             showCancelButton: false,
                             confirmButtonColor: "#3085d6",
@@ -114,6 +100,31 @@ const MyAccount = () => {
             console.error('Form is not valid', errors);
         }
     };
+
+
+    const formDeleteHandler = async (form_id) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!",
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: "Deleted!",
+                    text: "Form deleted successfully",
+                    icon: "success"
+                });
+                await dispatch(formDelete(form_id))
+                dispatch(formlist(userId));
+            }
+        });
+    }
+
+
     return (
         <>
             <section className="Personal-information">
@@ -143,7 +154,8 @@ const MyAccount = () => {
                                         <label htmlFor="password">Your password</label>
                                         <input type="password" id="password" name="password" placeholder="************" value={formik?.values?.password} onChange={formik.handleChange} onBlur={formik.handleBlur} />
                                     </div>
-                                    <button class="submit-btn " type="submit" onClick={submitHandler}>Save</button>
+                                    <button className="submit-btn" type='submit' disabled={disabled} onClick={(e) => submitHandler(e)} >Save {disabled ? <div className="spinner-border text-primary" role="status">
+                                    </div> : ''}</button>
                                 </form>
                             </div>
                         </div>
@@ -153,7 +165,7 @@ const MyAccount = () => {
 
                             <div class="accordion" id="regularAccordionRobots">
 
-                                <div class="accordion-item">
+                                {/* <div class="accordion-item">
                                     <h2 id="regularHeadingFirst" class="accordion-header">
                                         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#regularCollapseFirst" aria-expanded="true" aria-controls="regularCollapseFirst">
                                             1.Latest form
@@ -175,29 +187,32 @@ const MyAccount = () => {
 
                                         </div>
                                     </div>
-                                </div>
-
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="regularHeadingSecond">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#regularCollapseSecond" aria-expanded="false" aria-controls="regularCollapseSecond">
-                                            2.Second form name
-                                        </button>
-                                    </h2>
-                                    <div id="regularCollapseSecond" class="accordion-collapse collapse" aria-labelledby="regularHeadingSecond" data-bs-parent="#regularAccordionRobots">
-                                        <div class="accordion-body">
-                                            <div className="accordion-content">
-                                                <div className="title-accodion">
-                                                    <span>Form submitted</span>
-                                                    <a href="#">View form</a>
-                                                </div>
-                                                <div className="accordion-img">
-                                                    <img src={share_img} alt="" />
-                                                    <img src={delete2_img} alt="" />
+                                </div> */}
+                                {isLoading ? (<>loading</>) :
+                                    formList?.length > 0 ? formList?.map((form, index) => (
+                                        <div className={"accordion-item " + form?.form_status?.toLowerCase() + "-form"} key={index}>
+                                            <h2 class="accordion-header" id={`regularHeading${index + 1}`}>
+                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target={`#regularCollapse${index + 1}`} aria-expanded="false" aria-controls={`regularCollapse${index + 1}`} >
+                                                    {index + 1}.{ordinalNumbers[index]} form
+                                                </button>
+                                            </h2>
+                                            <div id={`regularCollapse${index + 1}`} class="accordion-collapse collapse" aria-labelledby={`regularHeading${index + 1}`} data-bs-parent="#regularAccordionRobots">
+                                                <div class="accordion-body">
+                                                    <div className="accordion-content">
+                                                        <div className="title-accodion">
+                                                            <span>Form {form?.form_status === "Complete" ? "submitted" : form?.form_status?.toLowerCase()}</span>
+                                                            <a href="#">View form</a>
+                                                        </div>
+                                                        <div className="accordion-img">
+                                                            <img src={share_img} alt="" />
+                                                            <img src={delete2_img} alt="" onClick={() => formDeleteHandler(form.id)} />
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
+                                    )) : (<>Data not found</>)}
+
 
                             </div>
 

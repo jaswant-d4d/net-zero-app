@@ -74,6 +74,10 @@ const Login = () => {
     const [showSCPassword, setShowSCPassword] = useState(false)
     const { loading, userInfo, error } = useSelector((state) => state.auth)
 
+
+    const navigateToHome = () => {
+        navigate("/")
+    }
     const loginFormik = useFormik({
         initialValues: {
             email: '',
@@ -96,10 +100,7 @@ const Login = () => {
                         showCancelButton: false,
                         confirmButtonColor: "#3085d6",
                         cancelButtonColor: "#d33",
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            navigate("/")
-                        }
+                        didClose: navigateToHome
                     });
                 } else {
                     Swal.fire({
@@ -151,11 +152,7 @@ const Login = () => {
                         showCancelButton: false,
                         confirmButtonColor: "#3085d6",
                         cancelButtonColor: "#d33",
-
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            navigate("/")
-                        }
+                        didClose: navigateToHome
                     });
                 } else {
                     const errorMsg = response?.payload?.response?.data?.errorMsg;

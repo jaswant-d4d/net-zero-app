@@ -754,9 +754,8 @@ const Travel = () => {
                     onBlur={formik.handleBlur}
                   ></textarea>
                   <div className="Additional-bottom-btn">
-                    <button className="btn" type="submit" onClick={submitHandler} disabled={disabled}>
-                      Save progress
-                    </button>
+                    <button className="btn" type='submit' disabled={disabled} onClick={(e) => submitHandler(e)} >Save progress {disabled ? <div className="spinner-border text-primary" role="status">
+                        </div> : ''}</button>
                     <button className="btn" type="button">
                       Continue
                     </button>
