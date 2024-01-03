@@ -1580,15 +1580,18 @@ select {
 
 
 .login-pass-filed{
-	display: flex;
-    align-items: center;
     position: relative;
 }
 .login-pass-filed .fa-eye-slash{
 	position: absolute;
     right: 15px;
+    top: 22px;
 }
-
+.login-pass-filed .fa-eye{
+	position: absolute;
+    right: 15px;
+    top: 22px;
+}
 
 
 
