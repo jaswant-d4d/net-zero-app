@@ -945,7 +945,7 @@ label p {
       border: 4px solid transparent;
       text-align: center;
   }
-  .sub-btn label.active, .sub-btn label:hover {
+  .sub-btn label.active {
     border: 4px solid #fff;
     background: #81C14B;
     border-radius: 6px;
@@ -960,6 +960,19 @@ label p {
 /* .form-div .check-input label {
    margin-bottom: 20px;
 } */
+.information .information-icon-box .information-cricle-box.active.success {
+    background: #81C14B;
+    border: none;
+}
+.information .information-icon-box .information-cricle-box.active.warnig {
+    background: #F28B24;
+    border: none;
+}
+
+.information .information-icon-box .information-cricle-box.active.warnig img, .information .information-icon-box .information-cricle-box.active.success img {
+    filter: invert(1);
+}
+
 .information .information-icon-box .information-cricle-box.active, .information .information-icon-box .information-cricle-box:hover {
     background: transparent;
     border: 5px solid #81C14B;
@@ -1611,6 +1624,22 @@ select {
 	position: absolute;
     right: 15px;
     top: 22px;
+}
+
+/********************pagination ********************/
+
+.pagination {
+    margin-top: 35px;
+}
+
+.pagination li {
+    margin: 0 14px;
+    font-size: 24px;
+    font-weight: 300;
+    line-height: 32px;
+}
+.pagination .active {
+    font-weight: 600;
 }
 
 
