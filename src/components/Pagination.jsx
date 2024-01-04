@@ -15,7 +15,7 @@ const Pagination = ({ dataLength, itemsPerPage, currentPage, setCurrentPage }) =
     const renderPageNumbers = () => {
         for (let i = 1; i <= totalPages; i++) {
             pageNumbers.push(
-                <li key={i} onClick={() => handleClick(i)} className='me-2'>
+                <li key={i} onClick={() => handleClick(i)} className={`me-2 ${i === currentPage? "active":""}`}>
                     {i}
                 </li>
             );
