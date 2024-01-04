@@ -19,10 +19,12 @@ import "../node_modules/bootstrap/dist/js/bootstrap.min.js";
 import AdminDashboard from "./pages/AdminDashboard.jsx";
 import AdminView from "./pages/AdminView.jsx";
 import '../node_modules/font-awesome/css/font-awesome.min.css';
+import ScrollToTop from "./components/ScrollToTop.jsx";
 
 function App() {
   return (
     <div className="App">
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Layout />} >
           <Route index element={<Home />} />

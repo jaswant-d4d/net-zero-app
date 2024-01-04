@@ -10,7 +10,7 @@ import pending_img from "../assets/images/pending_img.svg";
 
 import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { foodFormSubmit, getCountry, formlist, updateUserDetails, getUserDetails, formDelete } from "../redux-store/actions/user";
 import SuccessImg from "../assets/images/Group 9106.png";
 import Swal from "sweetalert2";
@@ -212,7 +212,7 @@ const MyAccount = () => {
                                                     <div className="accordion-content">
                                                         <div className="title-accodion">
                                                             <span>Form {form?.form_status === "Complete" ? "submitted" : form?.form_status?.toLowerCase()}</span>
-                                                            <a href="#">View form</a>
+                                                            <Link to="/general">{form?.form_status === "Complete" ? "View" : "Continue"} form</Link>
                                                         </div>
                                                         <div className="accordion-img">
                                                             <img src={share_img} alt="" />

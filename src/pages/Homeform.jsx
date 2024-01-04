@@ -295,7 +295,7 @@ const Homeform = () => {
             </div>
             {/* Electricity Section */}
             {formik.values.heating_type.includes("Electricity") && (
-              <div className="bg-lightgray-color mt-80 mb-80">
+              <div className="bg-lightgray-color mt-80">
                 <div className="row">
                   <div className="col-lg-12">
                     <div className="d-flex justify-content-center align-items-center">
@@ -637,7 +637,7 @@ const Homeform = () => {
             )}
             {/* Gas Section */}
             {formik.values.heating_type.includes("Gas") && (
-              <div className="bg-lightgray-color">
+              <div className="bg-lightgray-color mt-80">
                 <div className="row">
                   <div className="col-lg-12">
                     <div className="d-flex justify-content-center align-items-center">
@@ -887,7 +887,7 @@ const Homeform = () => {
             )}
             {/* Other energy Section */}
             {(formik.values.heating_type.includes("Oil") || formik.values.heating_type.includes("Coal") || formik.values.heating_type.includes("Wood")) && (
-              <div className="bg-lightgray-color mt-80 mb-80">
+              <div className="bg-lightgray-color mt-80">
                 <div className="row">
                   <div className="col-lg-12">
                     <div className="d-flex justify-content-center align-items-center">
@@ -1453,7 +1453,7 @@ const Homeform = () => {
               </div>
             )}
             {/* Additional information Section */}
-            <div className="sub-heading">
+            <div className="sub-heading mt-80">
               <h2>Additional Information</h2>
             </div>
             <div className="bg-lightgray-color additional-box-div-main">
