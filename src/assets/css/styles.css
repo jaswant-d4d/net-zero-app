@@ -788,6 +788,9 @@ section.protecting-data {
     right: -36px;
     box-shadow: -1px -1px 3px 0px #0000001f;
 }
+.information-cricle-box.active:after {
+    background: #81C14B;
+}
 .information-header .col-div:last-child .information-cricle-box:after {
     display: none;
 }
@@ -1244,14 +1247,17 @@ select {
     display: flex;
     align-items: center;
     border-right: 2px solid #fff;
-    /* width: 20%; */
+    width: 20%;
     justify-content: center;
+}
+.information-cricle-box.active, .information-header-nav ul li.active {
+    background: #81C14B;
 }
 
 .information-header-nav ul li a {
     display: flex;
     text-decoration: none;
-    font-size: 41px;
+    font-size: 40px;
     color: #000;
     align-items: center;
     line-height: 42px;
@@ -1275,7 +1281,7 @@ select {
     border-radius: 10px;
     background: #fff;
    display: flex;
-   align-items: center;
+   /* align-items: center; */
    justify-content: center;
 }
 .general-form .delete-box span {
@@ -1630,6 +1636,7 @@ select {
 
 .pagination {
     margin-top: 35px;
+    float: right;
 }
 
 .pagination li {
@@ -1820,7 +1827,10 @@ select {
       .information-box , .admin-dashboard{
       padding: 40px;
      }
-
+     .information-header-nav ul li a {
+        font-size: 28px;
+        line-height: 38px;
+    }
       /*********************** forgotpaddword *********************/
 
       .login-form-inner-bg {
@@ -2509,9 +2519,9 @@ select {
         .submissions-header, .submission-form  {
             justify-content: center;
         }
-        .form-div label {
+        /* .form-div label {
            text-align: center;
-        }
+        } */
         .bg-My-Account .Personal-information{
             margin-bottom: 100px;
         }
