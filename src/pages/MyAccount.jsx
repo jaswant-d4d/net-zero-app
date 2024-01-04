@@ -124,15 +124,39 @@ const MyAccount = () => {
             confirmButtonText: "Yes, delete it!",
         }).then(async (result) => {
             if (result.isConfirmed) {
+                await dispatch(formDelete(form_id));
+                await dispatch(formlist(userId));
                 Swal.fire({
                     title: "Deleted!",
                     text: "Form deleted successfully",
                     icon: "success"
                 });
-                await dispatch(formDelete(form_id))
-                dispatch(formlist(userId));
             }
         });
+    }
+
+    const formSwitch = (form) => {
+        const completedFormCount = form.total_forms;
+        const formId = form.id;
+        switch (completedFormCount) {
+            case 1: {
+                return "/general"
+            }
+            case 2: {
+                return "/home-form"
+            }
+            case 3: {
+                return "food-shopping"
+            }
+            case 4: {
+                return "/travel"
+            }
+            case 5: {
+                return "/financial"
+            }
+            default:
+                return "/general"
+        }
     }
 
 
@@ -212,7 +236,7 @@ const MyAccount = () => {
                                                     <div className="accordion-content">
                                                         <div className="title-accodion">
                                                             <span>Form {form?.form_status === "Complete" ? "submitted" : form?.form_status?.toLowerCase()}</span>
-                                                            <Link to="/general">{form?.form_status === "Complete" ? "View" : "Continue"} form</Link>
+                                                            <Link to={formSwitch(form)}>{form?.form_status === "Complete" ? "View" : "Continue"} form</Link>
                                                         </div>
                                                         <div className="accordion-img">
                                                             <img src={share_img} alt="" />

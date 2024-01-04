@@ -76,7 +76,7 @@ const Login = () => {
 
 
     const navigateToHome = () => {
-        navigate("/")
+        navigate("/my-account")
     }
     const loginFormik = useFormik({
         initialValues: {
