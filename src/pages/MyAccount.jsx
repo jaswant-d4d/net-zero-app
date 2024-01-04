@@ -12,6 +12,7 @@ import { foodFormSubmit, getCountry, formlist, updateUserDetails, getUserDetails
 import SuccessImg from "../assets/images/Group 9106.png";
 import Swal from "sweetalert2";
 import { ordinalNumbers } from "../helpers/ordinalNumber";
+import Pagination from "../components/Pagination";
 
 
 const MyAccount = () => {
@@ -22,6 +23,13 @@ const MyAccount = () => {
     const formList = useSelector((state) => state.users.formList);
     const isLoading = useSelector((state) => state.users.isLoading);
     const [disabled, setDisabled] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [itemsPerPage, setItemsPerPage] = useState(6);
+    const serialNo = (currentPage - 1) * itemsPerPage;
+
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = formList?.slice(indexOfFirstItem, indexOfLastItem);
 
     const userId = user?.userInfo?.user_id
 
@@ -37,7 +45,6 @@ const MyAccount = () => {
     useEffect(() => {
         dispatch(getCountry());
         dispatch(formlist(userId));
-        dispatch(getUserDetails(userId));
     }, []);
 
     const formik = useFormik({
@@ -54,6 +61,9 @@ const MyAccount = () => {
         onSubmit: (values) => { },
     });
 
+    const UpdateUserDetails = async (e) => {
+        dispatch(getUserDetails(userId));
+    }
     const submitHandler = async (e) => {
         e.preventDefault();
         const { values, isValid, errors } = formik;
@@ -75,9 +85,7 @@ const MyAccount = () => {
                     showCancelButton: false,
                     confirmButtonColor: "#3085d6",
                     cancelButtonColor: "#d33",
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                    }
+                    didClose: UpdateUserDetails
                 });
             } else {
                 const errorMsg = response?.payload?.response?.data?.errorMsg;
@@ -189,11 +197,11 @@ const MyAccount = () => {
                                     </div>
                                 </div> */}
                                 {isLoading ? (<div className="text-center">loading...</div>) :
-                                    formList?.length > 0 ? formList?.map((form, index) => (
+                                    currentItems?.length > 0 ? currentItems?.map((form, index) => (
                                         <div className={"accordion-item " + form?.form_status?.toLowerCase() + "-form"} key={index}>
                                             <h2 class="accordion-header" id={`regularHeading${index + 1}`}>
                                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target={`#regularCollapse${index + 1}`} aria-expanded="false" aria-controls={`regularCollapse${index + 1}`} >
-                                                    {index + 1}.{ordinalNumbers[index]} form
+                                                    {serialNo + index + 1}.{ordinalNumbers[serialNo + index]} form
                                                 </button>
                                             </h2>
                                             <div id={`regularCollapse${index + 1}`} class="accordion-collapse collapse" aria-labelledby={`regularHeading${index + 1}`} data-bs-parent="#regularAccordionRobots">
@@ -212,10 +220,9 @@ const MyAccount = () => {
                                             </div>
                                         </div>
                                     )) : (<div className="text-center">Data not found</div>)}
-
-
                             </div>
 
+                            {!isLoading && formList?.length > 0 && (<Pagination dataLength={formList?.length} itemsPerPage={itemsPerPage} currentPage={currentPage} setCurrentPage={setCurrentPage} />)}
                         </div>
                     </div>
                 </div>
