@@ -131,7 +131,7 @@ input{
 .site-header .navbar {    display: flex;    justify-content: space-between;}
 .site-header .navbar ul {    display: flex;    justify-content: space-between;    align-items: center;    gap: 50px;    border: none; flex-wrap: wrap;}
 .site-header .navbar ul li {    list-style: none;}
-
+.navbar .nav-item a { color: #000; text-decoration: none;}
 .site-header .navbar .navbar-toggler {    border: none;}
 .site-header {    
     padding: 15px 0; 
@@ -322,6 +322,10 @@ border-bottom: none !important;
     border: none;
     display: block;
     margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 }
 .tab-content {
     padding-left: 65px;
@@ -1344,6 +1348,12 @@ select {
     box-shadow: none;
     background: #EFF7E7 !important;
 }
+.pending-form .accordion-button {
+    background: #FEF0E2!important;
+}
+.pending-form .accordion-body {
+    background: #FFFAF5 !important;
+}
 .accordion-button:focus, .accordion-button.active{
     box-shadow: none !important;
   border: none !important;
@@ -1351,10 +1361,7 @@ select {
 .accordion-item {
     border: none;
 }
-.accordion-body {
-    background: #FAFCF7;
-    padding: 22px 26px 30px 58px;
-}
+
 .accordion-body {
     background: #FAFCF7;
     padding: 22px 26px 30px 58px;
@@ -1388,6 +1395,9 @@ select {
     justify-content: start;
     flex-direction: row-reverse;
 }
+.pending-form .title-accodion span{
+  color: #F28B24;
+}
 .title-accodion a {
     font-size: 33px;
     line-height: 44px;
@@ -1398,6 +1408,16 @@ select {
     align-items: center;
     justify-content: start;
     flex-direction: row-reverse;
+}
+.pending-form .title-accodion span:before{
+    content: "";
+    display: block;
+    background: url(../images/pending_img.svg) no-repeat;
+    width: 41px;
+    height: 46px;
+    float: right;
+    margin: 0 6px 0 13px;
+    background-size: cover;
 }
 .title-accodion span:before {
     content: "";
@@ -1713,7 +1733,7 @@ select {
     height: 48px;
 }
 .information-box {
-    margin-bottom: 37px;
+    margin-bottom: 37px ;
 }
 .admin-dashboard, .submissions-bg-color {
     padding: 40px;
@@ -2537,4 +2557,11 @@ select {
 
 .login-form-inner-bg {
     height: 600px;
+}
+
+/*************spinner**********/
+.spinner-border {
+    color: #fff !important;
+    width: 25px;
+    height: 25px;
 }

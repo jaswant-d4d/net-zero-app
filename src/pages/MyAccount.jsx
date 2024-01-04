@@ -4,6 +4,9 @@ import delete2_img from "../assets/images/delete2_img.svg";
 import share_img from "../assets/images/share_img.svg";
 import tick_img from "../assets/images/tick_img.svg";
 import arrow_img from "../assets/images/arrow_img.svg";
+import pending_img from "../assets/images/pending_img.svg";
+
+
 
 import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
@@ -138,7 +141,7 @@ const MyAccount = () => {
             <section className="Personal-information">
                 <div className="container">
                     <h1>My account</h1>
-                    <div className="row">
+                    <div className="row justify-content-between">
                         <div className="col-lg-6">
                             <div className="information-box">
                                 <div class="personal-heading">
@@ -167,7 +170,7 @@ const MyAccount = () => {
                                 </form>
                             </div>
                         </div>
-                        <div className="col-lg-6">
+                        <div className="col-lg-5">
 
                             <h2>Saved forms</h2>
 
