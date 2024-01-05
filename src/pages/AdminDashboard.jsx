@@ -3,6 +3,7 @@ import form_user from "../assets/images/form_user.svg";
 import { useSelector } from "react-redux";
 import Pagination from "../components/Pagination";
 import arrowImg from "../assets/images/arrow_img.svg"
+import share_img from "../assets/images/share_img.svg";
 
 const AdminDashboard = () => {
   const isLoading = useSelector((state) => state.users.isLoading);
@@ -108,21 +109,23 @@ const AdminDashboard = () => {
 
 
               <table class="customers" style={{ borderRadius: '20px' }}>
+                <thead className="table-header">
                 <tr style={{ borderRadius: '20px' }}>
                   <th style={{ width: '25%' }}>Form name</th>
                   <th style={{ width: '50%' }}>User email address</th>
                   <th style={{ width: '25%' }}></th>
                 </tr>
+                </thead>
                 <tbody>
                   {isLoading ? (<div className="text-center">loading...</div>) :
                     currentItems?.length > 0 ? currentItems?.map((form, index) => (
                       <tr key={index}>
                         <td>{form.name}</td>
                         <td>{form.email}</td>
-                        <td className="d-flex justify-content-between">
-                          <div className="d-flex justify-content-between">
-                            View form <img src={arrowImg} width={30} height={30} /></div>
-                          <div>  <img src={arrowImg} width={30} height={30} /></div>
+                        <td className="d-flex justify-content-between table-td">
+                          <div className="d-flex justify-content-between align-items-center table-text">
+                            <p>View form</p> <img src={arrowImg} /></div>
+                          <div class="table-img">  <img src={share_img} width={36} height={44} /></div>
                         </td>
                       </tr>
                     )) : (<div className="text-center">Data not found</div>)}

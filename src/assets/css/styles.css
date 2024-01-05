@@ -1874,14 +1874,23 @@ select {
 .submissions .customers td,
 .submissions .customers th {
 
-    padding: 8px;
+    padding: 18px 27px;
     text-align: center !important;
 }
-
-.submissions .customers td {
-    border: 1px solid #707070;
+.submissions .customers tbody td {
+    border-right: 1px solid #707070;
 }
-
+.submissions .customers tbody td:last-of-type {
+    border: none;
+}
+.submissions .customers p {
+    margin-bottom: 0;
+}   
+.table-text img {
+    width: 32px;
+    height: 23px;
+    margin-left: 17px;
+}
 .submissions .customers tr:nth-child(odd) {
     background-color: #F1F1F1;
 }
@@ -1894,6 +1903,7 @@ select {
     text-align: left;
     background-color: #818181;
     color: white;
+    font-size: 22px;
 }
 
 /****************** password-eye-css ******************/
@@ -3134,9 +3144,9 @@ select {
 
 .range .circle {
     position: absolute;
-    top: -5px;
-    width: 30px;
-    height: 30px;
+    top: -6px;
+    width: 38px;
+    height: 38px;
     border-radius: 50%;
     box-shadow: 0 2px 6px 0 rgba(0, 0, 0, .07);
     border: solid 2px #dbdbdb;
@@ -3151,18 +3161,20 @@ select {
     left: 0;
     display: inline-block;
     width: 20%;
-    height: 20px;
+    height: 27px;
     background: linear-gradient(to right, #c0dfa4, #fa772f);
     border-radius: 10px 0 0 10px;
     transition: .2s;
+    border: 4px solid #fff;
+    box-shadow: inset 0 0 10px #fff;
 }
 
 .range::after {
     content: '';
     width: 100%;
-    height: 20px;
+    height: 27px;
     border-radius: 10px;
-    background: #f2f4f4;
+    background: #fff;
     display: block;
 }
 
@@ -3195,6 +3207,18 @@ select {
 .range .bullet-3 {
     animation-delay: .3s;
 }
+.slider-labels {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+ .slider-labels span {
+    width: 20%;
+    max-width: 100%;
+    text-align: center !important;
+}
 
 /* .custom-range {
     -webkit-appearance: none;
@@ -3225,18 +3249,7 @@ select {
     background: #ffffff; 
     cursor: pointer;
   }
-  .slider-labels {
-    width: 100%;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-.slider-labels span {
-    width: 20%;
-    max-width: 100%;
-    text-align: center !important;
-}
+  
 
 .custom-range.temp_dontKnow {
     background: #cad2c5 !important;
