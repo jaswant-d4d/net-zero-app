@@ -11,11 +11,12 @@ import pending_img from "../assets/images/pending_img.svg";
 import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { foodFormSubmit, getCountry, formlist, updateUserDetails, getUserDetails, formDelete } from "../redux-store/actions/user";
+import { formlist, updateUserDetails, getUserDetails, formDelete } from "../redux-store/actions/user";
 import SuccessImg from "../assets/images/Group 9106.png";
 import Swal from "sweetalert2";
 import { ordinalNumbers } from "../helpers/ordinalNumber";
 import Pagination from "../components/Pagination";
+import { userFormValidation } from "../helpers/validations/Schema";
 
 
 const MyAccount = () => {
@@ -46,7 +47,6 @@ const MyAccount = () => {
     }
 
     useEffect(() => {
-        dispatch(getCountry());
         dispatch(formlist(userId));
     }, []);
 
@@ -59,7 +59,7 @@ const MyAccount = () => {
             password: user?.userInfo?.password,
         },
 
-        // validationSchema: foodFormValidation,
+        validationSchema: userFormValidation,
 
         onSubmit: (values) => { },
     });
@@ -175,19 +175,47 @@ const MyAccount = () => {
                                 <form>
                                     <div class="form-div">
                                         <label htmlFor="first_name">Your name</label>
-                                        <input type="text" id="first_name" name="first_name" placeholder="First name" value={formik.values.first_name} onChange={formik.handleChange} onBlur={formik.handleBlur} />
+                                        <input type="text" id="first_name" name="first_name" className={`${formik.errors.first_name &&
+                                            formik.touched.first_name && "invalidInput"}`} placeholder="First name" value={formik.values.first_name} onChange={formik.handleChange} onBlur={formik.handleBlur} />
+                                        {formik.errors.first_name &&
+                                            formik.touched.first_name ? (
+                                            <span className="input-error-msg">
+                                                {formik.errors.first_name}
+                                            </span>
+                                        ) : null}
                                     </div>
                                     <div class="form-div">
                                         <label htmlFor="last_name">Last name</label>
-                                        <input type="text" id="last_name" name="last_name" placeholder="Last name" value={formik.values.last_name} onChange={formik.handleChange} onBlur={formik.handleBlur} />
+                                        <input type="text" id="last_name" name="last_name" className={`${formik.errors.last_name &&
+                                            formik.touched.last_name && "invalidInput"}`} placeholder="Last name" value={formik.values.last_name} onChange={formik.handleChange} onBlur={formik.handleBlur} />
+                                        {formik.errors.last_name &&
+                                            formik.touched.last_name ? (
+                                            <span className="input-error-msg">
+                                                {formik.errors.last_name}
+                                            </span>
+                                        ) : null}
                                     </div>
                                     <div class="form-div">
                                         <label htmlFor="email">Your email address</label>
-                                        <input type="email" id="email" name="email" placeholder="Email address" value={formik.values.email} onChange={formik.handleChange} onBlur={formik.handleBlur} />
+                                        <input type="email" id="email" name="email" className={`${formik.errors.email &&
+                                            formik.touched.email && "invalidInput"}`} placeholder="Email address" value={formik.values.email} onChange={formik.handleChange} onBlur={formik.handleBlur} />
+                                        {formik.errors.email &&
+                                            formik.touched.email ? (
+                                            <span className="input-error-msg">
+                                                {formik.errors.email}
+                                            </span>
+                                        ) : null}
                                     </div>
                                     <div class="form-div">
                                         <label htmlFor="password">Your password</label>
-                                        <input type="password" id="password" name="password" placeholder="************" value={formik?.values?.password} onChange={formik.handleChange} onBlur={formik.handleBlur} />
+                                        <input type="password" id="password" name="password" className={`${formik.errors.password &&
+                                            formik.touched.password && "invalidInput"}`} placeholder="************" value={formik?.values?.password} onChange={formik.handleChange} onBlur={formik.handleBlur} />
+                                        {formik.errors.password &&
+                                            formik.touched.password ? (
+                                            <span className="input-error-msg">
+                                                {formik.errors.password}
+                                            </span>
+                                        ) : null}
                                     </div>
                                     <button className="submit-btn" type='submit' disabled={disabled} onClick={(e) => submitHandler(e)} >Save {disabled ? <div className="spinner-border text-primary" role="status">
                                     </div> : ''}</button>

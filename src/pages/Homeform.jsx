@@ -1651,11 +1651,11 @@ const Homeform = () => {
                                 name="winter_temperature"
                                 id="winter_temperature"
                                 type="range"
-                                min="0"
+                                // min="1"
                                 max="5"
                                 value={formik.values.winter_temperature}
                                 step="1"
-                                onBlur={formik.handleBlur}
+                                onBlur={formik.handleBlur}  
                                 onChange={formik.handleChange}
                               />
                             </div>
