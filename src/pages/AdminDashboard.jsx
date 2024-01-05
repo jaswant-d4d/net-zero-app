@@ -7,10 +7,11 @@ import share_img from "../assets/images/share_img.svg";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { userFormValidation } from "../helpers/validations/Schema";
-import { formlist, getUserDetails, updateUserDetails } from "../redux-store/actions/user";
+import { formlist } from "../redux-store/actions/user";
 import SuccessImg from "../assets/images/Group 9106.png";
 import Swal from "sweetalert2";
 import { ordinalNumbers } from "../helpers/ordinalNumber";
+import { getAdminDetails, getAllForms, updateAdminDetails } from "../redux-store/actions/admin";
 
 const AdminDashboard = () => {
   const dispatch = useDispatch();
@@ -18,15 +19,21 @@ const AdminDashboard = () => {
   const user = useSelector((state) => state.auth);
   const formList = useSelector((state) => state.users.formList);
   const isLoading = useSelector((state) => state.users.isLoading);
+  const adminDetails = useSelector((state) => state.admin);
 
   const [disabled, setDisabled] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(6);
+  const [searchByEmail, setSearchByEmail] = useState("");
+
   const serialNo = (currentPage - 1) * itemsPerPage;
   const userId = user?.userInfo?.user_id
 
   useEffect(() => {
     dispatch(formlist(userId));
+    const params = { itemsPerPage: itemsPerPage, pageNumber: currentPage, query: searchByEmail }
+    dispatch(getAllForms(params));
+    UpdateAdminDetails(userId)
   }, []);
 
 
@@ -45,8 +52,8 @@ const AdminDashboard = () => {
     onSubmit: (values) => { },
   });
 
-  const UpdateUserDetails = async (e) => {
-    dispatch(getUserDetails(userId));
+  const UpdateAdminDetails = async (e) => {
+    dispatch(getAdminDetails(userId));
   }
 
   const submitHandler = async (e) => {
@@ -58,7 +65,7 @@ const AdminDashboard = () => {
       setDisabled(true);
       const user_id = Number(user?.userInfo?.user_id);
 
-      const response = await dispatch(updateUserDetails({ data: values, user_id }));
+      const response = await dispatch(updateAdminDetails({ data: values, user_id }));
       setDisabled(false)
       if (!response?.payload?.error && response?.payload?.data) {
         Swal.fire({
@@ -70,7 +77,7 @@ const AdminDashboard = () => {
           showCancelButton: false,
           confirmButtonColor: "#3085d6",
           cancelButtonColor: "#d33",
-          didClose: UpdateUserDetails
+          didClose: UpdateAdminDetails
         });
       } else {
         const errorMsg = response?.payload?.response?.data?.errorMsg;
@@ -194,14 +201,14 @@ const AdminDashboard = () => {
 
               <table class="customers" style={{ borderRadius: '20px' }}>
                 <thead className="table-header">
-                <tr style={{ borderRadius: '20px' }}>
-                  <th style={{ width: '25%' }}>Form name</th>
-                  <th style={{ width: '50%' }}>User email address</th>
-                  <th style={{ width: '25%' }}></th>
-                </tr>
+                  <tr style={{ borderRadius: '20px' }}>
+                    <th style={{ width: '25%' }}>Form name</th>
+                    <th style={{ width: '50%' }}>User email address</th>
+                    <th style={{ width: '25%' }}></th>
+                  </tr>
                 </thead>
                 <tbody>
-                  {isLoading ? (<div className="text-center">loading...</div>) :
+                  {isLoading ? (<tr className="text-center"><td colSpan={4}>loading...</td></tr>) :
                     currentItems?.length > 0 ? currentItems?.map((form, index) => (
                       <tr key={index}>
                         <td>{ordinalNumbers[serialNo + index]} form</td>
@@ -212,7 +219,7 @@ const AdminDashboard = () => {
                           <div class="table-img">  <img src={share_img} width={36} height={44} /></div>
                         </td>
                       </tr>
-                    )) : (<tr className="text-center"><td>Data not found</td></tr>)}
+                    )) : (<tr className="text-center"><td colSpan={4}>Data not found</td></tr>)}
                 </tbody>
               </table>
 

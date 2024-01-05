@@ -1878,20 +1878,25 @@ select {
     padding: 18px 27px;
     text-align: center !important;
 }
+
 .submissions .customers tbody td {
     border-right: 1px solid #707070;
 }
+
 .submissions .customers tbody td:last-of-type {
     border: none;
 }
+
 .submissions .customers p {
     margin-bottom: 0;
-}   
+}
+
 .table-text img {
     width: 32px;
     height: 23px;
     margin-left: 17px;
 }
+
 .submissions .customers tr:nth-child(odd) {
     background-color: #F1F1F1;
 }
@@ -3115,9 +3120,11 @@ select {
 .range {
     position: relative;
 }
+
 .temp_dontKnow {
     background: #cad2c5 !important;
 }
+
 .range .range-slide {
     position: absolute;
     width: 100%;
@@ -3208,6 +3215,7 @@ select {
 .range .bullet-3 {
     animation-delay: .3s;
 }
+
 .slider-labels {
     width: 100%;
     margin: 0 auto;
@@ -3215,7 +3223,8 @@ select {
     justify-content: space-around;
     align-items: center;
 }
- .slider-labels span {
+
+.slider-labels span {
     width: 20%;
     max-width: 100%;
     text-align: center !important;
@@ -3274,3 +3283,16 @@ select {
     width: 25px;
     height: 25px;
 }
+
+/* Sweet Alert Start  */
+.custom-cancel-button {
+    border: 2px solid #000 !important;
+    color: #000 !important;
+}
+
+.action-button-box {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Sweet Alert End */
