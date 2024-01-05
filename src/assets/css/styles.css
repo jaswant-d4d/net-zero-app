@@ -975,7 +975,8 @@ form {
 .form select.invalidInput,
 .Additional-box textarea.invalidInput,
 .economy-table input.invalidInput,
-.economy-table select.invalidInput {
+.economy-table select.invalidInput,
+.Personal-information input.invalidInput {
     border: 2px solid #fd0200 !important;
 }
 
