@@ -37,12 +37,34 @@ const Homeform = () => {
     dispatch(getCountry());
   }, []);
 
+  const getWinterTemperature = (temprature) => {
+    switch (temprature) {
+      case 1: {
+        return "< 14%"
+      }
+      case 2: {
+        return "14% - 17%"
+      }
+      case 3: {
+        return "18% - 21%"
+      }
+      case 4: {
+        return "> 21%"
+      }
+      case 5: {
+        return "Don't know"
+      }
+      default:
+        return ""
+    }
+  }
 
   const validateAndFilterFields = (values) => {
     const {
       heating_type,
       property_features,
       additional_property_features,
+      winter_temperature,
       ...rest
     } = values;
 
@@ -52,6 +74,7 @@ const Homeform = () => {
       heating_type: heating_type?.toString(),
       property_features: property_features?.toString(),
       additional_property_features: additional_property_features?.toString(),
+      winter_temperature: getWinterTemperature(),
       general_information_id,
     };
     return filteredValues;
@@ -189,6 +212,19 @@ const Homeform = () => {
       }
     });
   }
+
+  const genSlideStyle = (value) => {
+    return {
+      point: {
+        left: `calc(${value * 20}% - ${5 + 3 * value}px)`,
+      },
+      range: {
+        width: `${value * 20}%`,
+      },
+    };
+  };
+
+  const slideStyle = genSlideStyle(formik.values.winter_temperature);
 
   return (
     <>
@@ -1600,37 +1636,41 @@ const Homeform = () => {
                             ) : null}
                           </div>
                           <div className="form-div">
-                            <div className="form-label-div">
+                            <div className="form-label-div ">
                               <label htmlFor="winter_temperature">
                                 <strong>17. </strong>What temprature was the home
                                 kept in the winter?
                               </label>
                               <p>(Use slider below)</p>
                             </div>
-                            <input
+                            <div className="range">
+                              <span className={`range-value ${formik.values.winter_temperature > 4 ? "temp_dontKnow" : ""}`} style={slideStyle.range} />
+                              <span className="circle" style={slideStyle.point} />
+                              <input
+                                className={`range-slide `}
+                                name="winter_temperature"
+                                id="winter_temperature"
+                                type="range"
+                                min="0"
+                                max="5"
+                                value={formik.values.winter_temperature}
+                                step="1"
+                                onBlur={formik.handleBlur}
+                                onChange={formik.handleChange}
+                              />
+                            </div>
+                            {/* <input
                               type="range"
                               name="winter_temperature"
                               id="winter_temperature"
                               className={`custom-range ${formik.values.winter_temperature > 80 ? "temp_dontKnow" : ""}`}
                               onChange={formik.handleChange}
                               onBlur={formik.handleBlur}
-                              min={1}
+                              min={20}
                               max={100}
                               step={20}
-                              value={formik.values.winter_temperature || 1}
-                            />
-                            <input
-                              type="range"
-                              name="winter_temperature_gradient"
-                              id="winter_temperature_gradient"
-                              className={`custom-range-gradient ${formik.values.winter_temperature > 80 ? "temp_dontKnow" : ""}`}
-                              onChange={formik.handleChange}
-                              onBlur={formik.handleBlur}
-                              min={1}
-                              max={100}
-                              step={20}
-                              value={formik.values.winter_temperature || 1}
-                            />
+                              value={formik.values.winter_temperature || 20}
+                            /> */}
                             <div className="slider-labels">
                               <span>{"< 14%"}</span>
                               <span>{"14% - 17%"}</span>

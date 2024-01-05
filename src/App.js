@@ -39,7 +39,7 @@ function App() {
           <Route path="/food-shopping" element={<FoodAndShopping />} />
           <Route path="/financial" element={<Financial />} />
           <Route path="/my-account" element={<MyAccount />} />
-          <Route path="/admindashboard" element={<AdminDashboard />} />
+          <Route path="/admin-dashboard" element={<AdminDashboard />} />
           <Route path="/admin-view" element={<AdminView />} />
 
 
