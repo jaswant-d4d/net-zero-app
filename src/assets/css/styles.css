@@ -80,7 +80,7 @@ img {
 }
 
 .bg-lightgray-color {
-    background: #F8F8F8;
+    background: #F9FBF6;
 }
 
 .sub-title {
@@ -410,7 +410,7 @@ input {
     height: 2px;
     background: #000;
     position: absolute;
-    bottom: 0;
+    bottom: -10px;
     left: 0;
 
 }
@@ -514,6 +514,7 @@ form.registerform {
 }
 
 /********Main Home page******/
+body{overflow-x: hidden;}
 .home-banner {
     height: 100vh;
     align-items: center;
@@ -521,17 +522,29 @@ form.registerform {
     color: #fff;
     position: relative;
 }
-
-.home-banner::before {
-    background-image: url("../images/circle.png");
+.personal-carbon {
+    position: relative;
+}
+.possinend-image {
+    position: absolute;
+    top: -84%;
+    right: -20%;
+    max-width: 1100px;
+    height: auto;
+}
+.personal-carbon .container {
+    position: relative;
+}
+/* .home-banner::before {
+    background-image: url("../images/banner_circle.png");
     position: absolute;
     content: "";
     width: 1180px;
     height: 980px;
     right: 0;
-}
+} */
 
-.home-banner::after {
+/* .home-banner::after {
     background-image: url("../images/circle1.png");
     position: absolute;
     content: "";
@@ -542,7 +555,7 @@ form.registerform {
     background-repeat: no-repeat;
     display: none;
     top: 390px;
-}
+} */
 
 .Form-essentials-main-row {
     flex-direction: column-reverse;
@@ -882,6 +895,8 @@ section.protecting-data {
 }
 
 /*******Responsive Css Starts Here*******/
+
+
 @media(max-width:1440px) {
     .container {
         max-width: 1280px;
@@ -1949,7 +1964,16 @@ select {
     font-weight: 600;
 }
 
-
+@media(max-width:1660px) {
+    .possinend-image {
+        position: absolute;
+        top: -60%;
+        right: -20%;
+        max-width: 800px;
+        height: auto;
+    }
+    .Form-col-img img {width: 370px;  height: 1100px;   max-height: 100%;           }
+    }
 
 @media (max-width:1440px) {
     .login-img img {
@@ -1957,7 +1981,7 @@ select {
     }
 
     .Form-col-img img {
-        width: 360px;
+        width: 320px;
     }
 
     h1,
@@ -1983,12 +2007,14 @@ select {
     .submissions .submission-form .form-div {
         width: 70%;
     }
+   
 }
 
 @media (max-width:1300px) {
     .login-img img {
         width: 500px;
     }
+    
 }
 
 @media (max-width:1280px) {
@@ -1999,6 +2025,7 @@ select {
     .Form-col-img img {
         width: 320px;
     }
+    
 }
 
 @media (max-width:1200px) {

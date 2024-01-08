@@ -30,8 +30,8 @@ function App() {
           <Route index element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/general" element={<ProtectedRoute><General /></ProtectedRoute>} />
-          {/* <Route path="/general" element={<General />} /> */}
+          {/* <Route path="/general" element={<ProtectedRoute><General /></ProtectedRoute>} /> */}
+          <Route path="/general" element={<General />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password/:token" element={<ResetPassword />} />
           <Route path="/home-form" element={<Homeform />} />

@@ -17,29 +17,33 @@ const AdminDashboard = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state) => state.auth);
-  const formList = useSelector((state) => state.users.formList);
-  const isLoading = useSelector((state) => state.users.isLoading);
   const adminDetails = useSelector((state) => state.admin);
+  const isLoading = adminDetails.isLoading;
+  const allForms = adminDetails?.getAllForms?.result;
+  const resultcount = adminDetails?.getAllForms?.resultcount;
 
   const [disabled, setDisabled] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(6);
   const [searchByEmail, setSearchByEmail] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
 
   const serialNo = (currentPage - 1) * itemsPerPage;
   const userId = user?.userInfo?.user_id
 
   useEffect(() => {
-    dispatch(formlist(userId));
-    const params = { itemsPerPage: itemsPerPage, pageNumber: currentPage, query: searchByEmail }
-    dispatch(getAllForms(params));
-    UpdateAdminDetails(userId)
+    fetchAdminDetails()
   }, []);
 
+  useEffect(() => {
+    const params = { itemsPerPage: itemsPerPage, pageNumber: currentPage, query: searchQuery }
+    dispatch(getAllForms(params));
+  }, [currentPage, searchQuery]);
 
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = formList?.slice(indexOfFirstItem, indexOfLastItem);
+  const searchFilter = (e) => {
+    setSearchQuery(searchByEmail)
+    setCurrentPage(1)
+  }
 
   const formik = useFormik({
     initialValues: {
@@ -52,9 +56,10 @@ const AdminDashboard = () => {
     onSubmit: (values) => { },
   });
 
-  const UpdateAdminDetails = async (e) => {
+  const fetchAdminDetails = async (e) => {
     dispatch(getAdminDetails(userId));
   }
+
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -77,7 +82,7 @@ const AdminDashboard = () => {
           showCancelButton: false,
           confirmButtonColor: "#3085d6",
           cancelButtonColor: "#d33",
-          didClose: UpdateAdminDetails
+          didClose: fetchAdminDetails()
         });
       } else {
         const errorMsg = response?.payload?.response?.data?.errorMsg;
@@ -100,6 +105,7 @@ const AdminDashboard = () => {
       console.error('Form is not valid', errors);
     }
   };
+
 
   return (
     <>
@@ -189,10 +195,10 @@ const AdminDashboard = () => {
                 <div className="submission-form">
 
                   <div class="form-div">
-                    <label htmlFor="text">Search submitted forms by user email address.</label>
-                    <input type="text" name="" placeholder="First name" />
+                    <label htmlFor="searchByEmail">Search submitted forms by user email address.</label>
+                    <input type="text" name="searchByEmail" value={searchByEmail} id="searchByEmail" placeholder="Email" onChange={(e) => setSearchByEmail(e.target.value)} />
                   </div>
-                  <button class="submit-btn " type="submit">
+                  <button class="submit-btn " type="button" onClick={(e) => searchFilter(e)}>
                     Submit
                   </button>
                 </div>
@@ -208,8 +214,8 @@ const AdminDashboard = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {isLoading ? (<tr className="text-center"><td colSpan={4}>loading...</td></tr>) :
-                    currentItems?.length > 0 ? currentItems?.map((form, index) => (
+                  {isLoading && allForms ? (<tr className="text-center"><td colSpan={4}>loading...</td></tr>) :
+                    allForms?.length > 0 ? allForms?.map((form, index) => (
                       <tr key={index}>
                         <td>{ordinalNumbers[serialNo + index]} form</td>
                         <td>{form.email}</td>
@@ -223,7 +229,7 @@ const AdminDashboard = () => {
                 </tbody>
               </table>
 
-              {!isLoading && formList?.length > 0 && (<Pagination dataLength={formList?.length} itemsPerPage={itemsPerPage} currentPage={currentPage} setCurrentPage={setCurrentPage} />)}
+              {!isLoading && resultcount > 0 && (<Pagination dataLength={resultcount} itemsPerPage={itemsPerPage} currentPage={currentPage} setCurrentPage={setCurrentPage} />)}
 
             </div>
           </div>
@@ -240,8 +246,9 @@ const AdminDashboard = () => {
                 <h1 class="modal-title fs-5" id="exampleModalLabel mt-5">Upload CSV form</h1>
               </div>
               <div class="modal-body">
-                <div class="upload-box">
-                  <input type="file" />
+                <div class="upload-box" >
+                  <input type="file" name="" id="uploadCsv" style={{ visibility: "visible" }} />
+                  {/* <label htmlFor="uploadCsv">Browse files</label> */}
                 </div>
               </div>
               <div class="">
