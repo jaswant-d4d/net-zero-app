@@ -133,7 +133,6 @@ const General = () => {
             return false;
         }
         try {
-            debugger
             setDisabled(true)
             const filteredValues = await validateAndFilterFields(values);
 
