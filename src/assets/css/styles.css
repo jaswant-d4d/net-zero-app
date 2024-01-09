@@ -80,7 +80,7 @@ img {
 }
 
 .bg-lightgray-color {
-    background: #F8F8F8;
+    background: #F9FBF6;
 }
 
 .sub-title {
@@ -410,7 +410,7 @@ input {
     height: 2px;
     background: #000;
     position: absolute;
-    bottom: 0;
+    bottom: -10px;
     left: 0;
 
 }
@@ -514,6 +514,7 @@ form.registerform {
 }
 
 /********Main Home page******/
+body{overflow-x: hidden;}
 .home-banner {
     height: 100vh;
     align-items: center;
@@ -521,17 +522,29 @@ form.registerform {
     color: #fff;
     position: relative;
 }
-
-.home-banner::before {
-    background-image: url("../images/circle.png");
+.personal-carbon {
+    position: relative;
+}
+.possinend-image {
+    position: absolute;
+    top: -84%;
+    right: -20%;
+    max-width: 1100px;
+    height: auto;
+}
+.personal-carbon .container {
+    position: relative;
+}
+/* .home-banner::before {
+    background-image: url("../images/banner_circle.png");
     position: absolute;
     content: "";
     width: 1180px;
     height: 980px;
     right: 0;
-}
+} */
 
-.home-banner::after {
+/* .home-banner::after {
     background-image: url("../images/circle1.png");
     position: absolute;
     content: "";
@@ -542,7 +555,7 @@ form.registerform {
     background-repeat: no-repeat;
     display: none;
     top: 390px;
-}
+} */
 
 .Form-essentials-main-row {
     flex-direction: column-reverse;
@@ -683,6 +696,21 @@ section.protecting-data {
 
 /******************** login-page ************/
 
+.admin-login-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 60px;
+}
+.admin-login-icon p{
+    margin-bottom: 0;
+    margin-top: 0;
+}
+.admin-login-icon img {
+    width: 30px;
+    height: 30px;
+    margin-right: 15px;
+}
 .card {
 
     width: 75%;
@@ -882,6 +910,8 @@ section.protecting-data {
 }
 
 /*******Responsive Css Starts Here*******/
+
+
 @media(max-width:1440px) {
     .container {
         max-width: 1280px;
@@ -1879,20 +1909,25 @@ select {
     padding: 18px 27px;
     text-align: center !important;
 }
+
 .submissions .customers tbody td {
     border-right: 1px solid #707070;
 }
+
 .submissions .customers tbody td:last-of-type {
     border: none;
 }
+
 .submissions .customers p {
     margin-bottom: 0;
-}   
+}
+
 .table-text img {
     width: 32px;
     height: 23px;
     margin-left: 17px;
 }
+
 .submissions .customers tr:nth-child(odd) {
     background-color: #F1F1F1;
 }
@@ -1971,7 +2006,16 @@ select {
     font-weight: 600;
 }
 
-
+@media(max-width:1660px) {
+    .possinend-image {
+        position: absolute;
+        top: -60%;
+        right: -20%;
+        max-width: 800px;
+        height: auto;
+    }
+    .Form-col-img img {width: 370px;  height: 1100px;   max-height: 100%;           }
+    }
 
 
 
@@ -1982,7 +2026,7 @@ select {
     }
 
     .Form-col-img img {
-        width: 360px;
+        width: 320px;
     }
 
     h1,
@@ -2008,12 +2052,14 @@ select {
     .submissions .submission-form .form-div {
         width: 70%;
     }
+   
 }
 
 @media (max-width:1300px) {
     .login-img img {
         width: 500px;
     }
+    
 }
 
 @media (max-width:1280px) {
@@ -2024,6 +2070,7 @@ select {
     .Form-col-img img {
         width: 320px;
     }
+    
 }
 
 @media (max-width:1200px) {
@@ -3145,9 +3192,11 @@ select {
 .range {
     position: relative;
 }
+
 .temp_dontKnow {
     background: #cad2c5 !important;
 }
+
 .range .range-slide {
     position: absolute;
     width: 100%;
@@ -3238,6 +3287,7 @@ select {
 .range .bullet-3 {
     animation-delay: .3s;
 }
+
 .slider-labels {
     width: 100%;
     margin: 0 auto;
@@ -3245,7 +3295,8 @@ select {
     justify-content: space-around;
     align-items: center;
 }
- .slider-labels span {
+
+.slider-labels span {
     width: 20%;
     max-width: 100%;
     text-align: center !important;
@@ -3304,3 +3355,16 @@ select {
     width: 25px;
     height: 25px;
 }
+
+/* Sweet Alert Start  */
+.custom-cancel-button {
+    border: 2px solid #000 !important;
+    color: #000 !important;
+}
+
+.action-button-box {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Sweet Alert End */

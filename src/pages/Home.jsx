@@ -10,6 +10,7 @@ import travelImage from "../assets/images/travel.png"
 import travel2Image from "../assets/images/travel2.png"
 import securityImage from "../assets/images/security.png"
 import { Link } from "react-router-dom";
+import circleImg from "../assets/images/banner_circle.png"
 
 const Home = () => {
     const containerStyle = {
@@ -19,19 +20,21 @@ const Home = () => {
     return (
         <>
             <section className="home-banner bgCover" >
+               
                 <div className="container">
                     <div className="row align-items-center">
                         <div className="col-lg-6">
                             <div class="home-banner-content">
-                            <h1>The Anthos Net Zero Project</h1>
-                            <div className="P_Lead">
-                                <p>Created to provied an ongoing service to help all family members</p>
-                            </div>
+                                <h1>The Anthos<br/>Net Zero Tool</h1>
+                                <div className="P_Lead">
+                                    <p>Designed for Anthos clients to provide insights into personal emissions and support with emissions reductions</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
+           
             {/* <section className='home-banner bgCover' style={containerStyle}>
                 <div className="container">
                     <div className="row align-items-center">
@@ -46,6 +49,7 @@ const Home = () => {
             {/* <!--------------------- personal-carbon -----------------------> */}
 
             <section className="personal-carbon bg-lightgray-color pt-80 pb-80">
+            <div class="possinend-image"><img src={circleImg} alt="" /></div>
                 <div className="container">
                     <div className="carbon-top">
                         <div className="row">
@@ -73,10 +77,12 @@ const Home = () => {
                                         <div className="text-scroll">
                                             <div className="p-box">
                                                 <p>Understand the shape and size of your carbon footprint.</p>
+
                                                 <p>Connect with an advisory service to discuss and explore opportunities for carbon reduction.</p>
-                                                <p>Understand the shape and size of your carbon footprint</p>
-                                                <p>Select from a choice of carbon offsets to compensate for emissions and become carbon neutral.</p>
+
                                                 <p>Repeat the process on an annual basis and track progress through time.</p>
+
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -95,10 +101,12 @@ const Home = () => {
                         <div className="col-lg-9 col-md-8">
                             <div className="form-content">
                                 <div className="title-block">
-                                    <div class='sub-title'>How to complete the form</div>
-                                    <h2> Form essentials</h2>
+                                <div class='sub-title'>FORM GUIDE</div>
+                                    <h2>How to complete the form</h2>
                                 </div>
-                                <p>The first step is to provide information through the tailored form, relating to your home, travel, shopping and assets. Information is encrypted and held on a <span>secure server*</span> and the form should take no more than 15 minutes to complete. On each page there are some sections that are required and others that are optional. The optional sections are for activities that we expect aren’t the biggest sources of emissions or which taken more time to complete. However, adding this information will give you a more accurate carbon footprint and more tailored recommendations.</p>
+                                <p>The first step is to provide information through the tailored form, relating to your home, travel, shopping and assets. Information is encrypted and held on a <span>secure server*</span> and the form should take no more than 15 minutes to complete. </p>
+                                <p>On each page there are some sections that are required and others that are optional. The optional sections are for activities that we expect aren’t the biggest sources of emissions and so are not compulsory to fill out. However, adding this information will give you a more accurate carbon footprint and more tailored recommendations.</p>
+                                <p>The accuracy of your carbon footprint and the effectiveness of the recommendations derived from it are dependent on the completeness of the information provided by you.</p>
                                 <span>To make the process quicker and easier, gather the following details before starting:</span>
                                 <div className="row">
                                     <div className="col-lg-4 col-md-4 col-12 text-align-center">
@@ -126,8 +134,9 @@ const Home = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <p>You can save your responses if you are not able to complete the form, and return to it later. Once you have submitted the information, the net zero team will respond with initial results and suggested actions, and an invitation to arrange a consultation to discuss.</p>
-                                <p>The tool has been built by Good Business and is based on the principles of the Greenhouse Gas Protocol. It has been developed specifically for Anthos and gives family members a tailored and personal service, making it stand out from the many carbon calculators available online.</p>
+                                <p>You can save your responses if you are not able to complete the form, and return to it later. 
+Once you have submitted the information, the Good Business team will respond with initial results and suggested actions in their report, and an invitation to arrange a consultation to discuss your form.</p>
+                             
                                 <Link to="/general" className="btn">Calculate your footprint</Link>
                             </div>
                         </div>
@@ -151,7 +160,7 @@ const Home = () => {
                         <div className="col-lg-10">
                             <div className="title-block">
                                 <h2>Protecting your data</h2>
-                                <p>All of your responses in this survey will be encrypted with TLS and only accessed by the Net-Zero team for the purposes of calculating your footprint and providing recommendations to reduce it. You can find more information in Good Business’ privacy policy here. The tool met the high data security requirements for penetration testing in March 2022.</p>
+                                
                             </div>
                         </div>
                     </div>
@@ -164,17 +173,10 @@ const Home = () => {
                             </div>
                         </div>
                         <div className="col-lg-6 col-md-6 offset-lg-1 offset-md-1 Protecting-content">
-                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing
-                                elitr, sed diam nonumy eirmod tempor invidunt ut
-                                labore et dolore magna aliquyam erat, sed diam
-                                voluptua. At vero eos et accusam et justo.
-                            </p>
-                            <p>Sadipscing elitr, sed diam nonumy eirmod tempor
-                                invidunt ut labore et dolore magna aliquyam erat, sed
-                                diam voluptua. At vero eos et accusam et justo duo
-                                dolores et ea rebum. Stet clita kasd gubergren, no
-                                sea takimata sanctus est Lorem ipsum dolor et
-                                accusam et dolores justo.</p>
+                            <p>All of your responses in the <b>Net Zero Tool</b> will be encrypted with TLS and only accessed by the <b>Good Business team</b> for the purposes of calculating your footprint and providing recommendations to reduce it. You can find more information in Good Business’ privacy policy here. </p>
+
+                            <p>The <b>Net Zero Tool</b> met high data security requriements for pentration testing in <b>March 2023</b>. </p>
+
                         </div>
                     </div>
                 </div>

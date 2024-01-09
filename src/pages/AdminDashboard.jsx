@@ -9,32 +9,43 @@ import missions_img from "../assets/images/missions_img.svg";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { userFormValidation } from "../helpers/validations/Schema";
-import { formlist, getUserDetails, updateUserDetails } from "../redux-store/actions/user";
+import { formlist } from "../redux-store/actions/user";
 import SuccessImg from "../assets/images/Group 9106.png";
 import Swal from "sweetalert2";
 import { ordinalNumbers } from "../helpers/ordinalNumber";
+import { getAdminDetails, getAllForms, updateAdminDetails } from "../redux-store/actions/admin";
 
 const AdminDashboard = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state) => state.auth);
-  const formList = useSelector((state) => state.users.formList);
-  const isLoading = useSelector((state) => state.users.isLoading);
+  const adminDetails = useSelector((state) => state.admin);
+  const isLoading = adminDetails.isLoading;
+  const allForms = adminDetails?.getAllForms?.result;
+  const resultcount = adminDetails?.getAllForms?.resultcount;
 
   const [disabled, setDisabled] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(6);
+  const [searchByEmail, setSearchByEmail] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+
   const serialNo = (currentPage - 1) * itemsPerPage;
   const userId = user?.userInfo?.user_id
 
   useEffect(() => {
-    dispatch(formlist(userId));
+    fetchAdminDetails()
   }, []);
 
+  useEffect(() => {
+    const params = { itemsPerPage: itemsPerPage, pageNumber: currentPage, query: searchQuery }
+    dispatch(getAllForms(params));
+  }, [currentPage, searchQuery]);
 
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = formList?.slice(indexOfFirstItem, indexOfLastItem);
+  const searchFilter = (e) => {
+    setSearchQuery(searchByEmail)
+    setCurrentPage(1)
+  }
 
   const formik = useFormik({
     initialValues: {
@@ -47,9 +58,10 @@ const AdminDashboard = () => {
     onSubmit: (values) => { },
   });
 
-  const UpdateUserDetails = async (e) => {
-    dispatch(getUserDetails(userId));
+  const fetchAdminDetails = async (e) => {
+    dispatch(getAdminDetails(userId));
   }
+
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -60,7 +72,7 @@ const AdminDashboard = () => {
       setDisabled(true);
       const user_id = Number(user?.userInfo?.user_id);
 
-      const response = await dispatch(updateUserDetails({ data: values, user_id }));
+      const response = await dispatch(updateAdminDetails({ data: values, user_id }));
       setDisabled(false)
       if (!response?.payload?.error && response?.payload?.data) {
         Swal.fire({
@@ -72,7 +84,7 @@ const AdminDashboard = () => {
           showCancelButton: false,
           confirmButtonColor: "#3085d6",
           cancelButtonColor: "#d33",
-          didClose: UpdateUserDetails
+          didClose: fetchAdminDetails()
         });
       } else {
         const errorMsg = response?.payload?.response?.data?.errorMsg;
@@ -95,6 +107,7 @@ const AdminDashboard = () => {
       console.error('Form is not valid', errors);
     }
   };
+
 
   return (
     <>
@@ -184,10 +197,10 @@ const AdminDashboard = () => {
                 <div className="submission-form">
 
                   <div class="form-div">
-                    <label htmlFor="text">Search submitted forms by user email address.</label>
-                    <input type="text" name="" placeholder="First name" />
+                    <label htmlFor="searchByEmail">Search submitted forms by user email address.</label>
+                    <input type="text" name="searchByEmail" value={searchByEmail} id="searchByEmail" placeholder="Email" onChange={(e) => setSearchByEmail(e.target.value)} />
                   </div>
-                  <button class="submit-btn " type="submit">
+                  <button class="submit-btn " type="button" onClick={(e) => searchFilter(e)}>
                     Submit
                   </button>
                 </div>
@@ -196,15 +209,15 @@ const AdminDashboard = () => {
 
               <table class="customers" style={{ borderRadius: '20px' }}>
                 <thead className="table-header">
-                <tr style={{ borderRadius: '20px' }}>
-                  <th style={{ width: '25%' }}>Form name</th>
-                  <th style={{ width: '50%' }}>User email address</th>
-                  <th style={{ width: '25%' }}></th>
-                </tr>
+                  <tr style={{ borderRadius: '20px' }}>
+                    <th style={{ width: '25%' }}>Form name</th>
+                    <th style={{ width: '50%' }}>User email address</th>
+                    <th style={{ width: '25%' }}></th>
+                  </tr>
                 </thead>
                 <tbody>
-                  {isLoading ? (<div className="text-center">loading...</div>) :
-                    currentItems?.length > 0 ? currentItems?.map((form, index) => (
+                  {isLoading && allForms ? (<tr className="text-center"><td colSpan={4}>loading...</td></tr>) :
+                    allForms?.length > 0 ? allForms?.map((form, index) => (
                       <tr key={index}>
                         <td>{ordinalNumbers[serialNo + index]} form</td>
                         <td>{form.email}</td>
@@ -214,11 +227,11 @@ const AdminDashboard = () => {
                           <div class="table-img">  <img src={share_img} width={36} height={44} /></div>
                         </td>
                       </tr>
-                    )) : (<tr className="text-center"><td>Data not found</td></tr>)}
+                    )) : (<tr className="text-center"><td colSpan={4}>Data not found</td></tr>)}
                 </tbody>
               </table>
 
-              {!isLoading && formList?.length > 0 && (<Pagination dataLength={formList?.length} itemsPerPage={itemsPerPage} currentPage={currentPage} setCurrentPage={setCurrentPage} />)}
+              {!isLoading && resultcount > 0 && (<Pagination dataLength={resultcount} itemsPerPage={itemsPerPage} currentPage={currentPage} setCurrentPage={setCurrentPage} />)}
 
             </div>
           </div>
@@ -235,8 +248,9 @@ const AdminDashboard = () => {
                 <h1 class="modal-title fs-5" id="exampleModalLabel mt-5">Upload CSV form</h1>
               </div>
               <div class="modal-body">
-                <div class="upload-box">
-                  <input type="file" />
+                <div class="upload-box" >
+                  <input type="file" name="" id="uploadCsv" style={{ visibility: "visible" }} />
+                  {/* <label htmlFor="uploadCsv">Browse files</label> */}
                 </div>
               </div>
               <div class="">
