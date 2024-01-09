@@ -466,7 +466,7 @@ const General = () => {
                                                             </div>
                                                         ))}
 
-                                                    <div className="col-md-6">
+                                                    <div className="col-md-5">
                                                         <div className="form-div">
                                                             <label htmlFor="living_with_partner">
                                                                 <strong>7.</strong>     Do you live with a partner?<span>*</span>

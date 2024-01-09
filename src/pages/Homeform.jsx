@@ -1725,7 +1725,7 @@ const Homeform = () => {
                               <strong>20. </strong>Do you have any renovations
                               planned this year or next year?{" "}
                             </label>
-                            <div className="col-lg-6">
+                            <div className="col-lg-5">
                               <div className="sub-btn">
                                 <input
                                   type="radio"
@@ -1753,7 +1753,7 @@ const Homeform = () => {
                               <strong>21. </strong>Does the property have any
                               significant land attached?{" "}
                             </label>
-                            <div className="col-lg-6">
+                            <div className="col-lg-5">
                               <div className="sub-btn">
                                 <input
                                   type="radio"

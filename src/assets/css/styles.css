@@ -1870,6 +1870,7 @@ select {
     border-collapse: collapse;
     width: 100%;
     background: #fff;
+    overflow: hidden;
 }
 
 .submissions .customers td,
@@ -1906,7 +1907,33 @@ select {
     color: white;
     font-size: 22px;
 }
+   /*********************submissions-popup***********************/
 
+.submissions .modal-content {
+    background: #2C2B34;
+    color: #fff;
+    padding: 30px 70px;
+    border-radius: 50px;
+    /* width: 1000px; */
+    text-align: center;
+    margin: 0 auto;
+    width: 1000px !important;
+}
+
+.submissions .modal-content h1 {
+    font-size: 40px !important;
+    font-weight: 600;
+    line-height: 50px;
+    margin-bottom: 60px;
+}
+.modal-body {
+    border: 1px solid #48B8B1;
+    padding: 48px 200px;
+    border-style: dashed;
+    background: #3B4149;
+    border-radius: 50px;
+
+}
 /****************** password-eye-css ******************/
 
 
@@ -1943,6 +1970,9 @@ select {
 .pagination .active {
     font-weight: 600;
 }
+
+
+
 
 
 
