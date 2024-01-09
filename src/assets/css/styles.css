@@ -128,7 +128,16 @@ input {
     display: none;
 }
 
-.bg-home .nav-items.active {
+/* .bg-home .nav-items.active { */
+.main-header:not(.bg-home) .nav-items.active{
+    background-color: #000;
+    color: #fff;
+}
+.main-header:not(.bg-home) .nav-items.active .nav-item a{
+    color: #fff;
+}
+
+.nav-items.active {
     background: white;
     color: #000;
     padding: 20px 30px;
