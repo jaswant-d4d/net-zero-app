@@ -118,6 +118,7 @@ input {
     height: 100vh; */
 }
 
+
 .bg-home-form {
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/home-img.png");
     background-size: cover;
@@ -512,7 +513,10 @@ form.registerform {
     border-top: 1px solid #00FF9B;
     padding-top: 20px;
 }
-
+.footer-content-two p{
+    text-align: center;
+    display: none;
+}
 /********Main Home page******/
 body{overflow-x: hidden;}
 .home-banner {
@@ -803,6 +807,9 @@ section.protecting-data {
     height: 1000px;
     direction: ltr;
     height: 300px;
+}
+.text-scroll .p-box p {
+    color: #818181;
 }
 
 /* Scrollbar Styling */
@@ -2006,6 +2013,10 @@ select {
     font-weight: 600;
 }
 
+.bg-home {
+    overflow-x: hidden;
+}
+
 @media(max-width:1660px) {
     .possinend-image {
         position: absolute;
@@ -2023,6 +2034,9 @@ select {
 @media (max-width:1440px) {
     .login-img img {
         width: 600px;
+    }
+    .bg-home {
+        overflow-x: hidden;
     }
 
     .Form-col-img img {
@@ -2052,7 +2066,7 @@ select {
     .submissions .submission-form .form-div {
         width: 70%;
     }
-   
+    .sub-btn label{ padding: 13px 40px;}
 }
 
 @media (max-width:1300px) {
@@ -2070,6 +2084,7 @@ select {
     .Form-col-img img {
         width: 320px;
     }
+    .card{width:90%; max-width: 100%;}
     
 }
 
@@ -2094,7 +2109,7 @@ select {
     }
 
     .form-content {
-        margin-right: 100px;
+        margin-right: 75px;
     }
 
     .footer-box {
@@ -2582,7 +2597,7 @@ select {
     }
 
     .footer-container {
-        padding: 0 28px 40px 28px;
+        padding: 0 15px 40px 15px;
     }
 
     .footer-box {
@@ -2599,6 +2614,11 @@ select {
 
     .footer-content p {
         text-align: center;
+        display: none;
+    }
+    .footer-content-two p{
+        text-align: center;
+        display: block;
     }
 
     .footer-logo {
@@ -2636,14 +2656,14 @@ select {
 
     .footer-content-privacy {
         display: block;
+        text-align: right;
     }
 
     .footer-lower {
         margin-top: 30px;
     }
-
-    .personal-carbon {
-        position: relative;
+    .footer-lower {
+        justify-content: center;
     }
 
     /*************** navbar responsive ****************/
@@ -3157,6 +3177,11 @@ select {
         } */
     .bg-My-Account .Personal-information {
         margin-bottom: 100px;
+    }
+    .possinend-image {
+        position: absolute;
+        top: -25%;
+        right: -70%;
     }
 
     /*********************** forgotpaddword *********************/
