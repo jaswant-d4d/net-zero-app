@@ -2032,6 +2032,10 @@ select {
     overflow-x: hidden;
 }
 
+.main-header:not(.bg-home) .nav-items svg path {
+    fill: #fff;
+}
+
 @media(max-width:1660px) {
     .possinend-image {
         position: absolute;
@@ -2188,9 +2192,7 @@ select {
         right: 30px;
     }
 
-    .main-header:not(.bg-home) .nav-items svg path {
-        fill: #fff;
-    }
+    
     .nav-items.active ul {
         padding-left: 0;
         padding-top: 85px;
